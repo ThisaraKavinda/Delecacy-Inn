@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 8090;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const URL="";
+const URL="mongodb+srv://delicacyInn:delicacyInn@cluster0.986hrwo.mongodb.net/?retryWrites=true&w=majority";
 
 mongoose.connect(URL,{
   
