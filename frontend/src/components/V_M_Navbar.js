@@ -27,33 +27,33 @@ export default function V_M_Navbar() {
 
                 <ul class="sidebar-nav">
                     <li class="sidebar-item ">
-                        <Link class="sidebar-link"to='/'>
+                        <Link class="sidebar-link"to='/vihicleDashboard'>
                             <i class="align-middle me-2 fas fa-fw fa-home"></i> <span class="align-middle">Dashboards</span>
                         </Link>
 
                     </li>
                     <li class="sidebar-item ">
-                        <Link class="sidebar-link"to='/'>
+                        <Link class="sidebar-link"to='/vehicle-customer-request'>
                             <i class="align-middle me-2 fas fa-fw fa-home"></i> <span class="align-middle">Customer Request</span>
                         </Link>
 
                     </li>
                     <li class="sidebar-item ">
-                        <Link class="sidebar-link"to='/'>
+                        <Link class="sidebar-link"to='/vehicle-add'>
                             <i class="align-middle me-2 fas fa-fw fa-home"></i> <span class="align-middle">Add Vehicle</span>
                         </Link>
 
                     </li>
                     
                     <li class="sidebar-item ">
-                        <Link class="sidebar-link"to='/'>
+                        <Link class="sidebar-link"to='/vihicle-list'>
                             <i class="align-middle me-2 fas fa-fw fa-home"></i> <span class="align-middle">Vehicle list</span>
                         </Link>
 
                     </li>
 
                     <li class="sidebar-item ">
-                        <Link class="sidebar-link"to='/'>
+                        <Link class="sidebar-link"to='/vehicle-report'>
                             <i class="align-middle me-2 fas fa-fw fa-home"></i> <span class="align-middle">Reports</span>
                         </Link>
 

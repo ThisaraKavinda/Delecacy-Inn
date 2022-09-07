@@ -4,7 +4,7 @@ import axios from 'axios';
 import { baseURL } from '../config';
 
 export const addVehicle = async (details) => {
-    const { data } = await axios.post(baseURL + '/vehicle/addVehicle/', details);
+    const { data } = await axios.post(baseURL + '/vehicle/add/', details);
     return data;
 }
 
