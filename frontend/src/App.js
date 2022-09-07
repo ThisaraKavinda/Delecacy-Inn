@@ -18,8 +18,9 @@ import E_M_UpdateEmployee from './view/E_M_UpdateEmployee';
 import E_M_ViewEmployee from './view/E_M_ViewEmployee';
 
 //Sheha
-// import E_M_Dashboard from './view/E_M_Dashboard';
+import V_M_Dashboard from './view/V_M_Dashboard';
 import V_M_VehicleAdd from './view/V_M_VehicleAdd';
+import V_M_VehicleList from './view/V_M_VehicleList';
 
 
 function App() {
@@ -46,8 +47,9 @@ function App() {
       <Route exact path='/viewEmployee' element={<E_M_ViewEmployee/>}/>
 
       {/*Sheha*/}
-      {/* <Route exact path='/employeeDashboard' element={<E_M_Dashboard/>}/> */}
-      <Route exact path='/addVehicle' element={<V_M_VehicleAdd/>}/>
+      <Route exact path='/vihicleDashboard' element={<V_M_Dashboard/>}/>
+      <Route exact path='/vehicle-add' element={<V_M_VehicleAdd/>}/>
+      <Route exact path='/vihicle-list' element={<V_M_VehicleList/>}/>
     </Routes>
   </BrowserRouter>
 

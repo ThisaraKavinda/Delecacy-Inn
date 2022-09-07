@@ -1,12 +1,88 @@
 import React, { useState, useEffect } from 'react';
+import Select from 'react-select';
 import Navbar from '../components/V_M_Navbar';
+import swal from 'sweetalert';
+
+//css
 import '../css/modern.css';
-// import '../css/my.css';
+
+//js
 import '../js/app.js';
+
+// Controllers
+import { addVehicle } from '../controllers/vehicles';
+
 
 
 export default function V_M_VehicleAdd() {
 
+    const [vehicleType, setVehicleType] = useState('');
+    const [vehicleIdentification, setvehicleIdentification] = useState('');
+    const [vehicleNumber, setVehicleNumber] = useState('');
+    const [vehicleDriver, setVehicleDriver] = useState('');
+    const [vehicleCapacity, setVehicleCapacity] = useState('');
+  
+    function insertVehicle() {
+
+        if (vehicleType === '' && vehicleIdentification === '' && vehicleNumber === '' && vehicleDriver === '' && vehicleCapacity === '') {
+            swal("All field are empty..");
+        } else if (vehicleType === '') {
+            swal("Vehicle Type field are empty");
+        } else if (vehicleIdentification === '') {
+            swal("Vehicle Identification field are empty");
+        } else if (vehicleNumber === '') {
+            swal("Vehicle Number field are empty");
+        } else if (vehicleDriver === '') {
+            swal("Vehicle Driver field are empty");
+        } else if (vehicleCapacity === '') {
+            swal("Vehicle Capacity field are empty");
+        } else if (vehicleType === '' || vehicleIdentification === '' || vehicleNumber === '' || vehicleDriver === '' || vehicleCapacity === '') {
+            swal("fields are empty");
+        } else {
+            addVehicle({ type: vehicleType, identification: vehicleIdentification, vehicleNumber: vehicleNumber, driver: vehicleDriver, vehicleCapacity: vehicleCapacity, state: 'Active' }).then((result) => {
+                if (result.status) {
+
+                    swal({
+                        title: "Success!",
+                        text: "New Customer Add Successfully",
+                        icon: 'success',
+                        timer: 2000,
+                        button: false,
+                    });
+
+                    setVehicleType('');
+                    setvehicleIdentification('');
+                    setVehicleNumber('');
+                    setVehicleDriver('');
+                    setVehicleCapacity('');
+
+                    // setTimeout(() => {
+                    //     window.location.reload(true);
+                    // }, 2050)
+
+                } else {
+                    swal({
+                        title: "Error!",
+                        text: "New Vehicle Add Unsuccessfully",
+                        icon: 'error',
+                        timer: 2000,
+                        button: false
+                    });
+                }
+            });
+        }
+    }
+        function resetForm(){
+
+            if (vehicleType === '' && vehicleIdentification === '' && vehicleNumber === '' && vehicleDriver === '' && vehicleCapacity === '') {
+                swal("fields are already empty");
+         }
+                setVehicleType('');
+                setvehicleIdentification('');
+                setVehicleNumber('');
+                setVehicleDriver('');
+                setVehicleCapacity('');
+    }
 
     return (
 
@@ -31,35 +107,46 @@ export default function V_M_VehicleAdd() {
                                 
                                             <div class="row">
                                                 <div class="mb-3 col-md-6">
-                                                    <label for="inputEmail4">Vihicle Type</label>
-                                                    <input type="text" class="form-control"    name="name" required />
+                                                    <label for="inputVehicleType">Vihicle Type</label>
+                                                    <Select options={
+                                                        [
+                                                            { value: 'Car', label: 'Car' },
+                                                            { value: 'Van', label: 'Van'},
+                                                            { value: 'Bike', label: 'Bike'},
+                                                        ]
+                                                    }
+                                                    onChange={(e) => {
+                                                       setVehicleType(e.value);
+                                                    }} />
+                                                
                                                 </div>
                                                 <div class="mb-3 col-md-6">
-                                                    <label for="inputPassword4">Identification</label>
-                                                    <input type="email" class="form-control" id="inputPassword4"    name="email" required/>
+                                                    <label for="inputPIdentification">Identification</label>
+                                                    <input type="text" class="form-control" value={vehicleIdentification} onChange={(e) => setvehicleIdentification(e.target.value)}   name="identification" required/>
                                                 </div>
                                             </div>
 
                                         
-                                            <div class="mb-3 ">
-                                                <label for="inputAddress">Vehicle Number</label>
-                                                <input type="text" class="form-control" id="inputAddress"   name="address" required />
+                                            <div class="mb-3 col-md-6">
+                                                <label for="inputVehicleAddress">Vehicle Number</label>
+                                                <input type="text" class="form-control" value={vehicleNumber} onChange={(e) => setVehicleNumber(e.target.value)}   name="identification" required/>
 
                                             </div>
 
                                             <div class="row">
                                                 <div class="mb-3 col-md-6">
-                                                    <label for="inputCity">Driver</label>
-                                                    <input type="text" class="form-control"   name="nic" required />
+                                                    <label for="inputDriver">Driver</label>
+                                                    <input type="text" class="form-control"value={vehicleDriver} onChange={(e) => setVehicleDriver(e.target.value)}    name="Driver" required />
                                                 </div>
                                                 <div class="mb-3 col-md-6">
-                                                    <label for="inputCity">Vehicle Capacity</label>
-                                                    <input type="text" class="form-control"   name="contactNo" required />
+                                                    <label for="inputCapacity">Vehicle Capacity</label>
+                                                    <input type="text" class="form-control"value={vehicleCapacity} onChange={(e) => setVehicleCapacity(e.target.value)}    name="Capacity" required />
                                                 </div>                                       
 
                                             </div>
 
-                                            <button type="submit" class="btn my-btn">Submit</button>
+                                            <button type="submit" class="btn  btn-primary" id="addVehicle" style={{ backgroundColor: '#081E3D', borderColor: '#081E3D', color: '#fff' }} onClick={() => insertVehicle()}>Submit</button>
+                                            <button type="submit" class="btn  btn-primary" id="addVehicle" style={{ backgroundColor: '#ffffff', borderColor: '#081E3D', color: '#081E3D', marginLeft: 10, width:75 }} onClick={() => resetForm()}>Reset</button>
 
                                 </div>
                             </div>

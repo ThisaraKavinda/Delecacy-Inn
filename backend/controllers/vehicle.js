@@ -3,6 +3,7 @@ import { VehicleModel } from '../models/vehicle.js';
 
 
 export const addVehicle = async (req, res) => {
+    console.log(req.body);
     const vehicle = new VehicleModel({
         type: req.body.type,
         identification: req.body.identification,
