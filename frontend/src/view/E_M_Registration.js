@@ -10,7 +10,7 @@ export default function E_M_Registration() {
     return (
 
         <div class="wrapper">
-<Navbar/>
+            <Navbar />
             <div class="main">
 
                 <main class="content">
@@ -18,64 +18,74 @@ export default function E_M_Registration() {
 
                         <div class="header">
                             <h1 class="header-title">
-                               Registration
+                                Registration
                             </h1>
 
                         </div>
 
-                       
+
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body" >
-                                
-                                            <div class="row">
-                                                <div class="mb-3 col-md-6">
-                                                    <label for="inputEmail4">Name</label>
-                                                    <input type="text" class="form-control"    name="name" required />
-                                                </div>
-                                                <div class="mb-3 col-md-6">
-                                                    <label for="inputPassword4">Address</label>
-                                                    <input type="email" class="form-control" id="inputPassword4"    name="email" required/>
-                                                </div>
-                                            </div>
 
-                                            <div class="col-md-12">
-                                            <label for="inputAddress">Gender</label>
-										<label class="form-check">
-											<input class="form-check-input" type="radio" value="option1" name="radios-example" checked=""/>
-											<span class="form-check-label">
-												Male
-											</span>
-										</label>
-										<label class="form-check">
-											<input class="form-check-input" type="radio" value="option2" name="radios-example"/>
-											<span class="form-check-label">
-												Female
-											</span>
-										</label>
-										
-									</div>
+                                    <div class="row">
+                                        <div class="mb-3 col-md-6">
+                                            <label for="inputEmail4">Name</label>
+                                            <input type="text" class="form-control" name="name" required />
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label for="inputPassword4">Email</label>
+                                            <input type="email" class="form-control" id="inputEmail" name="email" required />
+                                        </div>
+                                    </div>
+                                    <br></br>
+                                    <div class="col-md-12">
+                                        <label for="inputAddress">Gender</label>
+                                        <label class="form-check">
+                                            <input class="form-check-input" type="radio" value="option1" name="radios-example" checked="" />
+                                            <span class="form-check-label">
+                                                Male
+                                            </span>
+                                        </label>
+                                        <label class="form-check">
+                                            <input class="form-check-input" type="radio" value="option2" name="radios-example" />
+                                            <span class="form-check-label">
+                                                Female
+                                            </span>
+                                        </label>
 
-                                        
-                                            <div class="mb-3 ">
-                                                <label for="inputAddress">Email</label>
-                                                <input type="text" class="form-control" id="inputAddress"   name="address" required />
+                                    </div>
 
-                                            </div>
+                                    <br></br>
 
-                                            <div class="row">
-                                                <div class="mb-3 col-md-6">
-                                                    <label for="inputCity">NIC</label>
-                                                    <input type="text" class="form-control"   name="nic" required />
-                                                </div>
-                                                <div class="mb-3 col-md-6">
-                                                    <label for="inputCity">Contact No</label>
-                                                    <input type="text" class="form-control"   name="contactNo" required />
-                                                </div>                                       
+                                    <div class="mb-3">
+                                        <label class="form-label">Date of Birth</label>
+                                        <div class="input-group date" id="datetimepicker-date" data-target-input="nearest">
+                                            <input type="date" class="form-control datetimepicker-input" data-target="#datetimepicker-date" />
+                                            <div class="input-group-text" data-target="#datetimepicker-date" data-toggle="datetimepicker"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
 
-                                            </div>
 
-                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                    <div class="mb-3 ">
+                                        <label for="inputAddress">Address</label>
+                                        <input type="text" class="form-control" id="inputAddress" name="address" required />
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="mb-3 col-md-6">
+                                            <label for="inputCity">NIC</label>
+                                            <input type="text" class="form-control" name="nic" required />
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label for="inputCity">Contact No</label>
+                                            <input type="text" class="form-control" name="contactNo" required />
+                                        </div>
+
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Submit</button>
 
                                 </div>
                             </div>
@@ -85,11 +95,11 @@ export default function E_M_Registration() {
 
 
 
-              
 
 
 
-                    
+
+
 
 
                     </div>

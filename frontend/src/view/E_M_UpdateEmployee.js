@@ -34,8 +34,8 @@ export default function E_M_UpdateEmployee() {
                                                     <input type="text" class="form-control"    name="name" required />
                                                 </div>
                                                 <div class="mb-3 col-md-6">
-                                                    <label for="inputPassword4">Address</label>
-                                                    <input type="email" class="form-control" id="inputPassword4"    name="address" required/>
+                                                    <label for="inputPassword4">Email</label>
+                                                    <input type="email" class="form-control" id="inputEmail"    name="email" required/>
                                                 </div>
                                             </div>
 
@@ -58,8 +58,8 @@ export default function E_M_UpdateEmployee() {
 
                                         
                                             <div class="mb-3 ">
-                                                <label for="inputAddress">Email</label>
-                                                <input type="text" class="form-control" id="inputAddress"   name="email" required />
+                                                <label for="inputAddress">Address</label>
+                                                <input type="text" class="form-control" id="inputAddress"   name="address" required />
 
                                             </div>
 
