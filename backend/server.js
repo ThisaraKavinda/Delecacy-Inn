@@ -8,7 +8,7 @@ import * as dotenv from 'dotenv';
 // Routers
 import customerRouter from './routes/customer.js';
 import employeeRouter from './routes/employee.js';
-import vehicleyRouter from './routes/vehicle,js';
+import vehicleyRouter from './routes/vehicle.js';
 
 
 // Constants
