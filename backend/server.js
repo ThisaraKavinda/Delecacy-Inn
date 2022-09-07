@@ -7,6 +7,7 @@ import * as dotenv from 'dotenv';
 
 // Routers
 import customerRouter from './routes/customer.js';
+import employeeRouter from './routes/employee.js';
 
 
 // Constants
@@ -32,6 +33,7 @@ connection.once("open", () => {
 
 // Routers use
 app.use('/customer', customerRouter);
+app.use('/employee', employeeRouter);
 
 
 
