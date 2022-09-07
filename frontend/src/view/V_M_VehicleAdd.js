@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/V_M_Navbar';
 import '../css/modern.css';
-import '../css/my.css';
+// import '../css/my.css';
 import '../js/app.js';
 
 
