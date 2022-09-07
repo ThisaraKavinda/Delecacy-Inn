@@ -17,6 +17,10 @@ import E_M_ManageEmployee from './view/E_M_ManageEmployee';
 import E_M_UpdateEmployee from './view/E_M_UpdateEmployee';
 import E_M_ViewEmployee from './view/E_M_ViewEmployee';
 
+//Sheha
+// import E_M_Dashboard from './view/E_M_Dashboard';
+import V_M_VehicleAdd from './view/V_M_VehicleAdd';
+
 
 function App() {
   return (
@@ -40,6 +44,10 @@ function App() {
       <Route exact path='/manageEmployee' element={<E_M_ManageEmployee/>}/>
       <Route exact path='/updateEmployee' element={<E_M_UpdateEmployee/>}/>
       <Route exact path='/viewEmployee' element={<E_M_ViewEmployee/>}/>
+
+      {/*Sheha*/}
+      {/* <Route exact path='/employeeDashboard' element={<E_M_Dashboard/>}/> */}
+      <Route exact path='/addVehicle' element={<V_M_VehicleAdd/>}/>
     </Routes>
   </BrowserRouter>
 
