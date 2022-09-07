@@ -17,7 +17,7 @@ import $ from 'jquery';
 
 
 
-export default function E_M_Registration() {
+export default function E_M_ManageEmployee() {
 
 
     //initialize datatable
