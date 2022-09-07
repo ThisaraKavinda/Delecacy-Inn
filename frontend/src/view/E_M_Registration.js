@@ -39,6 +39,23 @@ export default function E_M_Registration() {
                                                 </div>
                                             </div>
 
+                                            <div class="col-md-12">
+                                            <label for="inputAddress">Gender</label>
+										<label class="form-check">
+											<input class="form-check-input" type="radio" value="option1" name="radios-example" checked=""/>
+											<span class="form-check-label">
+												Male
+											</span>
+										</label>
+										<label class="form-check">
+											<input class="form-check-input" type="radio" value="option2" name="radios-example"/>
+											<span class="form-check-label">
+												Female
+											</span>
+										</label>
+										
+									</div>
+
                                         
                                             <div class="mb-3 ">
                                                 <label for="inputAddress">Email</label>
