@@ -39,6 +39,8 @@ export default function E_M_UpdateEmployee() {
                                                 </div>
                                             </div>
 
+                                            <br></br>
+
                                             <div class="col-md-12">
                                             <label for="inputAddress">Gender</label>
 										<label class="form-check">
@@ -55,6 +57,8 @@ export default function E_M_UpdateEmployee() {
 										</label>
 										
 									</div>
+
+                                    <br></br>
 
                                         
                                             <div class="mb-3 ">
