@@ -35,14 +35,14 @@ export default function E_M_UpdateEmployee() {
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="inputPassword4">Address</label>
-                                                    <input type="email" class="form-control" id="inputPassword4"    name="email" required/>
+                                                    <input type="email" class="form-control" id="inputPassword4"    name="address" required/>
                                                 </div>
                                             </div>
 
                                         
                                             <div class="mb-3 ">
                                                 <label for="inputAddress">Email</label>
-                                                <input type="text" class="form-control" id="inputAddress"   name="address" required />
+                                                <input type="text" class="form-control" id="inputAddress"   name="email" required />
 
                                             </div>
 
@@ -53,7 +53,7 @@ export default function E_M_UpdateEmployee() {
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="inputCity">Contact No</label>
-                                                    <input type="text" class="form-control"   name="contactNo" required />
+                                                    <input type="text" class="form-control"   name="contact" required />
                                                 </div>                                       
 
                                             </div>
