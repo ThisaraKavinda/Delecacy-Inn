@@ -45,16 +45,17 @@ export default function C_M_Navbar() {
 
                     <li class="sidebar-item">
                         <a data-bs-target="#sim" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                            <i class="align-middle me-2 fas fa-fw fa-globe"></i> <span class="align-middle">Appointment</span>
+                            <i class="align-middle me-2 fas fa-fw fa-file-download"></i> <span class="align-middle">Appointment</span>
                         </a>
                         <ul id="sim" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                            <li class="sidebar-item"><Link to='/test' class="sidebar-link" >Manage SIM</Link></li>
+                            <li class="sidebar-item"><Link to='/test' class="sidebar-link" >Add Appointment</Link></li>
+                            <li class="sidebar-item"><Link to='/test' class="sidebar-link" >View Appointment</Link></li>
                         </ul>
                     </li>
 
                     <li class="sidebar-item">
                         <a data-bs-target="#package" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                            <i class="align-middle me-2 fas fa-fw fa-cubes"></i> <span class="align-middle">Vehicle Booking</span>
+                            <i class="align-middle me-2 fas fa-fw fa-bookmark"></i> <span class="align-middle">Vehicle Booking</span>
                         </a>
                         <ul id="package" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="packagePage">Manage Package</a></li>
@@ -64,13 +65,25 @@ export default function C_M_Navbar() {
 
                     <li class="sidebar-item">
                         <a data-bs-target="#report" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                            <i class="align-middle me-2 fas fa-fw fa-cubes"></i> <span class="align-middle">Report</span>
+                            <i class="align-middle me-2 fas fa-fw fa-receipt"></i> <span class="align-middle">Report</span>
                         </a>
                         <ul id="report" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="packagePage">Manage Package</a></li>
                             <li class="sidebar-item"><a class="sidebar-link" href="packageTypePage">Manage Package Type</a></li>
                         </ul>
                     </li>
+
+                    <li class="sidebar-item">
+                        <a data-bs-target="#profile" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                            <i class="align-middle me-2 fas fa-fw fa-user"></i> <span class="align-middle">My Profile</span>
+                        </a>
+                        <ul id="profile" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <li class="sidebar-item"><a class="sidebar-link" href="packagePage">Profile Settings</a></li>
+                            <li class="sidebar-item"><a class="sidebar-link" href="packageTypePage">Sign Out</a></li>
+                        </ul>
+                    </li>
+
+
 
 
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/C_M_Navbar';
 import '../css/modern.css';
+import '../css/my.css';
 import '../js/app.js';
 
 
@@ -58,7 +59,7 @@ export default function C_M_CustomerAdd() {
 
                                             </div>
 
-                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="submit" class="btn my-btn">Submit</button>
 
                                 </div>
                             </div>

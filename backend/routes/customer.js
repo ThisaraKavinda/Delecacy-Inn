@@ -6,7 +6,7 @@ import { addCustomer, getAllCustomers, deleteCustomer, editCustomer, getSelected
 const router = express.Router();
 
 router.post('/add', addCustomer);
-router.get('/getAllVehicles', getAllCustomers);
+router.get('/getAllCustomers', getAllCustomers);
 router.post('/delete', deleteCustomer);
 router.post('/edit',editCustomer);
 router.post('/getSelectedCustomer',getSelectedCustomer);
