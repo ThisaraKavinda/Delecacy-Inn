@@ -10,6 +10,7 @@ import C_M_CustomerAdd from './view/C_M_CustomerAdd';
 import C_M_CustomerView from './view/C_M_CustomerView';
 import C_M_CustomerEdit from './view/C_M_CustomerEdit';
 import C_M_AppointmentAdd from './view/C_M_AppointmentAdd';
+import C_M_AppointmentView from './view/C_M_AppointmentView';
 import Test from './view/test';
 
 //Thanu
@@ -41,12 +42,8 @@ function App() {
       <Route exact path='/customerView' element={<C_M_CustomerView/>}/>
       <Route exact path='/customerEdit/:id' element={<C_M_CustomerEdit/>}/>
       <Route exact path='/appointmentAdd' element={<C_M_AppointmentAdd/>}/>
+      <Route exact path='/appointmentView' element={<C_M_AppointmentView/>}/>
       <Route exact path='/test' element={<Test/>}/>
-        {/* <Route exact path="/vehicle-add" component={Vehicle}/>
-      <Route exact path="/vehicle-list" component={VehicleList}/>
-      <Route exact path="/vehicle-edit/:id" component={VehicleEdit}/>
-      <Route exact path="/order" component={Order}/>
-      <Route exact path="/report" component={Report}/> */}
 
         {/*Thanu*/}
         <Route exact path="/employeeDashboard" element={<E_M_Dashboard />} />
