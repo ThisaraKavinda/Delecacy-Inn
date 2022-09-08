@@ -24,6 +24,10 @@ import V_M_VehicleAdd from './view/V_M_VehicleAdd';
 import V_M_VehicleList from './view/V_M_VehicleList';
 
 
+//Niakalo
+import F_M_Dashoard from './view/Food/F_M_Dashboard';
+
+
 function App() {
   return (
 
@@ -52,6 +56,10 @@ function App() {
       <Route exact path='/vihicleDashboard' element={<V_M_Dashboard/>}/>
       <Route exact path='/vehicle-add' element={<V_M_VehicleAdd/>}/>
       <Route exact path='/vihicle-list' element={<V_M_VehicleList/>}/>
+
+      {/* {Nikalo} */}
+      <Route exact path="/foodDashboard" element={<F_M_Dashoard/>} />
+
     </Routes>
   </BrowserRouter>
 
