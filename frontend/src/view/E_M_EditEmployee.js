@@ -75,7 +75,7 @@ export default function E_M_EmployeeEdit(props) {
           } else {
             swal({
               title: "Error!",
-              text: "Vehicle Update Unsuccessfully",
+              text: "Employee Update Unsuccessfully",
               icon: "error",
               timer: 2000,
               button: false,
@@ -85,7 +85,7 @@ export default function E_M_EmployeeEdit(props) {
 
         swal({
           title: "Success!",
-          text: "Vehicle Update Successfully",
+          text: "Employee Update Successfully",
           icon: "success",
           timer: 2000,
           button: false,
