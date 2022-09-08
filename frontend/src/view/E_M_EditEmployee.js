@@ -30,7 +30,6 @@ export default function E_M_EmployeeEdit(props) {
 
   const [employeeName, setEmployeeName] = useState(employeeData.name);
   const [employeeAddress, setEmployeeAddress] = useState(employeeData.address);
-  const [employeeDob, setEmployeeDob] = useState(employeeData.dob);
   const [employeGender, setEmployeGender] = useState(employeeData.gender);
   const [employeeEmail, setEmployeeEmail] = useState(employeeData.email);
   const [employeeNic, setEmployeeNic] = useState(employeeData.nic);
@@ -38,7 +37,6 @@ export default function E_M_EmployeeEdit(props) {
 
   const nameSetHandler = (data) => {setEmployeeName(data);};
   const addressSetHandler = (data) => {setEmployeeAddress(data);};
-  const dobSetHandler = (data) => {setEmployeeDob(data);};
   const genderSetHandler = (data) => {setEmployeGender(data); };
   const emailSetHandler = (data) => {setEmployeeEmail(data);};
   const nicSetHandler = (data) => {setEmployeeNic(data);};
@@ -57,7 +55,6 @@ export default function E_M_EmployeeEdit(props) {
           _id: id,
           name: employeeName,
           address: employeeAddress,
-          dob: employeeDob,
           gender: employeGender,
           email: employeeEmail,
           nic: employeeNic,
@@ -133,14 +130,7 @@ export default function E_M_EmployeeEdit(props) {
                     </div>
                   </div>
 
-                  <div class="mb-3 ">
-                    <label for="inputAddress">DOB</label>
-                    <FormInput
-                      value={employeeData.dob}
-                      title="number"
-                      onSave={dobSetHandler}
-                    />
-                  </div>
+                  
 
                   <div class="row">
                    
