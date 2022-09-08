@@ -67,7 +67,7 @@ export default function C_M_CustomerEdit(props) {
             .then((willDelete) => {
                 if (willDelete) {
 
-                    editCustomer({_id: id, name: customerName, email: customerEmail, address: customerAddress, nic: customerNIC, contactNo: customerPhone, state: 'Active'}).then((result) => {
+                    editCustomer({_id: id, name: customerName, email: customerEmail, address: customerAddress, nic: customerNIC, contactNo: customerPhone}).then((result) => {
                        
                         if (result) {
                             swal({
