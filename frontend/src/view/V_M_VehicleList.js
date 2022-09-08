@@ -1,67 +1,62 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../components/V_M_Navbar';
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Navbar from "../components/V_M_Navbar";
 import swal from "sweetalert";
+
+//css
 import "../css/modern.css";
+
+//js
 import "../js/app.js";
 
 //Bootstrap and jQuery libraries
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
+
 //Datatable Modules
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
 
-import { getAllVehicles } from "../controllers/vehicles";
-import { deleteVehicle } from "../controllers/vehicles";
+// Controllers
+import { getAllVehicles, deleteVehicle } from "../controllers/vehicles";
 
-export default function V_M_VehicleView() {
-  //initialize datatable
-  $(document).ready(function () {
-    $("#example").DataTable();
-  });
-
-  const [Vehicles, viewevehicle] = useState([]);
-  const [selectedVehicles, setSelectedVehicles] = useState([]);
+export default function V_M_CustomerAdd() {
+  const [vehicleList, setVehicleSelect] = useState([]);
 
   useEffect(() => {
-    function viewVehicle() {
-      getAllVehicles()
-        .then((result) => {
-          console.log(result);
-          viewevehicle(result);
-          setSelectedVehicles(result);
-        })
-        .catch((err) => {
-          alert(err.messsage);
-        });
-    }
-    viewVehicle();
+    getAllVehicles().then((result) => {
+      setVehicleSelect(result);
+      //initialize datatable
+      $(document).ready(function () {
+        $("#example").DataTable();
+      });
+    });
   }, []);
 
-  const onDelete = (id) => {
-    deleteVehicle({ id }).then((res) => {});
-    console.log(id);
-    viewevehicle((prevVehicles) =>
-      prevVehicles.filter((Vehicles) => Vehicles.id !== id)
-    );
-
+  function deleteMyVehicle(id) {
     swal({
-      title: "Success!",
-      text: "Employee Deleted Successfully",
-      icon: "success",
-      timer: 2000,
-      button: false,
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        deleteVehicle(id).then((result) => {
+          var vehicle = vehicleList.filter((e) => e._id !== result._id);
+          setVehicleSelect(vehicle);
+        });
+
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+          title: "Delete Successfully!",
+          buttons: false,
+          timer: 2000,
+        });
+      }
     });
-  };
-
-  const navigate = useNavigate();
-
-  const routeChange = (id) => {
-    // let path = "..//V_M_Dashboard/" + id;
-    navigate("..//vihicleDashboard");
-  };
+  }
 
   return (
     <div class="wrapper">
@@ -79,52 +74,45 @@ export default function V_M_VehicleView() {
                   <table id="example" class="table table-striped my">
                     <thead>
                       <tr>
+                        <th>Type</th>
+                        <th>Identification</th>
                         <th>Vehicle Number</th>
-                        <th>Vehicle Type</th>
                         <th>Driver</th>
                         <th>Vehicle Capacity</th>
-                        <th>Identification</th>
                         <th>State</th>
-                        <th>Option</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {selectedVehicles.map((Vehicle) => {
+                      {vehicleList.map((value, index) => {
                         return (
-                          <tr>
-                            <td>{Vehicle.type}</td>
-                            <td>{Vehicle.identification}</td>
-                            <td>{Vehicle.vehicleNumber}</td>
-                            <td>{Vehicle.driver}</td>
-                            <td>{Vehicle.vehicleCapacity}</td>
-                            <td>{Vehicle.state}</td>
-
-                            <div class="mb-3 col-md-6">
-                              <td className="action-buttons">
+                          <tr key={index}>
+                            <td>{value.type}</td>
+                            <td>{value.identification}</td>
+                            <td>{value.vehicleNumber}</td>
+                            <td>{value.driver}</td>
+                            <td>{value.vehicleCapacity}</td>
+                            <td>{value.state}</td>
+                            <td class="table-action">
+                              <button
+                                class="btn btn-pill btn-danger btn-sm"
+                                style={{ marginLeft: 45, width: 60 }}
+                                onClick={() => deleteMyVehicle(value._id)}
+                              >
+                                Delete
+                              </button>
+                              <Link
+                                to={"/vehicleEdit/" + value._id}
+                                class="top-bar-link"
+                              >
                                 <button
-                                  type="button"
-                                  onClick={routeChange.bind(this, Vehicle._id)}
-                                  class=""
+                                  class="btn btn-pill btn-success btn-sm"
+                                  style={{ marginLeft: 10, width: 60 }}
                                 >
-                                  Update
+                                  Edit
                                 </button>
-
-                                <button
-                                  type="button"
-                                  a
-                                  href=""
-                                  onClick={() => {
-                                    onDelete(Vehicle._id);
-                                    setTimeout(() => {
-                                      //   window.location.reload(true);
-                                    }, 2050);
-                                  }}
-                                  class=""
-                                >
-                                  Delete
-                                </button>
-                              </td>
-                            </div>
+                              </Link>
+                            </td>
                           </tr>
                         );
                       })}
