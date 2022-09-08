@@ -29,6 +29,7 @@ import V_M_VehicleEdit from "./view/V_M_VehicleEdit";
 
 //Niakalo
 import F_M_Dashoard from './view/Food/F_M_Dashboard';
+import F_M_FoodSelect from './view/Food/F_M_SelectFood';
 
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
 
         {/* {Nikalo} */}
       <Route exact path="/foodDashboard" element={<F_M_Dashoard/>} />
+      <Route exact path="/foodSelect" element={<F_M_FoodSelect/>} />
 
       </Routes>
     </BrowserRouter>

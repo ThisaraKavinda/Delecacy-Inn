@@ -52,12 +52,6 @@ export default function F_M_Dashboard() {
                             <p class="mb-2">Logout</p>
                             </a>
                         </div>
-
-
-<div></div>
-
-
-
                         </div>
                         <div class="col-md-5">
                         <div class="row m-3 h-75">
