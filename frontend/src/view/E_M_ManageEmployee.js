@@ -77,7 +77,6 @@ export default function E_M_CustomerAdd() {
                         <th>Name</th>
                         <th>Email</th>
                         <th>Gender</th>
-                        <th>DOB</th>
                         <th>Address</th>
                         <th>NIC</th>
                         <th>Contact No</th>
@@ -91,7 +90,6 @@ export default function E_M_CustomerAdd() {
                             <td>{value.name}</td>
                             <td>{value.email}</td>
                             <td>{value.gender}</td>
-                            <td>{value.dob}</td>
                             <td>{value.address}</td>
                             <td>{value.nic}</td>
                             <td>{value.contact}</td>

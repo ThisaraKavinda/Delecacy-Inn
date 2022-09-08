@@ -22,28 +22,38 @@ export default function E_M_Registration() {
     const [employeeNIC, setEmployeeNIC] = useState('');
     const [employeePhone, setEmployeePhone] = useState('');
 
+    const validateEmail = (email) => {
+        return email.match(
+          /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+      };
+
     function insertEmployee() {
 
-        if (employeeName === '' && employeeEmail === '' && employeeGender === '' && employeeDob === '' && employeeAddress === '' && employeeNIC === '' && employeePhone === '') {
+        if (employeeName === '' && employeeEmail === '' && employeeGender === '' && employeeAddress === '' && employeeNIC === '' && employeePhone === '') {
             swal("All field are empty..");
         } else if (employeeName === '') {
             swal("Name field is empty");
-        } else if (employeeEmail === '') {
+        } else if (employeeEmail == "") {
             swal("Email field is empty");
+        }else if (!validateEmail(employeeEmail)) {
+            swal("Enter a valid email");
         } else if (employeeGender === '') {
             swal("Gender field is empty"); 
-        } else if (employeeDob === '') {
-            swal("Date of Birth field is empty");              
-        } else if (employeeAddress === '') {
+        }  else if (employeeAddress === '') {
             swal("Address field is empty");
         } else if (employeeNIC === '') {
             swal("NIC field is empty");
-        } else if (employeePhone === '') {
+        } else if (employeeNIC.length <10 || isNaN(employeeNIC)){
+            swal("Enter a valid NIC");
+        } else if (employeePhone === ''){
             swal("Contact No field is empty");
-        } else if (employeeName === '' || employeeEmail === '' || employeeGender === '' || employeeDob === '' || employeeAddress === '' || employeeNIC === '' || employeePhone === '') {
+        } else if (employeePhone.length <10 || isNaN(employeePhone)){
+            swal("Enter a valid Contact number");
+        } else if (employeeName === '' || employeeEmail === '' || employeeGender === '' ||  employeeAddress === '' || employeeNIC === '' || employeePhone === '') {
             swal("fields are empty");
         } else {
-            addEmployee({ name: employeeName, email: employeeEmail,  gender: employeeGender, dob: employeeDob, address: employeeAddress, nic: employeeNIC, contactNo: employeePhone, state: 'Active' }).then((result) => {
+            addEmployee({ name: employeeName, email: employeeEmail,  gender: employeeGender, dob: employeeDob, address: employeeAddress, nic: employeeNIC, contact: employeePhone, state: 'Active' }).then((result) => {
                 if (result.status) {
 
                     swal({
