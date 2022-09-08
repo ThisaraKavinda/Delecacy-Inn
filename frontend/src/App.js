@@ -49,11 +49,12 @@ function App() {
       <Route exact path="/report" component={Report}/> */}
 
         {/*Thanu*/}
-      <Route exact path='/employeeDashboard' element={<E_M_Dashboard/>}/>
-      <Route exact path='/registration' element={<E_M_Registration/>}/>
-      <Route exact path='/manageEmployee' element={<E_M_ManageEmployee/>}/>
-      <Route exact path='/updateEmployee' element={<E_M_UpdateEmployee/>}/>
-      <Route exact path='/viewEmployee' element={<E_M_ViewEmployee/>}/>
+        <Route exact path="/employeeDashboard" element={<E_M_Dashboard />} />
+        <Route exact path="/registration" element={<E_M_Registration />} />
+        <Route exact path="/updateEmployee" element={<E_M_UpdateEmployee />} />
+        <Route exact path="/manageEmployee" element={<E_M_ManageEmployee />} />
+        <Route exact path="/employeeEdit/:id" element={<E_M_EditEmployee />} />
+        <Route exact path="/employeeView/:id" element={<E_M_ViewEmployee />} />
 
         {/*Sheha*/}
       <Route exact path='/vihicleDashboard' element={<V_M_Dashboard/>}/>
