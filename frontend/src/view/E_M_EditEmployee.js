@@ -143,14 +143,7 @@ export default function E_M_EmployeeEdit(props) {
                   </div>
 
                   <div class="row">
-                    <div class="mb-3 col-md-6">
-                      <label for="inputCity">Gender</label>
-                      <FormInput
-                        value={employeeData.gender}
-                        title="number"
-                        onSave={genderSetHandler}
-                      />
-                    </div>
+                   
 
                     <div class="mb-3 col-md-6">
                       <label for="inputCity">Email</label>

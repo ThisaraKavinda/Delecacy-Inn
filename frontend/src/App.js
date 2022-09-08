@@ -50,6 +50,7 @@ function App() {
         <Route exact path="/updateEmployee" element={<E_M_UpdateEmployee />} />
         <Route exact path="/manageEmployee" element={<E_M_ManageEmployee />} />
         <Route exact path="/employeeEdit/:id" element={<E_M_EditEmployee />} />
+        <Route exact path="/employeeView/:id" element={<E_M_ViewEmployee />} />
 
         {/*Sheha*/}
         <Route exact path="/vihicleDashboard" element={<V_M_Dashboard />} />
