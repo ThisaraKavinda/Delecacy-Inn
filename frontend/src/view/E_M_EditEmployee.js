@@ -16,7 +16,7 @@ import "../js/app.js";
 // Controllers
 import { getSelectedEmployee, editEmployee } from "../controllers/employee";
 
-export default function E_M_VehicleEdit(props) {
+export default function E_M_EmployeeEdit(props) {
   const { id } = useParams();
 
   const [employeeData, setEmployeeData] = useState([]);
@@ -34,7 +34,7 @@ export default function E_M_VehicleEdit(props) {
   const [employeGender, setEmployeGender] = useState(employeeData.gender);
   const [employeeEmail, setEmployeeEmail] = useState(employeeData.email);
   const [employeeNic, setEmployeeNic] = useState(employeeData.nic);
-  const [employeeContatct, setEmployeeContatct] = useState(employeeData.contact);
+  const [employeeContact, setEmployeecontact] = useState(employeeData.contact);
 
   const nameSetHandler = (data) => {setEmployeeName(data);};
   const addressSetHandler = (data) => {setEmployeeAddress(data);};
@@ -42,7 +42,7 @@ export default function E_M_VehicleEdit(props) {
   const genderSetHandler = (data) => {setEmployeGender(data); };
   const emailSetHandler = (data) => {setEmployeeEmail(data);};
   const nicSetHandler = (data) => {setEmployeeNic(data);};
-  const contactSetHandler = (data) => {setEmployeeContatct(data);};
+  const contactSetHandler = (data) => {setEmployeecontact(data);};
 
   function editMyEmployee(id) {
     swal({
@@ -61,7 +61,7 @@ export default function E_M_VehicleEdit(props) {
           gender: employeGender,
           email: employeeEmail,
           nic: employeeNic,
-          contact: employeeContatct,
+          contact: employeeContact,
         }).then((result) => {
           if (result) {
             swal({
@@ -171,7 +171,7 @@ export default function E_M_VehicleEdit(props) {
                     <div class="mb-3 col-md-6">
                       <label for="inputCity">Contact</label>
                       <FormInput
-                        value={employeeData.concat}
+                        value={employeeData.contact}
                         title="number"
                         onSave={contactSetHandler}
                       />

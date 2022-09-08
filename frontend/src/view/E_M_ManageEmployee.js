@@ -81,6 +81,7 @@ export default function E_M_CustomerAdd() {
                         <th>Address</th>
                         <th>NIC</th>
                         <th>Contact No</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -88,9 +89,10 @@ export default function E_M_CustomerAdd() {
                         return (
                           <tr key={index}>
                             <td>{value.name}</td>
-                            <td>{value.address}</td>
-                            <td>{value.dob}</td>
                             <td>{value.email}</td>
+                            <td>{value.gender}</td>
+                            <td>{value.dob}</td>
+                            <td>{value.address}</td>
                             <td>{value.nic}</td>
                             <td>{value.contact}</td>
                             <td class="table-action">
