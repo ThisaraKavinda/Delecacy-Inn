@@ -24,12 +24,12 @@ export const editCustomer = async (details) => {
 }
 
 export const getSelectedCustomer = async (id) => {
-    const { data } = await axios.post(baseURL + '/vehicle/getSelectedCustomer/', {id: id});
+    const { data } = await axios.post(baseURL + '/customer/getSelectedCustomer/', {id: id});
     return data;
 }
 
 export const getAllCustomersCount = async () => {
-    const { data } = await axios.get(baseURL + '/vehicle/getAllCustomersCount/');
+    const { data } = await axios.get(baseURL + '/customer/getAllCustomersCount/');
     return data;
 }
 
