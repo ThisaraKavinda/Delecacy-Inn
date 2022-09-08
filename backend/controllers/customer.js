@@ -54,8 +54,7 @@ export const editCustomer = async (req, res) => {
                 email: req.body.email,
                 address: req.body.address,
                 nic: req.body.nic,
-                contactNo: req.body.contactNo,
-                state: req.body.state
+                contactNo: req.body.contactNo
             },
             {
                 new:true
@@ -65,7 +64,7 @@ export const editCustomer = async (req, res) => {
         if (customer) {
             res.send({
                 status: true,
-                details: vehicle  
+                details: customer  
             });
         } else {
             res.send({
