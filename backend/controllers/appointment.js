@@ -17,7 +17,7 @@ export const addAppointment = async (req, res) => {
     const appointment = new AppointmentModel({
         nic: req.body.nic,
         guest: req.body.guest,
-        nigth: req.body.nigth,
+        night: req.body.night,
         room: req.body.room,
         date: sysDate,
         appointmentDate: req.body.appointmentDate,
@@ -102,9 +102,10 @@ export const editAppointment = async (req, res) => {
                 _id: req.body._id,
                 nic: req.body.nic,
                 guest: req.body.guest,
-                nigth: req.body.nigth,
+                night: req.body.nigth,
                 room: req.body.room,
                 appointmentDate: req.body.appointmentDate,
+                state:  req.body.state,
             },
             {
                 new:true
