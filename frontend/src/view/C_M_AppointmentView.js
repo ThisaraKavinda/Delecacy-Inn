@@ -20,16 +20,16 @@ import $ from 'jquery';
 
 
 // Controllers
-import { getAllCustomers, deleteCustomer } from '../controllers/customer';
+import { getAllAppointments, deleteAppointment } from '../controllers/appointment';
 
 
-export default function C_M_CustomerView() {
+export default function C_M_AppointmentView() {
 
-    const [customerList, setCustomerList] = useState([]);
+    const [appointmentList, setAppointmentList] = useState([]);
 
     useEffect(() => {
-        getAllCustomers().then((result) => {
-            setCustomerList(result);
+        getAllAppointments().then((result) => {
+            setAppointmentList(result);
             //initialize datatable
             $(document).ready(function () {
                 $('#example').DataTable();
@@ -38,7 +38,7 @@ export default function C_M_CustomerView() {
     }, [])
 
 
-    function deleteMyCustomer(id) {
+    function deleteMyAppointment(id) {
         swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this imaginary file!",
@@ -49,9 +49,9 @@ export default function C_M_CustomerView() {
             .then((willDelete) => {
                 if (willDelete) {
 
-                    deleteCustomer(id).then((result) => {
-                        var customer = customerList.filter((e) => e._id !== result._id);
-                        setCustomerList(customer);
+                    deleteAppointment(id).then((result) => {
+                        var appointment = appointmentList.filter((e) => e._id !== result._id);
+                        setAppointmentList(appointment);
                     });
 
                     swal("Poof! Your imaginary file has been deleted!", {
@@ -93,28 +93,36 @@ export default function C_M_CustomerView() {
                                     <table id="example" class="table table-striped my">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Address</th>
                                                 <th>NIC</th>
-                                                <th>Constact No</th>
+                                                <th>Guest</th>
+                                                <th>Night</th>
+                                                <th>Room</th>
+                                                <th>Date</th>
+                                                <th>Appointment Date</th>
+                                                <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
 
-                                            {customerList.map((value, index) => {
+                                            {appointmentList.map((value, index) => {
                                                 return <tr key={index}>
-                                                    <td>{value.name}</td>
-                                                    <td>{value.email}</td>
-                                                    <td>{value.address}</td>
                                                     <td>{value.nic}</td>
-                                                    <td>{value.contactNo}</td>
+                                                    <td>{value.guest}</td>
+                                                    <td>{value.nigth}</td>
+                                                    <td>{value.room}</td>
+                                                    <td>{value.date}</td>
+                                                    <td>{value.appointmentDate}</td>
+                                                    {value.state === "Active" ? (
+                                                <td><div class="small"><span class="fas fa-circle chat-online" style={{marginRight: 5}}></span> Active</div></td>
+                                                ) : (
+                                                <td><div class="small"><span class="fas fa-circle chat-offline" style={{marginRight: 5}}></span> Deactive</div></td>
+                                                )}
                                                     <td class="table-action">
-
-                                                        <button class="btn btn-pill btn-danger btn-sm" style={{ marginLeft: 45, width: 60 }} onClick={() => deleteMyCustomer(value._id)}>Delete</button>
+                                                    <button class="btn btn-pill btn-primary btn-sm" style={{ marginLeft: 10, width: 75 }} onClick={() => deleteMyAppointment(value._id)}>Deactive</button>
+                                                        <button class="btn btn-pill btn-danger btn-sm" style={{ marginLeft: 10, width: 60 }} onClick={() => deleteMyAppointment(value._id)}>Delete</button>
                                                         <Link to={"/customerEdit/" + value._id} class="top-bar-link"><button class="btn btn-pill btn-success btn-sm" style={{ marginLeft: 10, width: 60 }}>Edit</button></Link>
-
+                                                
                                                     </td>
                                                 </tr>
                                             })}

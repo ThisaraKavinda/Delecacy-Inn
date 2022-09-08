@@ -82,9 +82,7 @@ export default function C_M_AppointmentAdd() {
 
     function resetForm(){
 
-        if (nic === '' || guest === '' || night === '' || room === '' || appointmentDate === '') {
-            swal("fields are already empty");
-        }
+       
         setGuest(1);
         setNight(1);
         setRoom(1);

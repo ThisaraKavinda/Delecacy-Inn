@@ -49,7 +49,7 @@ export default function C_M_Navbar() {
                         </a>
                         <ul id="sim" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><Link to='/appointmentAdd' class="sidebar-link" >Add Appointment</Link></li>
-                            <li class="sidebar-item"><Link to='/test' class="sidebar-link" >View Appointment</Link></li>
+                            <li class="sidebar-item"><Link to='/appointmentView' class="sidebar-link" >View Appointment</Link></li>
                         </ul>
                     </li>
 
