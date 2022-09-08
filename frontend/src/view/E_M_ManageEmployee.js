@@ -81,7 +81,7 @@ export default function E_M_CustomerAdd() {
                         <th>Address</th>
                         <th>NIC</th>
                         <th>Contact No</th>
-                        <th>Action</th>
+                        <th >Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -112,6 +112,17 @@ export default function E_M_CustomerAdd() {
                                   style={{ marginLeft: 10, width: 60 }}
                                 >
                                   Edit
+                                </button>
+                              </Link>
+                              <Link
+                                to={"/employeeView/" + value._id}
+                                class="top-bar-link"
+                              >
+                                <button
+                                  class="btn btn-pill btn-success btn-sm"
+                                  style={{ marginLeft: 10, width: 60 }}
+                                >
+                                  View
                                 </button>
                               </Link>
                             </td>

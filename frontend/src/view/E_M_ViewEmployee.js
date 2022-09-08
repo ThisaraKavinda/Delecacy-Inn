@@ -1,10 +1,37 @@
 import React, { useState, useEffect } from 'react';
+import { useParams,Link } from "react-router-dom";
 import Navbar from '../components/E_M_Navbar';
+
+//css
 import '../css/modern.css';
+
+
+//js
 import '../js/app.js';
 
+//Bootstrap and jQuery libraries
+import "bootstrap/dist/css/bootstrap.min.css";
+import "jquery/dist/jquery.min.js";
 
-export default function test() {
+//Datatable Modules
+import "datatables.net-dt/js/dataTables.dataTables";
+import "datatables.net-dt/css/jquery.dataTables.min.css";
+import $ from "jquery";
+
+// Controllers
+import { getSelectedEmployee } from "../controllers/employee";
+
+export default function E_M_EmployeeSingleView() {
+	const { id } = useParams();
+	const [employeeData, setEmployeeData] = useState([]);
+
+	useEffect(() => {
+		getSelectedEmployee(id).then((result) => {
+		  console.log(result);
+		  setEmployeeData(result);
+		});
+	  }, []);
+
 
 
     return (
@@ -18,7 +45,7 @@ export default function test() {
 
                         <div class="header">
                             <h1 class="header-title">
-                               View Employee
+                               Single Employee
                             </h1>
 
                         </div>
@@ -29,6 +56,17 @@ export default function test() {
 								<div class="card-body">
                                     
 									<div class="column" >
+									<center><Link
+												to={"/manageEmployee/"}
+												class="top-bar-link"
+											>
+												<button
+												class="btn btn-pill btn-success btn-sm"
+												style={{ marginLeft:-600, width: 60 }}
+												>
+												Back
+												</button>
+											</Link></center>
                                         
 										<div class="col-sm-3 col-xl-12 col-xxl-12 text-center">
 											<img src={require('../img/avatars/avatar.jpg')} class="rounded-circle mt-2" alt="Angelica Ramos" width="120" height="120"/>
@@ -43,32 +81,26 @@ export default function test() {
 										<tbody>
 											<tr>
 												<th>Name</th>
-												<td>Charissa Hilt</td>
-											</tr>
-											<tr>
-												<th>Company</th>
-												<td>Matrix Interior Design</td>
-											</tr>
-											<tr>
-												<th>Occupation</th>
-												<td>Desktop publisher</td>
+												<td>{employeeData.name}</td>
 											</tr>
 											<tr>
 												<th>Email</th>
-												<td>charissahilt@rhyta.com</td>
+												<td>{employeeData.email}</td>
 											</tr>
 											<tr>
-												<th>Phone</th>
-												<td>+1234123123123</td>
+												<th>Address</th>
+												<td>{employeeData.address}</td>
 											</tr>
 											<tr>
-												<th>Website</th>
-												<td>hispanomarketer.com</td>
+												<th>NIC</th>
+												<td>{employeeData.nic}</td>
 											</tr>
 											<tr>
-												<th>Status</th>
-												<td><span class="badge bg-success">Active</span></td>
+												<th>Contact Number</th>
+												<td>{employeeData.contact}</td>
 											</tr>
+											
+											
 										</tbody>
 									</table></div>
                                                 <div class="col-md-2"></div>
@@ -76,17 +108,7 @@ export default function test() {
 
 
                                             <hr></hr>
-                                            <div class="text-center">
-                                            <div class="row">
-                                                <div class="col-md-2"></div>
-                                                <div class="col-md-8"><strong>About me</strong>
-											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
-												sociis
-												natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p></div>
-                                                <div class="col-md-2"></div>
-                                            </div>
-											
-										</div>
+                                            
 									
 								</div>
 							</div>
