@@ -43,7 +43,7 @@ export default function C_M_AppointmentAdd() {
         } else if (nic === '' || guest === '' || night === '' || room === '' || appointmentDate === '') {
             swal("fields are empty");
         } else {
-            addAppointment({ nic: nic, guest: guest, nigth: night, room: room, appointmentDate: appointmentDate, state: 'Active' }).then((result) => {
+            addAppointment({ nic: nic, guest: guest, nigth: night, room: room, appointmentDate: appointmentDate, state: 'Pending' }).then((result) => {
                 if (result.status) {
                     swal({
                         title: "Success!",
