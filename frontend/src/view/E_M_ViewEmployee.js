@@ -1,136 +1,119 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
-import Navbar from "../components/E_M_Navbar";
-import swal from "sweetalert";
+import Navbar from '../components/E_M_Navbar';
+import '../css/modern.css';
+import '../js/app.js';
 
-//css
-import "../css/modern.css";
 
-//js
-import "../js/app.js";
+export default function test() {
 
-//Bootstrap and jQuery libraries
-import "bootstrap/dist/css/bootstrap.min.css";
-import "jquery/dist/jquery.min.js";
 
-//Datatable Modules
-import "datatables.net-dt/js/dataTables.dataTables";
-import "datatables.net-dt/css/jquery.dataTables.min.css";
-import $ from "jquery";
+    return (
 
-// Controllers
-import { getAllEmployees, deleteEmployee } from "../controllers/employee";
+        <div class="wrapper">
+<Navbar/>
+            <div class="main">
 
-export default function E_M_CustomerAdd() {
-  const [employeeList, setEmployeeSelect] = useState([]);
+                <main class="content">
+                    <div class="container-fluid">
 
-  useEffect(() => {
-    getAllEmployees().then((result) => {
-      setEmployeeSelect(result);
-      //initialize datatable
-      $(document).ready(function () {
-        $("#example").DataTable();
-      });
-    });
-  }, []);
+                        <div class="header">
+                            <h1 class="header-title">
+                               View Employee
+                            </h1>
 
-  function deleteMyEmployee(id) {
-    swal({
-      title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this imaginary file!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        deleteEmployee(id).then((result) => {
-          var employee = employeeList.filter((e) => e._id !== result._id);
-          setEmployeeSelect(employee);
-        });
+                        </div>
 
-        swal("Poof! Your imaginary file has been deleted!", {
-          icon: "success",
-          title: "Delete Successfully!",
-          buttons: false,
-          timer: 2000,
-        });
-      }
-    });
-  }
+                       
+                        <div class="col-md-12">
+                        <div class="card">
+								<div class="card-body">
+                                    
+									<div class="column" >
+                                        
+										<div class="col-sm-3 col-xl-12 col-xxl-12 text-center">
+											<img src={require('../img/avatars/avatar.jpg')} class="rounded-circle mt-2" alt="Angelica Ramos" width="120" height="120"/>
+										</div>
+										<br></br>
+                                        <br></br>
+									</div>
 
-  return (
-    <div class="wrapper">
-      <Navbar />
-      <div class="main">
-        <main class="content">
-          <div class="container-fluid">
-            <div class="header">
-              <h1 class="header-title">View Employee</h1>
+                                    <div class="row">
+                                                <div class="col-md-2"></div>
+                                                <div class="col-md-8"><table class="table table-sm my-2 " >
+										<tbody>
+											<tr>
+												<th>Name</th>
+												<td>Charissa Hilt</td>
+											</tr>
+											<tr>
+												<th>Company</th>
+												<td>Matrix Interior Design</td>
+											</tr>
+											<tr>
+												<th>Occupation</th>
+												<td>Desktop publisher</td>
+											</tr>
+											<tr>
+												<th>Email</th>
+												<td>charissahilt@rhyta.com</td>
+											</tr>
+											<tr>
+												<th>Phone</th>
+												<td>+1234123123123</td>
+											</tr>
+											<tr>
+												<th>Website</th>
+												<td>hispanomarketer.com</td>
+											</tr>
+											<tr>
+												<th>Status</th>
+												<td><span class="badge bg-success">Active</span></td>
+											</tr>
+										</tbody>
+									</table></div>
+                                                <div class="col-md-2"></div>
+                                            </div>
+
+
+                                            <hr></hr>
+                                            <div class="text-center">
+                                            <div class="row">
+                                                <div class="col-md-2"></div>
+                                                <div class="col-md-8"><strong>About me</strong>
+											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
+												sociis
+												natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p></div>
+                                                <div class="col-md-2"></div>
+                                            </div>
+											
+										</div>
+									
+								</div>
+							</div>
+                        </div>
+
+
+
+
+
+              
+
+
+
+                    
+
+
+                    </div>
+                </main>
+
+
+
             </div>
 
-            <div class="col-12">
-              <div class="card">
-                <div class="card-body">
-                  <table id="example" class="table table-striped my">
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Gender</th>
-                        <th>DOB</th>
-                        <th>Address</th>
-                        <th>NIC</th>
-                        <th>Contact No</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {employeeList.map((value, index) => {
-                        return (
-                          <tr key={index}>
-                            <td>{value.name}</td>
-                            <td>{value.address}</td>
-                            <td>{value.dob}</td>
-                            <td>{value.email}</td>
-                            <td>{value.nic}</td>
-                            <td>{value.contact}</td>
-                            <td class="table-action">
-                              <button
-                                class="btn btn-pill btn-danger btn-sm"
-                                style={{ marginLeft: 45, width: 60 }}
-                                onClick={() => deleteMyEmployee(value._id)}
-                              >
-                                Delete
-                              </button>
-                              <Link
-                                to={"/employeeEdit/" + value._id}
-                                class="top-bar-link"
-                              >
-                                <button
-                                  class="btn btn-pill btn-success btn-sm"
-                                  style={{ marginLeft: 10, width: 60 }}
-                                >
-                                  Edit
-                                </button>
-                              </Link>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </main>
-      </div>
-    </div>
-  );
+        </div>
+
+
+    )
+
 }
-
-
-
-
-
-
 
