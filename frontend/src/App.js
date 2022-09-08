@@ -17,6 +17,7 @@ import E_M_Registration from './view/E_M_Registration';
 import E_M_ManageEmployee from './view/E_M_ManageEmployee';
 import E_M_UpdateEmployee from './view/E_M_UpdateEmployee';
 import E_M_ViewEmployee from './view/E_M_ViewEmployee';
+import E_M_EditEmployee from './view/E_M_EditEmployee';
 
 //Sheha
 import V_M_Dashboard from './view/V_M_Dashboard';
@@ -46,9 +47,9 @@ function App() {
         {/*Thanu*/}
         <Route exact path="/employeeDashboard" element={<E_M_Dashboard />} />
         <Route exact path="/registration" element={<E_M_Registration />} />
-        <Route exact path="/manageEmployee" element={<E_M_ManageEmployee />} />
         <Route exact path="/updateEmployee" element={<E_M_UpdateEmployee />} />
-        <Route exact path="/viewEmployee" element={<E_M_ViewEmployee />} />
+        <Route exact path="/manageEmployee" element={<E_M_ManageEmployee />} />
+        <Route exact path="/employeeEdit/:id" element={<E_M_EditEmployee />} />
 
         {/*Sheha*/}
         <Route exact path="/vihicleDashboard" element={<V_M_Dashboard />} />

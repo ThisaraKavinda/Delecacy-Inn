@@ -24,7 +24,7 @@ export const editVehicle = async (details) => {
 };
 
 export const getSelectedVehicle = async (id) => {
-  const { data } = await axios.get(baseURL + "/vehicle/getSelectedVehicle/", {
+  const { data } = await axios.post(baseURL + "/vehicle/getSelectedVehicle/", {
     id: id,
   });
   return data;
