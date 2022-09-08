@@ -99,6 +99,11 @@ export default function C_M_CustomerEdit(props) {
                         timer: 2000,
                         button: false,
                     });
+
+                    
+                    setTimeout(() => {
+                        window.location.replace(reactBaseURL + "/customerView");
+                    }, 2050)
                 }
             });
 
