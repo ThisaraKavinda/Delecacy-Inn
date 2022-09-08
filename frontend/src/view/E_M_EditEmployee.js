@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../components/V_M_Navbar";
+import Navbar from "../components/E_M_Navbar";
 import { useParams, useNavigate } from "react-router-dom";
 import { reactBaseURL } from "../config";
 import swal from "sweetalert";
@@ -14,79 +14,66 @@ import "../css/modern.css";
 import "../js/app.js";
 
 // Controllers
-import { getSelectedVehicle, editVehicle } from "../controllers/vehicles";
+import { getSelectedEmployee, editEmployee } from "../controllers/employee";
 
-export default function V_M_VehicleEdit(props) {
+export default function E_M_VehicleEdit(props) {
   const { id } = useParams();
 
-  const [vehicleData, setVehicleData] = useState([]);
+  const [employeeData, setEmployeeData] = useState([]);
 
   useEffect(() => {
-    getSelectedVehicle(id).then((result) => {
+    getSelectedEmployee(id).then((result) => {
       console.log(result);
-      setVehicleData(result);
+      setEmployeeData(result);
     });
   }, []);
 
-  const [vehicleType, setVehicleType] = useState(vehicleData.type);
-  const [vehicleIdentidication, setVehicleIdentification] = useState(
-    vehicleData.identification
-  );
-  const [vehicleNumber, setVehicleNumber] = useState(vehicleData.vehicleNumber);
-  const [vehicleDriver, setVehicleDriver] = useState(vehicleData.driver);
-  const [vehicleCapacity, setVehicleCapacity] = useState(
-    vehicleData.vehicleCapacity
-  );
-  const [vehicleState, setVehicleState] = useState(vehicleData.state);
+  const [employeeName, setEmployeeName] = useState(employeeData.name);
+  const [employeeAddress, setEmployeeAddress] = useState(employeeData.address);
+  const [employeeDob, setEmployeeDob] = useState(employeeData.dob);
+  const [employeGender, setEmployeGender] = useState(employeeData.gender);
+  const [employeeEmail, setEmployeeEmail] = useState(employeeData.email);
+  const [employeeNic, setEmployeeNic] = useState(employeeData.nic);
+  const [employeeContatct, setEmployeeContatct] = useState(employeeData.contact);
 
-  const typeSetHandler = (data) => {
-    setVehicleType(data);
-  };
-  const IdentificationSetHandler = (data) => {
-    setVehicleIdentification(data);
-  };
-  const numberSetHandler = (data) => {
-    setVehicleNumber(data);
-  };
-  const driverSetHandler = (data) => {
-    setVehicleDriver(data);
-  };
-  const capacitySetHandler = (data) => {
-    setVehicleCapacity(data);
-  };
-  const stateSetHandler = (data) => {
-    setVehicleState(data);
-  };
+  const nameSetHandler = (data) => {setEmployeeName(data);};
+  const addressSetHandler = (data) => {setEmployeeAddress(data);};
+  const dobSetHandler = (data) => {setEmployeeDob(data);};
+  const genderSetHandler = (data) => {setEmployeGender(data); };
+  const emailSetHandler = (data) => {setEmployeeEmail(data);};
+  const nicSetHandler = (data) => {setEmployeeNic(data);};
+  const contactSetHandler = (data) => {setEmployeeContatct(data);};
 
-  function editMyVehicle(id) {
+  function editMyEmployee(id) {
     swal({
       title: "Are you sure?",
-      text: "Do you want to change Vehicle details!",
+      text: "Do you want to change Employee details!",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        editVehicle({
+        editEmployee({
           _id: id,
-          type: vehicleType,
-          emidentificationail: vehicleIdentidication,
-          vehicleNumber: vehicleNumber,
-          driver: vehicleDriver,
-          vehicleCapacity: vehicleCapacity,
-          state: vehicleState,
+          name: employeeName,
+          address: employeeAddress,
+          dob: employeeDob,
+          gender: employeGender,
+          email: employeeEmail,
+          nic: employeeNic,
+          contact: employeeContatct,
         }).then((result) => {
           if (result) {
             swal({
               title: "Success!",
-              text: "Vehicle Update Successfully",
+              text: "Employee Update Successfully",
               icon: "success",
               timer: 2000,
               button: false,
             });
 
             setTimeout(() => {
-              window.location.replace(reactBaseURL + "/vihicle-list");
+              window.location.replace(reactBaseURL + "/manageEmployee");
             }, 2050);
           } else {
             swal({
@@ -108,7 +95,7 @@ export default function V_M_VehicleEdit(props) {
         });
 
         setTimeout(() => {
-          window.location.replace(reactBaseURL + "/vihicle-list");
+          window.location.replace(reactBaseURL + "/manageEmployee");
         }, 2050);
       }
     });
@@ -121,7 +108,7 @@ export default function V_M_VehicleEdit(props) {
         <main class="content">
           <div class="container-fluid">
             <div class="header">
-              <h1 class="header-title">Edit Vehicle</h1>
+              <h1 class="header-title">Edit Employee</h1>
             </div>
 
             <div class="col-md-12">
@@ -129,63 +116,71 @@ export default function V_M_VehicleEdit(props) {
                 <div class="card-body">
                   <div class="row">
                     <div class="mb-3 col-md-6">
-                      <label for="inputEmail4">Type</label>
+                      <label for="inputEmail4">Name</label>
                       <FormInput
-                        value={vehicleData.type}
+                        value={employeeData.name}
                         title="number"
-                        onSave={typeSetHandler}
+                        onSave={nameSetHandler}
                       />
                     </div>
                     <div class="mb-3 col-md-6">
-                      <label for="inputPassword4">Identification</label>
+                      <label for="inputPassword4">Address</label>
                       <FormInput
-                        value={vehicleData.identification}
+                        value={employeeData.address}
                         title="number"
-                        onSave={IdentificationSetHandler}
+                        onSave={addressSetHandler}
                       />
                     </div>
                   </div>
 
                   <div class="mb-3 ">
-                    <label for="inputAddress">Vehicle Number</label>
+                    <label for="inputAddress">DOB</label>
                     <FormInput
-                      value={vehicleData.vehicleNumber}
+                      value={employeeData.dob}
                       title="number"
-                      onSave={numberSetHandler}
+                      onSave={dobSetHandler}
                     />
                   </div>
 
                   <div class="row">
                     <div class="mb-3 col-md-6">
-                      <label for="inputCity">Driver Name</label>
+                      <label for="inputCity">Gender</label>
                       <FormInput
-                        value={vehicleData.driver}
+                        value={employeeData.gender}
                         title="number"
-                        onSave={driverSetHandler}
+                        onSave={genderSetHandler}
                       />
                     </div>
 
                     <div class="mb-3 col-md-6">
-                      <label for="inputCity">Vehicle Capacity</label>
+                      <label for="inputCity">Email</label>
                       <FormInput
-                        value={vehicleData.vehicleCapacity}
+                        value={employeeData.email}
                         title="number"
-                        onSave={capacitySetHandler}
+                        onSave={emailSetHandler}
                       />
                     </div>
                     <div class="mb-3 col-md-6">
-                      <label for="inputCity">State</label>
+                      <label for="inputCity">NIC</label>
                       <FormInput
-                        value={vehicleData.state}
+                        value={employeeData.nic}
                         title="number"
-                        onSave={stateSetHandler}
+                        onSave={nicSetHandler}
+                      />
+                    </div>
+                    <div class="mb-3 col-md-6">
+                      <label for="inputCity">Contact</label>
+                      <FormInput
+                        value={employeeData.concat}
+                        title="number"
+                        onSave={contactSetHandler}
                       />
                     </div>
                   </div>
 
                   <button
                     type="submit"
-                    onClick={() => editMyVehicle(id)}
+                    onClick={() => editMyEmployee(id)}
                     class="btn  btn-primary"
                     id="addCustomer"
                     style={{

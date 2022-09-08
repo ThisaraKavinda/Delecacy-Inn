@@ -41,7 +41,7 @@ export default function E_M_Navbar() {
                     </li>
 
                     <li class="sidebar-item ">
-                        <Link class="sidebar-link"to='/viewEmployee'>
+                        <Link class="sidebar-link"to='/manageEmployee'>
                             <i class="align-middle me-2 fas fa-fw fa-users"></i> <span class="align-middle">Manage Employee</span>
                         </Link>
 

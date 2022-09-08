@@ -24,7 +24,9 @@ export const editEmployee = async (details) => {
 }
 
 export const getSelectedEmployee = async (id) => {
+    console.log("asadasds")
     const { data } = await axios.post(baseURL + '/employee/getSelectedEmployee/', {id: id});
+    console.log(data)
     return data;
 }
 
