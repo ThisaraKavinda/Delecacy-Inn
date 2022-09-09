@@ -21,20 +21,45 @@ export default function C_M_CustomerAdd() {
     const [customerPhone, setCustomerPhone] = useState('');
 
 
+    const validateEmail = (email) => {
+        return email.match(
+            /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+    };
+
+    const validateNIC = (nic) => {
+        return (nic.match(/[0-9]{9}[V|X|v|x]/) || (nic.match(/[0-9]{12}/)));
+    };
+
+    const validateMobileNumber = (number) => {
+        return number.match(/[0-9]{10}/);
+    };
+
+
+
+
+
+
     function insertCustomer() {
 
         if (customerName === '' && customerEmail === '' && customerAddress === '' && customerNIC === '' && customerPhone === '') {
-            swal("All field are empty..");
+            swal("All field is empty..");
         } else if (customerName === '') {
-            swal("Name field are empty");
+            swal("Name field is empty");
+        } else if (!validateEmail(customerEmail)) {
+            swal("Enter a valid email");
         } else if (customerEmail === '') {
-            swal("Email field are empty");
+            swal("Email field is empty");
         } else if (customerAddress === '') {
-            swal("Address field are empty");
+            swal("Address field is empty");
+        } else if (!validateNIC(customerNIC)) {
+            swal("Enter a valid NIC");
         } else if (customerNIC === '') {
-            swal("NIC field are empty");
+            swal("NIC field is empty");
+        } else if (!validateMobileNumber(customerPhone)) {
+            swal("Enter a valid Contact number");
         } else if (customerPhone === '') {
-            swal("Contact No field are empty");
+            swal("Contact No field is empty");
         } else if (customerName === '' || customerEmail === '' || customerAddress === '' || customerNIC === '' || customerPhone === '') {
             swal("fields are empty");
         } else {
@@ -75,17 +100,17 @@ export default function C_M_CustomerAdd() {
 
 
     }
-    
-    function resetForm(){
+
+    function resetForm() {
 
         if (customerName === '' && customerEmail === '' && customerAddress === '' && customerNIC === '' && customerPhone === '') {
             swal("fields are already empty");
         }
-                    setCustomerName('');
-                    setCustomerEmail('');
-                    setCustomerAddress('');
-                    setCustomerNIC('');
-                    setCustomerPhone('');
+        setCustomerName('');
+        setCustomerEmail('');
+        setCustomerAddress('');
+        setCustomerNIC('');
+        setCustomerPhone('');
     }
 
     return (
@@ -137,11 +162,11 @@ export default function C_M_CustomerAdd() {
                                         </div>
 
                                     </div>
-                                   
+
 
                                     <button type="submit" class="btn  btn-primary" id="addCustomer" style={{ backgroundColor: '#081E3D', borderColor: '#081E3D', color: '#fff' }} onClick={() => insertCustomer()}>Submit</button>
-                                    <button type="submit" class="btn  btn-primary" id="addCustomer" style={{ backgroundColor: '#ffffff', borderColor: '#081E3D', color: '#081E3D', marginLeft: 10, width:75 }} onClick={() => resetForm()}>Reset</button>
-                                   
+                                    <button type="submit" class="btn  btn-primary" id="addCustomer" style={{ backgroundColor: '#ffffff', borderColor: '#081E3D', color: '#081E3D', marginLeft: 10, width: 75 }} onClick={() => resetForm()}>Reset</button>
+
                                 </div>
                             </div>
                         </div>
