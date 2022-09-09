@@ -23,23 +23,28 @@ export default function C_M_AppointmentAdd() {
     const [appointmentDate, setAppointmentDate] = useState('');
 
   
+    const validateNIC = (nic) => {
+        return (nic.match(/[0-9]{9}[V|X|v|x]/) || (nic.match(/[0-9]{12}/)));
+    };
 
 
 
     function insertAppointment() {
 
         if (nic === '' && guest === '' && night === '' && room === '' && appointmentDate === '') {
-            swal("All field are empty..");
+            swal("All field is empty..");
         } else if (nic === '') {
-            swal("NIC field are empty");
+            swal("NIC field is empty");
+        }else if (!validateNIC(nic)) {
+            swal("Enter a valid NIC");
         } else if (guest === '') {
-            swal("Number of guest field are empty");
+            swal("Number of guest field is empty");
         } else if (night === '') {
-            swal("Number of night field are empty");
+            swal("Number of night field is empty");
         } else if (room === '') {
-            swal("Number of room field are empty");
+            swal("Number of room field is empty");
         } else if (appointmentDate === '') {
-            swal("Appointment date field are empty");
+            swal("Appointment date field is empty");
         } else if (nic === '' || guest === '' || night === '' || room === '' || appointmentDate === '') {
             swal("fields are empty");
         } else {
@@ -47,7 +52,7 @@ export default function C_M_AppointmentAdd() {
                 if (result.status) {
                     swal({
                         title: "Success!",
-                        text: "New Appointmen Add Successfully",
+                        text: "New Appointment Add Successfully",
                         icon: 'success',
                         timer: 2000,
                         button: false,
@@ -66,7 +71,7 @@ export default function C_M_AppointmentAdd() {
                 } else {
                     swal({
                         title: "Error!",
-                        text: "New Appointmen Add Unsuccessfully",
+                        text: "New Appointment Add Unsuccessfully",
                         icon: 'error',
                         timer: 2000,
                         button: false
