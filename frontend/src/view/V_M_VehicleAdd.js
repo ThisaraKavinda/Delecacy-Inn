@@ -16,7 +16,7 @@ import "jquery/dist/jquery.min.js";
 //Datatable Modules
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
-import $ from "jquery";
+// import $ from "jquery";
 
 // Controllers
 import { addVehicle } from '../controllers/vehicles';
