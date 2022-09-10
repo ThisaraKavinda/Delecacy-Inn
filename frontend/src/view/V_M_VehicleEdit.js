@@ -3,6 +3,7 @@ import Navbar from "../components/V_M_Navbar";
 import { useParams, useNavigate } from "react-router-dom";
 import { reactBaseURL } from "../config";
 import swal from "sweetalert";
+import Select from "react-select";
 
 //components
 import FormInput from "../components/FormInput";
@@ -15,16 +16,41 @@ import "../js/app.js";
 
 // Controllers
 import { getSelectedVehicle, editVehicle } from "../controllers/vehicles";
+import { getAllEmployees } from "../controllers/employee";
 
 export default function V_M_VehicleEdit(props) {
+  // const id = props.match.params.id;
+
+  const vehicleTypeOptions = [
+    { value: "Van", label: "Van" },
+    { value: "Car", label: "Car" },
+    { value: "Bike", label: "Bike" },
+  ];
+
+  const vehicleStateOptions = [
+    { value: "Avalable", label: "Avalable" },
+    { value: "Delivering", label: "Delivering" },
+    { value: "In Repair", label: "In Repair" },
+  ];
   const { id } = useParams();
 
   const [vehicleData, setVehicleData] = useState([]);
+  const [selectedType, setSelectedType] = useState({});
+  const [selectedState, setSelectedState] = useState({});
 
   useEffect(() => {
     getSelectedVehicle(id).then((result) => {
       console.log(result);
       setVehicleData(result);
+    });
+  }, []);
+  useEffect(() => {
+    getSelectedVehicle(id).then((result) => {
+      setVehicleData(result);
+      // setSelectedBranch({ label: result.branch, value: result.branch });
+      setSelectedType({ label: result.type, value: result.type });
+      setSelectedState({ label: result.state, value: result.state });
+      // setSelectedDriver({ label: result.driver, value: result.driver });
     });
   }, []);
 
@@ -70,7 +96,7 @@ export default function V_M_VehicleEdit(props) {
         editVehicle({
           _id: id,
           type: vehicleType,
-          emidentificationail: vehicleIdentidication,
+          identificationail: vehicleIdentidication,
           vehicleNumber: vehicleNumber,
           driver: vehicleDriver,
           vehicleCapacity: vehicleCapacity,
@@ -86,7 +112,7 @@ export default function V_M_VehicleEdit(props) {
             });
 
             setTimeout(() => {
-              window.location.replace(reactBaseURL + "/vihicle-list");
+              window.location.replace(reactBaseURL + "/vihicleList");
             }, 2050);
           } else {
             swal({
@@ -108,7 +134,7 @@ export default function V_M_VehicleEdit(props) {
         });
 
         setTimeout(() => {
-          window.location.replace(reactBaseURL + "/vihicle-list");
+          window.location.replace(reactBaseURL + "/vihicleList");
         }, 2050);
       }
     });
@@ -130,10 +156,13 @@ export default function V_M_VehicleEdit(props) {
                   <div class="row">
                     <div class="mb-3 col-md-6">
                       <label for="inputEmail4">Type</label>
-                      <FormInput
-                        value={vehicleData.type}
-                        title="number"
-                        onSave={typeSetHandler}
+                      <Select
+                        options={vehicleTypeOptions}
+                        hideSelectedOptions={false}
+                        getOptionLabel={(option) => option.label}
+                        getOptionValue={(option) => option.value}
+                        value={selectedType}
+                        onChange={(e) => setSelectedType(e)}
                       />
                     </div>
                     <div class="mb-3 col-md-6">
@@ -175,10 +204,13 @@ export default function V_M_VehicleEdit(props) {
                     </div>
                     <div class="mb-3 col-md-6">
                       <label for="inputCity">State</label>
-                      <FormInput
-                        value={vehicleData.state}
-                        title="number"
-                        onSave={stateSetHandler}
+                      <Select
+                        options={vehicleStateOptions}
+                        hideSelectedOptions={false}
+                        getOptionLabel={(option) => option.label}
+                        getOptionValue={(option) => option.value}
+                        value={selectedState}
+                        onChange={(e) => setSelectedState(e)}
                       />
                     </div>
                   </div>
