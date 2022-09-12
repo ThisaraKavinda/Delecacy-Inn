@@ -31,6 +31,8 @@ import V_M_VehicleEdit from "./view/V_M_VehicleEdit";
 //Niakalo
 import F_M_Dashoard from './view/Food/F_M_Dashboard';
 import F_M_FoodSelect from './view/Food/F_M_SelectFood';
+import F_M_RoomSelect from './view/Food/F_M_SelectRoom';
+import F_M_AddNewItem from './view/Food/F_M_AddNewItem';
 
 
 function App() {
@@ -38,22 +40,13 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/*Hiru*/}
-        <Route exact path="/" element={<C_M_Dashboard />} />
-        <Route exact path="/customerAdd" element={<C_M_CustomerAdd />} />
-        <Route exact path="/customerView" element={<C_M_CustomerView />} />
-        <Route exact path="/customerEdit/:id" element={<C_M_CustomerEdit />} />
-        <Route exact path="/appointmentAdd" element={<C_M_AppointmentAdd />} />
-        <Route
-          exact
-          path="/appointmentView"
-          element={<C_M_AppointmentView />}
-        />
-        <Route
-          exact
-          path="/appointmentEdit/:id"
-          element={<C_M_AppointmentEdit />}
-        />
-        <Route exact path="/test" element={<Test />} />
+      <Route exact path='/' element={<C_M_Dashboard/>}/>
+      <Route exact path='/customerAdd' element={<C_M_CustomerAdd/>}/>
+      <Route exact path='/customerView' element={<C_M_CustomerView/>}/>
+      <Route exact path='/customerEdit/:id' element={<C_M_CustomerEdit/>}/>
+      <Route exact path='/appointmentAdd' element={<C_M_AppointmentAdd/>}/>
+      <Route exact path='/appointmentView' element={<C_M_AppointmentView/>}/>
+      <Route exact path='/test' element={<Test/>}/>
 
         {/*Thanu*/}
         <Route exact path="/employeeDashboard" element={<E_M_Dashboard />} />
@@ -64,14 +57,16 @@ function App() {
         <Route exact path="/employeeView/:id" element={<E_M_ViewEmployee />} />
 
         {/*Sheha*/}
-        <Route exact path="/vehicleDashboard" element={<V_M_Dashboard />} />
-        <Route exact path="/vehicleAdd" element={<V_M_VehicleAdd />} />
-        <Route exact path="/vihicleList" element={<V_M_VehicleList />} />
-        <Route exact path="/vehicleEdit/:id" element={<V_M_VehicleEdit />} />
+      <Route exact path='/vihicleDashboard' element={<V_M_Dashboard/>}/>
+      <Route exact path='/vehicle-add' element={<V_M_VehicleAdd/>}/>
+      <Route exact path='/vihicle-list' element={<V_M_VehicleList/>}/>
 
         {/* {Nikalo} */}
-        <Route exact path="/foodDashboard" element={<F_M_Dashoard />} />
-        <Route exact path="/foodSelect" element={<F_M_FoodSelect />} />
+      <Route exact path="/foodDashboard" element={<F_M_Dashoard/>} />
+      <Route exact path="/foodSelect" element={<F_M_FoodSelect/>} />
+      <Route exact path="/roomSelect" element={<F_M_RoomSelect/>} />
+      <Route exact path="/addNewItem" element={<F_M_AddNewItem/>} />
+
       </Routes>
     </BrowserRouter>
   );
