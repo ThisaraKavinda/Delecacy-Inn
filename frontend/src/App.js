@@ -30,6 +30,8 @@ import V_M_VehicleEdit from "./view/V_M_VehicleEdit";
 //Niakalo
 import F_M_Dashoard from './view/Food/F_M_Dashboard';
 import F_M_FoodSelect from './view/Food/F_M_SelectFood';
+import F_M_RoomSelect from './view/Food/F_M_SelectRoom';
+import F_M_AddNewItem from './view/Food/F_M_AddNewItem';
 
 
 function App() {
@@ -62,6 +64,8 @@ function App() {
         {/* {Nikalo} */}
       <Route exact path="/foodDashboard" element={<F_M_Dashoard/>} />
       <Route exact path="/foodSelect" element={<F_M_FoodSelect/>} />
+      <Route exact path="/roomSelect" element={<F_M_RoomSelect/>} />
+      <Route exact path="/addNewItem" element={<F_M_AddNewItem/>} />
 
       </Routes>
     </BrowserRouter>

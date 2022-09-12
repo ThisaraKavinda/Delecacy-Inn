@@ -50,17 +50,19 @@ export default function C_M_Navbar() {
                             <i class="align-middle me-2 fas fa-fw fa-globe"></i> <span class="align-middle">Make an order</span>
                         </a>
                         <ul id="sim" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                            <li class="sidebar-item"><Link to='/test' class="sidebar-link" >Order Food</Link></li>
+                            <li class="sidebar-item"><Link to='/roomSelect' class="sidebar-link" >Select Room</Link></li>
+                            <li class="sidebar-item"><Link to='/foodSelect' class="sidebar-link" >Select Food</Link></li>
                         </ul>
                     </li>
 
                     <li class="sidebar-item">
                         <a data-bs-target="#package" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                            <i class="align-middle me-2 fas fa-fw fa-cubes"></i> <span class="align-middle">Vehicle Booking</span>
+                            <i class="align-middle me-2 fas fa-fw fa-cubes"></i> <span class="align-middle">Manage items</span>
                         </a>
                         <ul id="package" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                            <li class="sidebar-item"><a class="sidebar-link" href="packagePage">Manage Package</a></li>
-                            <li class="sidebar-item"><a class="sidebar-link" href="packageTypePage">Manage Package Type</a></li>
+                        <li class="sidebar-item"><a class="sidebar-link" href="packagePage">Item list</a></li>
+                            <li class="sidebar-item"><Link to='/addNewItem' class="sidebar-link" >Add new item</Link></li>
+                            <li class="sidebar-item"><a class="sidebar-link" href="packageTypePage">Edit Item</a></li>
                         </ul>
                     </li>
 
