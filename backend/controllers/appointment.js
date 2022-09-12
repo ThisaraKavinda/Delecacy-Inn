@@ -17,7 +17,7 @@ export const addAppointment = async (req, res) => {
     const appointment = new AppointmentModel({
         nic: req.body.nic,
         guest: req.body.guest,
-        nigth: req.body.nigth,
+        night: req.body.night,
         room: req.body.room,
         date: sysDate,
         appointmentDate: req.body.appointmentDate,
@@ -46,6 +46,45 @@ export const getAllAppointmentsCount = async (req, res) => {
     res.send(String(appointment));
 }
 
+export const getAllPending = async (req, res) => {
+    const appointment = await AppointmentModel.find({state:"Pending"});
+    res.send(appointment);
+}
+
+export const getAllPendingCount = async (req, res) => {
+    const appointment = await AppointmentModel.find({state:"Pending"}).count();
+    res.send(String(appointment));
+}
+
+export const getAllActive = async (req, res) => {
+    const appointment = await AppointmentModel.find({state:"Active"});
+    res.send(appointment);
+}
+
+export const getAllActiveCount = async (req, res) => {
+    const appointment = await AppointmentModel.find({state:"Active"}).count();
+    res.send(String(appointment));
+}
+
+export const getAllDone = async (req, res) => {
+    const appointment = await AppointmentModel.find({state:"Done"});
+    res.send(appointment);
+}
+
+export const getAllDoneCount = async (req, res) => {
+    const appointment = await AppointmentModel.find({state:"Done"}).count();
+    res.send(String(appointment));
+}
+
+export const getAllCancel = async (req, res) => {
+    const appointment = await AppointmentModel.find({state:"Cancel"});
+    res.send(appointment);
+}
+
+export const getAllCancelCount = async (req, res) => {
+    const appointment = await AppointmentModel.find({state:"Cancel"}).count();
+    res.send(String(appointment));
+}
 
 export const deleteAppointment = async (req, res) => {
     const appointment = await AppointmentModel.findOneAndDelete({ _id: req.body.id });
@@ -63,9 +102,10 @@ export const editAppointment = async (req, res) => {
                 _id: req.body._id,
                 nic: req.body.nic,
                 guest: req.body.guest,
-                nigth: req.body.nigth,
+                night: req.body.nigth,
                 room: req.body.room,
                 appointmentDate: req.body.appointmentDate,
+                state:  req.body.state,
             },
             {
                 new:true
@@ -93,4 +133,36 @@ export const editAppointment = async (req, res) => {
 export const getSelectedAppointment = async (req, res) => {
     const appointment = await AppointmentModel.findOne({ _id: req.body.id });
     res.send(appointment);
+}
+
+
+export const updateAppointmentState = async (req, res) => {
+    try {
+        console.log(req);
+        const appointment = await AppointmentModel.findOneAndUpdate(
+            {
+                _id: req.body._id
+            },
+            {
+                _id: req.body._id,
+                state: req.body.state
+            },
+            {
+                new:true
+            }
+            );
+
+        if (appointment) {
+            res.send({
+                status: true,
+                details: appointment  
+            });
+        } else {
+            res.send({
+                status: false,
+            });
+        }
+    } catch (error) {
+        console.log(error.messaga)
+    }
 }

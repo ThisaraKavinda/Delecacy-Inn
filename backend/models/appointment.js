@@ -10,7 +10,7 @@ const AppointmentSchema = new Schema({
     guest: {
         type: Number,
     },
-    nigth: {
+    night: {
         type: Number,
     },
     room: {

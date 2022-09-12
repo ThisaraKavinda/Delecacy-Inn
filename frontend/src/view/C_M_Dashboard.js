@@ -3,136 +3,261 @@ import Navbar from '../components/C_M_Navbar';
 import '../css/modern.css';
 import '../js/app.js';
 
+// Controllers
+import { getAllAppointmentsCount, getAllPendingCount, getAllActiveCount, getAllDoneCount, getAllCancelCount } from '../controllers/appointment';
+import { getAllCustomersCount } from '../controllers/customer';
 
 export default function C_M_Dashboard() {
 
+	let date_ob = new Date();
 
-    return (
+    let date = ("0" + date_ob.getDate()).slice(-2);
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+    let year = date_ob.getFullYear();
+    
+    let sysDate = year + "-" + month + "-" + date;
 
-        <div class="wrapper">
+	const [allAppointmentsCount, setAllAppointmentsCount] = useState('');
+	const [allPendingCount, setAllPendingCount] = useState('');
+	const [allActiveCount, setAllActiveCount] = useState('');
+	const [allDoneCount, setAllDoneCount] = useState('');
+	const [allCancelCount, setAllCancelCount] = useState('');
+	const [allCustomersCount, setAllCustomersCount] = useState('');
+	// const [allDoneCount, setAllDoneCount] = useState('');
+ 
+	getAllAppointmentsCount().then((result)=>{
+		setAllAppointmentsCount(result);
+	 });
+	 getAllPendingCount().then((result)=>{
+		setAllPendingCount(result);
+	 });
+	 getAllActiveCount().then((result)=>{
+		setAllActiveCount(result);
+	 });
+	 getAllDoneCount().then((result)=>{
+		setAllDoneCount(result);
+	 });
+	 getAllCancelCount().then((result)=>{
+		setAllCancelCount(result);
+	 });
+	 getAllCustomersCount().then((result)=>{
+		setAllCustomersCount(result);
+	 });
+	//  getAllDoneCount().then((result)=>{
+	// 	setAllDoneCount(result);
+	//  });
 
-<Navbar/>
+	return (
 
-            <div class="main">
+		<div class="wrapper">
 
-{/* top nav */}
+			<Navbar />
 
-                <main class="content">
-                    <div class="container-fluid">
+			<div class="main">
 
-                        <div class="header">
-                            <h1 class="header-title">
-                                Analytics Overview
-                            </h1>
+				{/* top nav */}
 
-                        </div>
+				<main class="content">
+					<div class="container-fluid">
 
-                        <div class="row">
-						<div class="col-md-6 col-lg-3 col-xl">
-							<div class="card">
-								<div class="card-body">
-									<div class="row">
-										<div class="col mt-0">
-											<h5 class="card-title">Income</h5>
-										</div>
+						<div class="header">
+							<h1 class="header-title">
+								Analytics Overview
+							</h1>
 
-										<div class="col-auto">
-											<div class="avatar">
-												<div class="avatar-title rounded-circle bg-primary-dark">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign align-middle"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6 col-lg-3 col-xl">
+								<div class="card">
+									<div class="card-body">
+										<div class="row">
+											<div class="col mt-0">
+												<h5 class="card-title">Customers</h5>
+											</div>
+
+											<div class="col-auto">
+												<div class="avatar">
+													<div class="avatar-title rounded-circle bg-primary-dark">
+													<i class="align-middle fas fa-fw fa-users"></i>
+													</div>
 												</div>
 											</div>
 										</div>
+										<h1 class="display-5 mt-1 mb-3">{allCustomersCount}</h1>
 									</div>
-									<h1 class="display-5 mt-1 mb-3">$25.300</h1>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-6 col-lg-3 col-xl">
-							<div class="card">
-								<div class="card-body">
-									<div class="row">
-										<div class="col mt-0">
-											<h5 class="card-title">Orders</h5>
-										</div>
+							<div class="col-md-6 col-lg-3 col-xl">
+								<div class="card">
+									<div class="card-body">
+										<div class="row">
+											<div class="col mt-0">
+												<h5 class="card-title">All Appointment</h5>
+											</div>
 
-										<div class="col-auto">
-											<div class="avatar">
-												<div class="avatar-title rounded-circle bg-primary-dark">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart align-middle"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+											<div class="col-auto">
+												<div class="avatar">
+													<div class="avatar-title rounded-circle bg-primary-dark">
+														<i class="align-middle fas fa-fw fa-bookmark"></i>
+													</div>
 												</div>
 											</div>
 										</div>
+										<h1 class="display-5 mt-1 mb-3">{allAppointmentsCount}</h1>
 									</div>
-									<h1 class="display-5 mt-1 mb-3">12.514</h1>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-6 col-lg-3 col-xl">
-							<div class="card">
-								<div class="card-body">
-									<div class="row">
-										<div class="col mt-0">
-											<h5 class="card-title">Activity</h5>
-										</div>
+							<div class="col-md-6 col-lg-3 col-xl">
+								<div class="card">
+									<div class="card-body">
+										<div class="row">
+											<div class="col mt-0">
+												<h5 class="card-title">Pending Appointment</h5>
+											</div>
 
-										<div class="col-auto">
-											<div class="avatar">
-												<div class="avatar-title rounded-circle bg-primary-dark">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity align-middle"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+											<div class="col-auto">
+												<div class="avatar">
+													<div class="avatar-title rounded-circle bg-primary-dark">
+														<i class="align-middle fas fa-fw fa-clock" ></i>
+													</div>
 												</div>
 											</div>
 										</div>
+										<h1 class="display-5 mt-1 mb-3">{allPendingCount}</h1>
 									</div>
-									<h1 class="display-5 mt-1 mb-3">29.232</h1>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-6 col-lg-3 col-xl">
-							<div class="card">
-								<div class="card-body">
-									<div class="row">
-										<div class="col mt-0">
-											<h5 class="card-title">Revenue</h5>
-										</div>
+							<div class="col-md-6 col-lg-3 col-xl">
 
-										<div class="col-auto">
-											<div class="avatar">
-												<div class="avatar-title rounded-circle bg-primary-dark">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign align-middle"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+								<div class="card">
+									<div class="card-body">
+										<div class="row">
+											<div class="col mt-0">
+												<h5 class="card-title">Active Appointment</h5>
+											</div>
+
+											<div class="col-auto">
+												<div class="avatar">
+													<div class="avatar-title rounded-circle bg-primary-dark">
+														<i class="align-middle fas fa-fw fa-check-circle" ></i>
+													</div>
 												</div>
 											</div>
 										</div>
+										<h1 class="display-5 mt-1 mb-3">{allActiveCount}</h1>
 									</div>
-									<h1 class="display-5 mt-1 mb-3">$83.300</h1>
 								</div>
 							</div>
 						</div>
+
+
+						<div class="row">
+							<div class="col-md-6 col-lg-3 col-xl">
+								<div class="card">
+									<div class="card-body">
+										<div class="row">
+											<div class="col mt-0">
+												<h5 class="card-title">Done Appointment</h5>
+											</div>
+
+											<div class="col-auto">
+												<div class="avatar">
+													<div class="avatar-title rounded-circle bg-primary-dark">
+														<i class="align-middle fas fa-fw fa-check" ></i>
+													</div>
+												</div>
+											</div>
+										</div>
+										<h1 class="display-5 mt-1 mb-3">{allDoneCount}</h1>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 col-lg-3 col-xl">
+								<div class="card">
+									<div class="card-body">
+										<div class="row">
+											<div class="col mt-0">
+												<h5 class="card-title">Cancel Appointment</h5>
+											</div>
+
+											<div class="col-auto">
+												<div class="avatar">
+													<div class="avatar-title rounded-circle bg-primary-dark">
+														<i class="align-middle fas fa-fw fa-exclamation" ></i>
+													</div>
+												</div>
+											</div>
+										</div>
+										<h1 class="display-5 mt-1 mb-3">{allCancelCount}</h1>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 col-lg-3 col-xl">
+								<div class="card">
+									<div class="card-body">
+										<div class="row">
+											<div class="col mt-0">
+												<h5 class="card-title">Vehicle Booking</h5>
+											</div>
+
+											<div class="col-auto">
+												<div class="avatar">
+													<div class="avatar-title rounded-circle bg-primary-dark">
+														<i class="align-middle fas fa-fw fa-bold" ></i>
+													</div>
+												</div>
+											</div>
+										</div>
+										<h1 class="display-5 mt-1 mb-3">3</h1>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 col-lg-3 col-xl">
+
+								<div class="card">
+									<div class="card-body">
+										<div class="row">
+											<div class="col mt-0">
+												<h5 class="card-title"> Date</h5>
+											</div>
+
+											<div class="col-auto">
+												<div class="avatar">
+													<div class="avatar-title rounded-circle bg-primary-dark">
+														<i class="align-middle fas fa-fw fa-calendar-alt"></i>
+													</div>
+												</div>
+											</div>
+										</div>
+										<h1 class="display-5 mt-1 mb-3 " >{sysDate}</h1>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+
+
+
+
+
+
+
+
+
 					</div>
+				</main>
 
 
 
+			</div>
+
+		</div>
 
 
-
-              
-
-
-
-                    
-
-
-                    </div>
-                </main>
-
-
-
-            </div>
-
-        </div>
-
-
-    )
+	)
 
 }
 

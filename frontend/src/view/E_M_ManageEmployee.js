@@ -65,7 +65,7 @@ export default function E_M_CustomerAdd() {
         <main class="content">
           <div class="container-fluid">
             <div class="header">
-              <h1 class="header-title">View Employee</h1>
+              <h1 class="header-title">Manage Employee</h1>
             </div>
 
             <div class="col-12">
