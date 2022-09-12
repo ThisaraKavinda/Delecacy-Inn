@@ -20,7 +20,7 @@ import $ from 'jquery';
 
 
 // Controllers
-import { getAllAppointments, deleteAppointment } from '../controllers/appointment';
+import { getAllAppointments, deleteAppointment, getAllPending, getAllActive, getAllDone, getAllCancel, updateAppointmentState } from '../controllers/appointment';
 
 
 export default function C_M_AppointmentView() {
@@ -28,7 +28,7 @@ export default function C_M_AppointmentView() {
     const [appointmentList, setAppointmentList] = useState([]);
 
     useEffect(() => {
-        getAllAppointments().then((result) => {
+        getAllPending().then((result) => {
             setAppointmentList(result);
             //initialize datatable
             $(document).ready(function () {
@@ -65,6 +65,47 @@ export default function C_M_AppointmentView() {
     }
 
 
+    function pending() {
+        getAllPending().then((result) => {
+            setAppointmentList(result);
+        });
+    }
+
+    function active() {
+        getAllActive().then((result) => {
+            setAppointmentList(result);
+        });
+    }
+
+    function done() {
+        getAllDone().then((result) => {
+            setAppointmentList(result);
+        });
+    }
+
+    function cancel() {
+        getAllCancel().then((result) => {
+            setAppointmentList(result);
+        });
+    }
+
+    function updateStatet(id, state){
+        updateAppointmentState({_id: id, state: state}).then((result) => {     
+            if (state==="Active" || state==="Cancel") {
+                getAllPending().then((result) => {
+                    setAppointmentList(result);
+                });
+            }else{
+              
+                    getAllActive().then((result) => {
+                        setAppointmentList(result);
+                    });
+               
+            } 
+        });
+    }
+
+ 
 
 
     return (
@@ -78,14 +119,21 @@ export default function C_M_AppointmentView() {
                     <div class="container-fluid">
 
                         <div class="header">
-                            <h1 class="header-title">
-                                View Customers
-                            </h1>
 
+                            <h1 class="header-title">
+                                View Appointments
+                            </h1>
+                            <br></br>
+                            <div class="btn-group  mb-3" role="group" aria-label="Large button group">
+                                <button onClick={() => pending()} type="button" class="btn btn-secondary">Pending</button>
+                                <button onClick={() => active()} type="button" class="btn btn-secondary">Active</button>
+                                <button onClick={() => done()} type="button" class="btn btn-secondary">Done</button>
+                                <button onClick={() => cancel()} type="button" class="btn btn-secondary">Cancel</button>
+                            </div>
                         </div>
 
 
-                        <div class="col-12">
+                        <div class="col-12" style={{ marginTop: -5 }}>
                             <div class="card">
 
                                 <div class="card-body">
@@ -113,16 +161,40 @@ export default function C_M_AppointmentView() {
                                                     <td>{value.room}</td>
                                                     <td>{value.date}</td>
                                                     <td>{value.appointmentDate}</td>
-                                                    {value.state === "Active" ? (
-                                                <td><div class="small"><span class="fas fa-circle chat-online" style={{marginRight: 5}}></span> Active</div></td>
-                                                ) : (
-                                                <td><div class="small"><span class="fas fa-circle chat-offline" style={{marginRight: 5}}></span> Deactive</div></td>
-                                                )}
-                                                    <td class="table-action">
-                                                    <button class="btn btn-pill btn-primary btn-sm" style={{ marginLeft: 10, width: 75 }} onClick={() => deleteMyAppointment(value._id)}>Deactive</button>
-                                                        <button class="btn btn-pill btn-danger btn-sm" style={{ marginLeft: 10, width: 60 }} onClick={() => deleteMyAppointment(value._id)}>Delete</button>
-                                                        <Link to={"/customerEdit/" + value._id} class="top-bar-link"><button class="btn btn-pill btn-success btn-sm" style={{ marginLeft: 10, width: 60 }}>Edit</button></Link>
-                                                
+                                                    <td>{value.state}</td>
+                                                    <td class="table-action text-center">
+
+                                                        {value.state === "Pending" ? <>
+                                                            <button class="btn btn-pill btn-primary btn-sm" style={{ marginLeft: 10, width: 60 }} onClick={() => updateStatet(value._id,"Active")}>Active</button>
+                                                            <button class="btn btn-pill btn-danger btn-sm" style={{ marginLeft: 10, width: 60 }} onClick={() => updateStatet(value._id,"Cancel")}>Cancel</button>
+                                                            <Link to={"/appointmentEdit/" + value._id} class="top-bar-link"><button class="btn btn-pill btn-success btn-sm" style={{ marginLeft: 10, width: 60 }}>Edit</button></Link>
+                                                        </>
+                                                            :
+                                                            ''
+                                                        }
+
+                                                        {value.state === "Active" ? <>
+                                                            <button class="btn btn-pill btn-primary btn-sm" style={{ marginLeft: 10, width: 60 }} onClick={() => updateStatet(value._id,"Done")}>Done</button>
+                                                            <Link to={"/appointmentEdit/" + value._id} class="top-bar-link"><button class="btn btn-pill btn-success btn-sm" style={{ marginLeft: 10, width: 60 }}>Edit</button></Link>
+                                                        </>
+                                                            :
+                                                            ''
+                                                        }
+
+                                                        {value.state === "Done" ? <>
+                                                            <Link to={"/appointmentEdit/" + value._id} class="top-bar-link"><button class="btn btn-pill btn-success btn-sm" style={{ marginLeft: 10, width: 60 }}>Edit</button></Link>
+                                                        </>
+                                                            :
+                                                            ''
+                                                        }
+
+                                                        {value.state === "Cancel" ? <>
+                                                            <Link to={"/appointmentEdit/" + value._id} class="top-bar-link"><button class="btn btn-pill btn-success btn-sm" style={{ marginLeft: 10, width: 60 }}>Edit</button></Link>
+                                                        </>
+                                                            :
+                                                            ''
+                                                        }
+
                                                     </td>
                                                 </tr>
                                             })}

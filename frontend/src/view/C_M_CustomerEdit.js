@@ -69,10 +69,10 @@ export default function C_M_CustomerEdit(props) {
 
                     editCustomer({_id: id, name: customerName, email: customerEmail, address: customerAddress, nic: customerNIC, contactNo: customerPhone}).then((result) => {
                        
-                        if (result) {
+                        if (result.status) {
                             swal({
                                 title: "Success!",
-                                text: "Vehicle Update Successfully",
+                                text: "Customer Update Successfully",
                                 icon: 'success',
                                 timer: 2000,
                                 button: false,
@@ -84,7 +84,7 @@ export default function C_M_CustomerEdit(props) {
                         } else {
                             swal({
                                 title: "Error!",
-                                text: "Vehicle Update Unsuccessfully",
+                                text: "Customer Update Unsuccessfully",
                                 icon: 'error',
                                 timer: 2000,
                                 button: false
@@ -122,7 +122,7 @@ export default function C_M_CustomerEdit(props) {
 
                         <div class="header">
                             <h1 class="header-title">
-                                Edit Customer
+                                Update Customer
                             </h1>
                         </div>
 

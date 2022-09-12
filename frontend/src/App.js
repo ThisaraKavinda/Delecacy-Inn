@@ -11,6 +11,7 @@ import C_M_CustomerView from './view/C_M_CustomerView';
 import C_M_CustomerEdit from './view/C_M_CustomerEdit';
 import C_M_AppointmentAdd from './view/C_M_AppointmentAdd';
 import C_M_AppointmentView from './view/C_M_AppointmentView';
+import C_M_AppointmentEdit from './view/C_M_AppointmentEdit';
 import Test from './view/test';
 
 //Thanu
@@ -36,7 +37,6 @@ import F_M_AddNewItem from './view/Food/F_M_AddNewItem';
 
 function App() {
   return (
-
     <BrowserRouter>
       <Routes>
         {/*Hiru*/}
@@ -69,7 +69,6 @@ function App() {
 
       </Routes>
     </BrowserRouter>
-
   );
 }
 

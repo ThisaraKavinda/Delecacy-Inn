@@ -33,3 +33,48 @@ export const getAllAppointmentsCount = async () => {
     return data;
 }
 
+export const getAllPending = async () => {
+    const { data } = await axios.get(baseURL + '/appointment/getAllPending/');
+    return data;
+}
+
+export const getAllPendingCount = async () => {
+    const { data } = await axios.get(baseURL + '/appointment/getAllPendingCount/');
+    return data;
+}
+
+export const getAllActive = async () => {
+    const { data } = await axios.get(baseURL + '/appointment/getAllActive/');
+    return data;
+}
+
+export const getAllActiveCount = async () => {
+    const { data } = await axios.get(baseURL + '/appointment/getAllActiveCount/');
+    return data;
+}
+
+export const getAllDone = async () => {
+    const { data } = await axios.get(baseURL + '/appointment/getAllDone/');
+    return data;
+}
+
+export const getAllDoneCount = async () => {
+    const { data } = await axios.get(baseURL + '/appointment/getAllDoneCount/');
+    return data;
+}
+
+export const getAllCancel = async () => {
+    const { data } = await axios.get(baseURL + '/appointment/getAllCancel/');
+    return data;
+}
+
+export const getAllCancelCount = async () => {
+    const { data } = await axios.get(baseURL + '/appointment/getAllCancelCount/');
+    return data;
+}
+
+export const updateAppointmentState = async (details) => {
+    const { data } = await axios.post(baseURL + '/appointment/updateAppointmentState/', details);
+    return data;
+}
+
