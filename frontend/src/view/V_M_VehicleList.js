@@ -6,7 +6,7 @@ import swal from "sweetalert";
 //css
 import "../css/modern.css";
 
-//js
+//jssDADSAD
 import "../js/app.js";
 
 //Bootstrap and jQuery libraries
