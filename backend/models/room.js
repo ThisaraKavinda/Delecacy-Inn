@@ -12,7 +12,11 @@ const RoomSchema = new Schema({
     },
     state: {
         type: String,
+    },
+    appointment: {
+        type: String,
     }
+    
 
 });
 
