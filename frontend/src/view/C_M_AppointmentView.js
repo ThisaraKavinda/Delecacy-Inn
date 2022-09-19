@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../components/C_M_Navbar';
 import swal from 'sweetalert';
 import Select from 'react-select'
+import { reactBaseURL } from '../config';
 
 //css
 import '../css/modern.css';
@@ -22,12 +23,29 @@ import $ from 'jquery';
 
 
 // Controllers
-import {  deleteAppointment, getAllPending, getAllActive, getAllDone, getAllCancel, updateAppointmentState } from '../controllers/appointment';
+import { deleteAppointment, getAllPending, getAllActive, getAllDone, getAllCancel, updateAppointmentState } from '../controllers/appointment';
+import { getRooms, updateRoomState, updateRoomStateDone } from '../controllers/room';
 
 
 export default function C_M_AppointmentView() {
 
+    const [roomList, setRoomList] = useState([]);
+    const [room, setRoom] = useState([]);
+
     const [appointmentList, setAppointmentList] = useState([]);
+
+
+    useEffect(() => {
+        getRooms().then((result) => {
+            var list = result.map((data) => {
+                return { value: data._id, label: data.name };
+            })
+            setRoomList(list);
+        });
+
+    }, [])
+
+
 
     useEffect(() => {
         getAllPending().then((result) => {
@@ -91,23 +109,75 @@ export default function C_M_AppointmentView() {
         });
     }
 
-    function updateStatet(id, state){
-        updateAppointmentState({_id: id, state: state}).then((result) => {     
-            if (state==="Active" || state==="Cancel") {
+    function updateStatet(id, state) {
+        if (state === "Active") {
+            if (room.length === 0) {
+                swal(" Room not selected..");
+            } else {
+                swal({
+                    title: "Are you sure?",
+                    text: "Add room to Appointment!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            updateRoomState({ roomArray: room, state: "1", appointment: id }).then((result) => {
+                                if (result.status) {
+                                    swal({
+                                        title: "Success!",
+                                        text: "Room Add Successfully",
+                                        icon: 'success',
+                                        timer: 2000,
+                                    });
+                                    updateAppointmentState({ _id: id, state: state }).then((result) => {
+                                        getAllPending().then((result) => {
+                                            setAppointmentList(result);
+                                        });
+                                    });
+                                } else {
+                                    swal({
+                                        title: "Error!",
+                                        text: "Room Add Unsuccessfully",
+                                        icon: 'error',
+                                        timer: 2000,
+                                        button: false,
+                                    });
+                                }
+                            });
+                        }
+                        setTimeout(() => {
+                            window.location.replace(reactBaseURL + "/appointmentView");
+                        }, 2050)
+
+                    });
+            }
+
+        } else if (state === "Cancel") {
+            updateAppointmentState({ _id: id, state: state }).then((result) => {
                 getAllPending().then((result) => {
                     setAppointmentList(result);
                 });
-            }else{
-              
-                    getAllActive().then((result) => {
-                        setAppointmentList(result);
+            });
+        } else {
+            updateRoomStateDone({ id: id }).then((result) => {
+                if (result.status) {
+                    updateAppointmentState({ _id: id, state: state }).then((result) => {
+
+                        getAllActive().then((result) => {
+                            setAppointmentList(result);
+                        });
                     });
-               
-            } 
-        });
+                } else {
+                    swal(" kelaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                }
+
+
+            });
+        }
     }
 
- 
 
 
     return (
@@ -150,7 +220,6 @@ export default function C_M_AppointmentView() {
                                                 <th>Date</th>
                                                 <th>Appointment Date</th>
                                                 <th>Status</th>
-                                                <th>Add Room</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -165,12 +234,17 @@ export default function C_M_AppointmentView() {
                                                     <td>{value.date}</td>
                                                     <td>{value.appointmentDate}</td>
                                                     <td>{value.state}</td>
-                                                    <td > <Select   /></td>
+                                                    {value.state === "Pending" ? <>
+                                                        <td > <Select isMulti options={roomList} onChange={setRoom} /></td>
+                                                    </>
+                                                        :
+                                                        ''
+                                                    }
                                                     <td class="table-action text-center">
 
                                                         {value.state === "Pending" ? <>
-                                                            <button class="btn btn-pill btn-primary btn-sm" style={{ marginLeft: 10, width: 60 }} onClick={() => updateStatet(value._id,"Active")}>Active</button>
-                                                            <button class="btn btn-pill btn-danger btn-sm" style={{ marginLeft: 10, width: 60 }} onClick={() => updateStatet(value._id,"Cancel")}>Cancel</button>
+                                                            <button class="btn btn-pill btn-primary btn-sm" style={{ marginLeft: 10, width: 60 }} onClick={() => updateStatet(value._id, "Active")}>Active</button>
+                                                            <button class="btn btn-pill btn-danger btn-sm" style={{ marginLeft: 10, width: 60 }} onClick={() => updateStatet(value._id, "Cancel")}>Cancel</button>
                                                             <Link to={"/appointmentEdit/" + value._id} class="top-bar-link"><button class="btn btn-pill btn-success btn-sm" style={{ marginLeft: 10, width: 60 }}>Edit</button></Link>
                                                         </>
                                                             :
@@ -178,7 +252,7 @@ export default function C_M_AppointmentView() {
                                                         }
 
                                                         {value.state === "Active" ? <>
-                                                            <button class="btn btn-pill btn-primary btn-sm" style={{ marginLeft: 10, width: 60 }} onClick={() => updateStatet(value._id,"Done")}>Done</button>
+                                                            <button class="btn btn-pill btn-primary btn-sm" style={{ marginLeft: 10, width: 60 }} onClick={() => updateStatet(value._id, "Done")}>Done</button>
                                                             <Link to={"/appointmentEdit/" + value._id} class="top-bar-link"><button class="btn btn-pill btn-success btn-sm" style={{ marginLeft: 10, width: 60 }}>Edit</button></Link>
                                                         </>
                                                             :
