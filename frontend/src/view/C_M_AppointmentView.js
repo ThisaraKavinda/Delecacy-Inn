@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/C_M_Navbar';
 import swal from 'sweetalert';
+import Select from 'react-select'
 
 //css
 import '../css/modern.css';
@@ -19,8 +20,9 @@ import "datatables.net-dt/css/jquery.dataTables.min.css"
 import $ from 'jquery';
 
 
+
 // Controllers
-import { getAllAppointments, deleteAppointment, getAllPending, getAllActive, getAllDone, getAllCancel, updateAppointmentState } from '../controllers/appointment';
+import {  deleteAppointment, getAllPending, getAllActive, getAllDone, getAllCancel, updateAppointmentState } from '../controllers/appointment';
 
 
 export default function C_M_AppointmentView() {
@@ -148,6 +150,7 @@ export default function C_M_AppointmentView() {
                                                 <th>Date</th>
                                                 <th>Appointment Date</th>
                                                 <th>Status</th>
+                                                <th>Add Room</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -157,11 +160,12 @@ export default function C_M_AppointmentView() {
                                                 return <tr key={index}>
                                                     <td>{value.nic}</td>
                                                     <td>{value.guest}</td>
-                                                    <td>{value.nigth}</td>
+                                                    <td>{value.night}</td>
                                                     <td>{value.room}</td>
                                                     <td>{value.date}</td>
                                                     <td>{value.appointmentDate}</td>
                                                     <td>{value.state}</td>
+                                                    <td > <Select   /></td>
                                                     <td class="table-action text-center">
 
                                                         {value.state === "Pending" ? <>
