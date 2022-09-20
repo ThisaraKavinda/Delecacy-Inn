@@ -11,6 +11,7 @@ import appointmentRouter from './routes/appointment.js';
 import employeeRouter from './routes/employee.js';
 import vehicleyRouter from './routes/vehicle.js';
 import roomRouter from './routes/room.js';
+import vehicleBookingRouter from './routes/vehicleBooking.js';
 
 
 // Constants
@@ -40,6 +41,7 @@ app.use('/appointment', appointmentRouter);
 app.use('/employee', employeeRouter);
 app.use('/vehicle', vehicleyRouter);
 app.use('/room', roomRouter);
+app.use('/vehicleBooking', vehicleBookingRouter);
 
 
 
