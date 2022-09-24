@@ -58,7 +58,7 @@ export default function C_M_Navbar() {
                             <i class="align-middle me-2 fas fa-fw fa-bookmark"></i> <span class="align-middle">Vehicle Booking</span>
                         </a>
                         <ul id="package" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                            <li class="sidebar-item"><a class="sidebar-link" href="packagePage">Add Booking</a></li>
+                            <li class="sidebar-item"><Link to='/vehicleBookingAdd' class="sidebar-link" href="packagePage">Add Booking</Link></li>
                             <li class="sidebar-item"><a class="sidebar-link" href="packageTypePage">View Booking</a></li>
                         </ul>
                     </li>
