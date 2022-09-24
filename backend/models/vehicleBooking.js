@@ -7,6 +7,9 @@ const VehicleBookingSchema = new Schema({
     appointmentID: {
         type: String,
     },
+    nic: {
+        type: String,
+    },
     type: {
         type: String,
     },

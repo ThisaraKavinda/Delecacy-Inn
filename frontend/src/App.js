@@ -13,6 +13,8 @@ import C_M_AppointmentAdd from './view/C_M_AppointmentAdd';
 import C_M_AppointmentView from './view/C_M_AppointmentView';
 import C_M_AppointmentEdit from './view/C_M_AppointmentEdit';
 import C_M_VehicleBookingAdd from './view/C_M_VehicleBookingAdd';
+import C_M_VehicleBookingView from './view/C_M_VehicleBookingView';
+import C_M_VehicleBookingEdit from './view/C_M_VehicleBookingEdit';
 import Test from './view/test';
 
 //Thanu
@@ -49,6 +51,8 @@ function App() {
         <Route exact path="/appointmentView" element={<C_M_AppointmentView />}/>
         <Route exact path="/appointmentEdit/:id" element={<C_M_AppointmentEdit />}/>
         <Route exact path="/vehicleBookingAdd" element={<C_M_VehicleBookingAdd />}/>
+        <Route exact path="/vehicleBookingView" element={<C_M_VehicleBookingView />}/>
+        <Route exact path="/vehicleBookingEdit/:id" element={<C_M_VehicleBookingEdit />}/>
         <Route exact path="/test" element={<Test />} />
 
         {/*Thanu*/}

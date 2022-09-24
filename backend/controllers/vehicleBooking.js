@@ -16,6 +16,7 @@ export const addVehicleBooking = async (req, res) => {
     console.log(req.body);
     const vehicleBooking = new VehicleBookingModel({
         appointmentID: req.body.appointmentID,
+        nic: req.body.nic,
         type: req.body.type,
         guests: req.body.guests,
         places: req.body.places,
