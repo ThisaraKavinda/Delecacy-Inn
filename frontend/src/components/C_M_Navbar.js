@@ -59,7 +59,7 @@ export default function C_M_Navbar() {
                         </a>
                         <ul id="package" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><Link to='/vehicleBookingAdd' class="sidebar-link" href="packagePage">Add Booking</Link></li>
-                            <li class="sidebar-item"><a class="sidebar-link" href="packageTypePage">View Booking</a></li>
+                            <li class="sidebar-item"><Link to='/vehicleBookingView' class="sidebar-link" href="packageTypePage">View Booking</Link></li>
                         </ul>
                     </li>
 
