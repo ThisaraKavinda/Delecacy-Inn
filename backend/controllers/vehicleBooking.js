@@ -62,9 +62,8 @@ export const editVehicleBooking = async (req, res) => {
                 _id: req.body._id
             },
             {
-                appointmentID: req.body.appointmentID,
                 type: req.body.type,
-                guests: req.body.guests,
+                guests: req.body.guest,
                 places: req.body.places,
                 date: req.body.date,
                 time: req.body.time,
@@ -77,7 +76,7 @@ export const editVehicleBooking = async (req, res) => {
         if (vehicleBooking) {
             res.send({
                 status: true,
-                details: customer  
+                details: vehicleBooking  
             });
         } else {
             res.send({
