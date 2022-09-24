@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/C_M_Navbar';
 import swal from 'sweetalert';
+import { useParams, useNavigate } from 'react-router-dom';
 import Select from 'react-select'
+import { reactBaseURL } from '../config';
 
-import $ from 'jquery';
+//components
+import FormInput from '../components/FormInput';
+import FormInputNumber from '../components/FormInputNumber';
+import FormInputDate from '../components/FormInputDate';
 
 //css
 import '../css/modern.css';
@@ -12,11 +17,11 @@ import '../css/modern.css';
 import '../js/app.js';
 
 // Controllers
-import { addVehicleBooking } from '../controllers/vehicleBooking';
-import { getAllActive } from '../controllers/appointment';
+import { getSelectedVehicleBooking, editVehicleBooking } from '../controllers/vehicleBooking';
+import { getSelectedAppointment, editAppointment } from '../controllers/appointment';
 
 
-export default function C_M_VehicleBookingAdd() {
+export default function C_M_VehicleBookingEdit() {
 
     const vehicleTypeOptions = [
         { value: "Van", label: "Van" },
@@ -25,91 +30,99 @@ export default function C_M_VehicleBookingAdd() {
         { value: "Truck", label: "Truck" }
     ];
 
+    const { id } = useParams();
 
-    const [type, setVehicleType] = useState([]);
-    const [nicList, setNICList] = useState([]);
-    const [selectnicList, setSelectNICList] = useState([]);
-    const [guest, setGuest] = useState(1);
-    const [place, setPlace] = useState('');
-    const [picUpDate, setPicUpDate] = useState('');
-    const [picUpTime, setPicUpTime] = useState('');
+    const [bookingData, setBookingData] = useState([]);
 
+    const [selectedType, setSelectedType] = useState({});
 
+    const [guest, setGuest] = useState(bookingData.guests);
+    const [place, setPlace] = useState(bookingData.places);
+    const [picUpDate, setPicUpDate] = useState(bookingData.date);
+    const [picUpTime, setPicUpTime] = useState(bookingData.time);
 
     useEffect(() => {
-        getAllActive().then((result) => {
-            console.log(result);
-            var list = result.map((data) => {
-                return { value: data._id, label: data.nic };
-            })
-            setNICList(list);
+        getSelectedVehicleBooking(id).then((result) => {
+            console.log(result)
+            setBookingData(result);
+            setSelectedType({ label: result.type, value: result.type });    
+            setGuest(result.guests);
+            setPlace(result.places);
+            setPicUpDate(result.date);
+            setPicUpTime(result.time);
         });
     }, [])
 
+  
+
+   
+
+  
+    const placeSetHandler = (data) => {
+        setPlace(data);
+    }
+    const guestSetHandler = (data) => {
+        setGuest(data);
+    }
+    const dateSetHandler = (data) => {
+        setPicUpDate(data);
+    }
+    const timeSetHandler = (data) => {
+        setPicUpTime(data);
+    }
 
 
-    const validateNIC = (nic) => {
-        return (nic.match(/[0-9]{9}[V|X|v|x]/) || (nic.match(/[0-9]{12}/)));
-    };
+    function editMyBooking(id) {
+     
+        swal({
+            title: "Are you sure?",
+            text: "Do you want to change Booking details!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
 
+                    editVehicleBooking({_id: id, type: selectedType.label, guest: guest, places: place, date: picUpDate, time: picUpTime}).then((result) => {
+                       
+                        if (result.status) {
+                            swal({
+                                title: "Success!",
+                                text: "Vehicle booking Update Successfully",
+                                icon: 'success',
+                                timer: 2000,
+                                button: false,
+                            });
 
-    function insertVehicleBooking() {
-
-        if (selectnicList === '' && type === '' && guest === '' && place === '' && picUpDate === '' && picUpTime === '') {
-            swal("All field is empty..");
-        } else if (selectnicList === '') {
-            swal("NIC field is empty");
-        } else if (type === '') {
-            swal("Vehicle Type field is empty");
-        } else if (guest === '') {
-            swal("Number of guest field is empty");
-        } else if (place === '') {
-            swal("Pick up place field is empty");
-        } else if (picUpDate === '') {
-            swal("Pick up date field is empty");
-        } else if (picUpTime === '') {
-            swal("Pick up time field is empty");
-        } else if (selectnicList === '' || type === '' || guest === '' || place === '' || picUpDate === '' || picUpTime === '') {
-            swal("fields are empty");
-        } else {
-            addVehicleBooking({ appointmentID: selectnicList.value, nic:selectnicList.label, type: type.label, guests: guest, places: place, date: picUpDate, time: picUpTime, state: 'active' }).then((result) => {
-                if (result.status) {
-                    swal({
-                        title: "Success!",
-                        text: "New Vehicle Booking Add Successfully",
-                        icon: 'success',
-                        timer: 2000,
-                        button: false,
+                            setTimeout(() => {
+                                window.location.replace(reactBaseURL + "/vehicleBookingView");
+                            }, 2050)
+                        } else {
+                            swal({
+                                title: "Error!",
+                                text: "Vehicle booking Update Unsuccessfully",
+                                icon: 'error',
+                                timer: 2000,
+                                button: false
+                            });
+                        }
                     });
 
-                    setTimeout(() => {
-                        window.location.reload(true);
-                    }, 1000)
-
-
-
-                } else {
-                    swal({
-                        title: "Error!",
-                        text: "New Appointment Add Unsuccessfully",
-                        icon: 'error',
-                        timer: 2000,
-                        button: false
-                    });
+                  
                 }
             });
-        }
-
-
-
 
     }
+
 
     function resetForm(){
         setTimeout(() => {
             window.location.reload(true);
         }, 100)
     }
+
+  
 
     return (
 
@@ -122,7 +135,7 @@ export default function C_M_VehicleBookingAdd() {
 
                         <div class="header">
                             <h1 class="header-title">
-                                Add Vehicle Booking
+                                Update Vehicle Booking
                             </h1>
 
                         </div>
@@ -134,11 +147,19 @@ export default function C_M_VehicleBookingAdd() {
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="inputEmail4">NIC</label>
-                                            <Select class="form-control" options={nicList} onChange={setSelectNICList} />
+                                            <input type="text" class="form-control" name="place" placeholder={bookingData.nic}  disabled />
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label for="inputPassword4">Vehicle Type</label>
-                                            <Select class="form-control" options={vehicleTypeOptions} onChange={setVehicleType} />
+                                            <Select
+                                                class="form-control"
+                                                options={vehicleTypeOptions}
+                                                hideSelectedOptions={false}
+                                                getOptionLabel={(option) => option.label}
+                                                getOptionValue={(option) => option.value}
+                                                value={selectedType}
+                                                onChange={(e) => setSelectedType(e)}
+                                            />
                                         </div>
                                     </div>
 
@@ -146,11 +167,11 @@ export default function C_M_VehicleBookingAdd() {
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="inputCity">Number of Guests</label>
-                                            <input type="number" class="form-control text-center" min={1} max={50} value={guest} onChange={(e) => setGuest(e.target.value)} />
+                                            <FormInputNumber value={bookingData.guests} title="number" onSave={guestSetHandler} />
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label for="inputCity">Pick up place</label>
-                                            <input type="text" class="form-control" name="place" value={place} onChange={(e) => setPlace(e.target.value)} required />
+                                            <FormInput value={bookingData.places} title="number" onSave={placeSetHandler} />
                                         </div>
 
                                     </div>
@@ -158,19 +179,19 @@ export default function C_M_VehicleBookingAdd() {
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="inputCity">Pick up Date</label>
-                                            <input type="date" class="form-control" name="date" value={picUpDate} onChange={(e) => setPicUpDate(e.target.value)} required />
+                                            <FormInputDate value={bookingData.date} title="number" onSave={dateSetHandler} />
                                         </div>
                                         <div class="mb-3  col-md-6">
-                                            <label class="form-label">Time Only</label>
-                                            <input type="text" class="form-control" name="place" value={picUpTime} onChange={(e) => setPicUpTime(e.target.value)} required />
+                                            <label class="form-label">Pick up Time (00:00) </label>
+                                            <FormInput value={bookingData.time} title="number" onSave={timeSetHandler} />
                                         </div>
                                     </div>
 
 
 
 
-                                    <button type="submit" class="btn  btn-primary" id="addCustomer" style={{ backgroundColor: '#081E3D', borderColor: '#081E3D', color: '#fff' }} onClick={() => insertVehicleBooking()} >Submit</button>
-                                    <button type="submit" class="btn  btn-primary" id="addCustomer" style={{ backgroundColor: '#ffffff', borderColor: '#081E3D', color: '#081E3D', marginLeft: 10, width: 75 }}   onClick={() => resetForm()} >Reset</button>
+                                    <button type="submit" class="btn  btn-primary" id="addCustomer" style={{ backgroundColor: '#081E3D', borderColor: '#081E3D', color: '#fff' }}  onClick={() => editMyBooking(id)} >Submit</button>
+                                    <button type="submit" class="btn  btn-primary" id="addCustomer" style={{ backgroundColor: '#ffffff', borderColor: '#081E3D', color: '#081E3D', marginLeft: 10, width: 75 }}  onClick={() => resetForm()}   >Reset</button>
 
                                 </div>
                             </div>

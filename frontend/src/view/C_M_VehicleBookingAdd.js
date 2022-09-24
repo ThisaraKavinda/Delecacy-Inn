@@ -48,10 +48,6 @@ export default function C_M_VehicleBookingAdd() {
 
 
 
-    const validateNIC = (nic) => {
-        return (nic.match(/[0-9]{9}[V|X|v|x]/) || (nic.match(/[0-9]{12}/)));
-    };
-
 
     function insertVehicleBooking() {
 
@@ -161,8 +157,8 @@ export default function C_M_VehicleBookingAdd() {
                                             <input type="date" class="form-control" name="date" value={picUpDate} onChange={(e) => setPicUpDate(e.target.value)} required />
                                         </div>
                                         <div class="mb-3  col-md-6">
-                                            <label class="form-label">Time Only</label>
-                                            <input type="text" class="form-control" name="place" value={picUpTime} onChange={(e) => setPicUpTime(e.target.value)} required />
+                                            <label class="form-label">Pick up Time (00:00)</label>
+                                            <input type="text" class="form-control" name="place" value={picUpTime} onChange={(e) => setPicUpTime(e.target.value)} placeholder="00:00" required />
                                         </div>
                                     </div>
 

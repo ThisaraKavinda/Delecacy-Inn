@@ -14,7 +14,7 @@ const VehicleBookingSchema = new Schema({
         type: String,
     },
     guests: {
-        type: String,
+        type: Number,
     },
     places: {
         type: String,
