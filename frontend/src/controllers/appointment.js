@@ -78,3 +78,5 @@ export const updateAppointmentState = async (details) => {
     return data;
 }
 
+
+

@@ -2,6 +2,17 @@ import { VehicleBookingModel } from '../models/vehicleBooking.js';
 
 
 export const addVehicleBooking = async (req, res) => {
+
+    
+    let date_ob = new Date();
+
+    let date = ("0" + date_ob.getDate()).slice(-2);
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+    let year = date_ob.getFullYear();
+    
+    let sysDate = year + "-" + month + "-" + date;
+
+
     console.log(req.body);
     const vehicleBooking = new VehicleBookingModel({
         appointmentID: req.body.appointmentID,
@@ -10,7 +21,7 @@ export const addVehicleBooking = async (req, res) => {
         places: req.body.places,
         date: req.body.date,
         time: req.body.time,
-        bookDate: req.body.bookDate,
+        bookDate: sysDate,
         state: req.body.state
     });
     const details = await vehicleBooking.save();
