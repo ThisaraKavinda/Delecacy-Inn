@@ -35,3 +35,9 @@ export const getAllEmployeesCount = async () => {
     return data;
 }
 
+export const getAllDrivers = async () => {
+    const { data } = await axios.get(baseURL + '/employee/getDrivers/');
+    return data;
+}
+
+

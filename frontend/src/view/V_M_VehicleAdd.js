@@ -82,7 +82,7 @@ export default function V_M_VehicleAdd() {
         vehicleNumber: vehicleNumber,
         driver: driverList.label,
         vehicleCapacity: vehicleCapacity,
-        state: "Active",
+        state: "Avalable",
       }).then((result) => {
         if (result.status) {
           swal({

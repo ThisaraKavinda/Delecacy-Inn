@@ -91,3 +91,8 @@ export const getSelectedEmployee = async (req, res) => {
     const employee = await EmployeeModel.findOne({ _id: req.body.id });
     res.send(employee);
 }
+
+export const getDrivers = async(req,res) => {
+    const employee = await EmployeeModel.find({Type:"Transportation Staff"})
+    res.send(employee);
+}
