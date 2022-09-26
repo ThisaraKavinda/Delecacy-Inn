@@ -19,44 +19,25 @@ import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
 
 // Controllers
-import { getAllVehicles, deleteVehicle } from "../controllers/vehicles";
+import { getAllVehicles } from "../controllers/vehicles";
+import { getAllVehicleBooking } from '../controllers/vehicleBooking';
 
-export default function V_M_CustomerAdd() {
+export default function V_M_VehicleAppointmentView() {
+
+  const [vehicleBookingList, setVehicleBookingList] = useState([]);
   const [vehicleList, setVehicleSelect] = useState([]);
 
   useEffect(() => {
-    getAllVehicles().then((result) => {
-      setVehicleSelect(result);
-      //initialize datatable
-      $(document).ready(function () {
-        $("#example").DataTable();
-      });
-    });
-  }, []);
-
-  function deleteMyVehicle(id) {
-    swal({
-      title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this imaginary file!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        deleteVehicle(id).then((result) => {
-          var vehicle = vehicleList.filter((e) => e._id !== result._id);
-          setVehicleSelect(vehicle);
+    getAllVehicleBooking().then((result) => {
+        setVehicleBookingList(result);
+        //initialize datatable
+        $(document).ready(function () {
+            $('#example').DataTable();
         });
-
-        swal("Poof! Your imaginary file has been deleted!", {
-          icon: "success",
-          title: "Delete Successfully!",
-          buttons: false,
-          timer: 2000,
-        });
-      }
     });
-  }
+}, [])
+
+
 
   return (
     <div class="wrapper">
@@ -67,11 +48,43 @@ export default function V_M_CustomerAdd() {
             <div class="header">
               <h1 class="header-title">Customer Vehicle Request</h1>
             </div>
-
+            
             <div class="col-12">
               <div class="card">
+              
+              <Link
+                to={"/vehicleDashboard/"}
+                class="top-bar-link"
+                >
+              <button
+                class="btn btn-pill btn-success btn-sm"
+                style={{ marginLeft: 10, width: 60 }}
+                >
+                 Pending Request
+                </button></Link><Link
+                to={"/vehicleDashboard/"}
+                class="top-bar-link"
+                >
+              <button
+                class="btn btn-pill btn-success btn-sm"
+                style={{ marginLeft: 10, width: 60 }}
+                >
+                 New
+                </button></Link><Link
+                to={"/vehicleDashboard/"}
+                class="top-bar-link"
+                >
+              <button
+                class="btn btn-pill btn-success btn-sm"
+                style={{ marginLeft: 10, width: 60 }}
+                >
+                 New
+                </button></Link>
+
+               
                 <div class="card-body">
                   <table id="example" class="table table-striped my">
+                    
                     <thead>
                       <tr>
                         <th>NIC</th>
@@ -79,25 +92,25 @@ export default function V_M_CustomerAdd() {
                         <th>Pick up Date</th>
                         <th>Pick up time</th>
                         <th>Requested Vehicle Type</th>
-                        <th>State</th>
+                        <th>Select Vehilce</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {vehicleList.map((value, index) => {
+                      {vehicleBookingList.map((value, index) => {
                         return (
                           <tr key={index}>
+                            <td>{value.nic}</td>
+                            <td>{value.places}</td>
+                            <td>{value.date}</td>
+                            <td>{value.time}</td>
                             <td>{value.type}</td>
-                            <td>{value.identification}</td>
-                            <td>{value.vehicleNumber}</td>
-                            <td>{value.driver}</td>
-                            <td>{value.vehicleCapacity}</td>
                             <td>{value.state}</td>
                             <td class="table-action">
                               <button
                                 class="btn btn-pill btn-danger btn-sm"
                                 style={{ marginLeft: 45, width: 60 }}
-                                onClick={() => deleteMyVehicle(value._id)}
+                                // onClick={() => deleteMyVehicle(value._id)}
                               >
                                 Delete
                               </button>
