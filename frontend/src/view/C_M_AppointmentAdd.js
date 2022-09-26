@@ -147,7 +147,7 @@ export default function C_M_AppointmentAdd() {
 
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
-                                            <label for="inputCity">Appointment Date</label>
+                                        <label for="inputCity">Appointment Date</label>
                                             <input type="date" class="form-control" name="appointment"  value={appointmentDate} onChange={(e) => setAppointmentDate(e.target.value)} required />
                                         </div>
                                     </div>

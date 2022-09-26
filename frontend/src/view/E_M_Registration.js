@@ -32,7 +32,7 @@ export default function E_M_Registration() {
 
     function insertEmployee() {
 
-        if (employeeName === '' && employeeEmail === '' && employeeGender === '' && employeeAddress === '' && employeeNIC === '' && employeePhone === ''&& employeePassword === ''&& employeeType === '') {
+        if (employeeName === '' && employeeEmail === '' && employeeGender === '' && employeeDob === '' && employeeAddress === '' && employeeNIC === '' && employeePhone === ''&& employeePassword === ''&& employeeType === '') {
             swal("All field are empty..");
         } else if (employeeName === '') {
             swal("Name field is empty");
@@ -42,6 +42,8 @@ export default function E_M_Registration() {
             swal("Enter a valid email");
         } else if (employeeGender === '') {
             swal("Gender field is empty"); 
+        } else if (employeeDob === '') {
+            swal("DOB field is empty"); 
         }  else if (employeeAddress === '') {
             swal("Address field is empty");
         } else if (employeeNIC === '') {
@@ -56,7 +58,7 @@ export default function E_M_Registration() {
             swal("Password field is empty");
         } else if (employeeType === '') {
             swal("EmployeeType field is empty");
-        } else if (employeeName === '' || employeeEmail === '' || employeeGender === '' ||  employeeAddress === '' || employeeNIC === '' || employeePhone === '' || employeePassword === '' || employeeType === '') {
+        } else if (employeeName === '' || employeeEmail === '' || employeeGender === '' || employeeDob === ''  ||  employeeAddress === '' || employeeNIC === '' || employeePhone === '' || employeePassword === '' || employeeType === '') {
             swal("fields are empty");
         } else {
             addEmployee({ name: employeeName, email: employeeEmail,  gender: employeeGender, dob: employeeDob, address: employeeAddress, nic: employeeNIC, contact: employeePhone, password: employeePassword , Type: employeeType }).then((result) => {
@@ -170,12 +172,11 @@ export default function E_M_Registration() {
                                     <br></br>
 
                                     <div class="mb-3 col-md-6">
-                                        <label class="form-label">Date of Birth</label>
-                                        <div class="input-group date" id="datetimepicker-date" data-target-input="nearest">
-                                            <input type="date" class="form-control datetimepicker-input" data-target="#datetimepicker-date" />
-                                            <div class="input-group-text" data-target="#datetimepicker-date" data-toggle="datetimepicker"><i class="fa fa-calendar"></i></div>
+                                    
+                                        <label for="inputCity">Date of Birth</label>
+                                            <input type="date" class="form-control" name="DOB"  value={employeeDob} onChange={(e) => setEmployeeDob(e.target.value)} required />
                                         </div>
-                                    </div>
+                                    
                                     </div>
 
 
