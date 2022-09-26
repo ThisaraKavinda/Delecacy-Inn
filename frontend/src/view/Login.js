@@ -13,8 +13,10 @@ import '../js/app.js';
 export default function Login() {
 
     const employeeType = [
-        { value: "Customer Manager", label: "Customer Manager" },
-        { value: "Employee Manager", label: "Employee Manager" },
+        { value: "cm", label: "Customer Manager" },
+        { value: "em", label: "Employee Manager" },
+        { value: "vm", label: "Vehicle Managger" },
+        { value: "fm", label: "Food Manager" },
     ];
 
     const [selectedType, setSelectedType] = useState({});
@@ -28,6 +30,7 @@ export default function Login() {
     };
 
     function login() {
+
         if (selectedType === '' && email === '' && password === '') {
             swal("All field is empty..");
         } else if (email === '') {
@@ -38,7 +41,25 @@ export default function Login() {
             swal("Password field is empty");
         } else if (selectedType === '') {
             swal("Select the employee type");
-        } 
+        } else{
+            logIn({ Type: selectedType.value, email: email, password: password}).then((result) => {
+                if (result.status) {
+                    if(result.details.Type==="em"){
+                        window.location.replace(reactBaseURL + "/employeeDashboard");
+                    }else if(result.details.Type==="fm"){
+                        window.location.replace(reactBaseURL + "/foodDashboard");
+                    }else if(result.details.Type==="vm"){
+                        window.location.replace(reactBaseURL + "/vehicleDashboard");
+                    }else{
+                        window.location.replace(reactBaseURL + "/");
+                    }
+                    
+                }else{
+                    swal("wardiii");
+                }
+
+            });
+        }
     }
 
     return (

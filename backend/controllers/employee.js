@@ -96,3 +96,17 @@ export const getDrivers = async(req,res) => {
     const employee = await EmployeeModel.find({Type:"Transportation Staff"})
     res.send(employee);
 }
+
+export const logIn = async (req, res) => {
+    const employee = await EmployeeModel.findOne({ Type: req.body.Type, email: req.body.email, password: req.body.password });
+    if (employee) {
+        res.send({
+            status: true,
+            details: employee  
+        });
+    } else {
+        res.send({
+            status: false,
+        });
+    }
+}
