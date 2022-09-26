@@ -30,6 +30,9 @@ const EmployeeSchema = new Schema({
   Type: {
     type: String,
   },
+  leaveTaken: {
+    type:Number,
+  },
 });
 
 export const EmployeeModel = mongoose.model('employees', EmployeeSchema);
