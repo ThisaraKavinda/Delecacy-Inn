@@ -2,6 +2,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import './App.css';
 
 
+import Login from './view/Login';
 
 
 //Hiru
@@ -15,6 +16,7 @@ import C_M_AppointmentEdit from './view/C_M_AppointmentEdit';
 import C_M_VehicleBookingAdd from './view/C_M_VehicleBookingAdd';
 import C_M_VehicleBookingView from './view/C_M_VehicleBookingView';
 import C_M_VehicleBookingEdit from './view/C_M_VehicleBookingEdit';
+import C_M_Report from './view/C_M_Report';
 import Test from './view/test';
 
 //Thanu
@@ -42,6 +44,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+      <Route exact path="/login" element={<Login/>} />
         {/*Hiru*/}
         <Route exact path="/" element={<C_M_Dashboard />} />
         <Route exact path="/customerAdd" element={<C_M_CustomerAdd />} />
@@ -53,6 +56,7 @@ function App() {
         <Route exact path="/vehicleBookingAdd" element={<C_M_VehicleBookingAdd />}/>
         <Route exact path="/vehicleBookingView" element={<C_M_VehicleBookingView />}/>
         <Route exact path="/vehicleBookingEdit/:id" element={<C_M_VehicleBookingEdit />}/>
+        <Route exact path="/customerReport" element={<C_M_Report />}/>
         <Route exact path="/test" element={<Test />} />
 
         {/*Thanu*/}
