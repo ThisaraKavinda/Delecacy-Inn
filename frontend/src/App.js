@@ -32,6 +32,7 @@ import V_M_Dashboard from './view/V_M_Dashboard';
 import V_M_VehicleAdd from './view/V_M_VehicleAdd';
 import V_M_VehicleList from './view/V_M_VehicleList';
 import V_M_VehicleEdit from "./view/V_M_VehicleEdit";
+import V_M_VehicleCustomerRequest from "./view/V_M_VehicleCustomerRequest";
 
 //Niakalo
 import F_M_Dashoard from './view/Food/F_M_Dashboard';
@@ -72,6 +73,7 @@ function App() {
         <Route exact path="/vehicleAdd" element={<V_M_VehicleAdd />} />
         <Route exact path="/vihicleList" element={<V_M_VehicleList />} />
         <Route exact path="/vehicleEdit/:id" element={<V_M_VehicleEdit />} />
+        <Route exact path="/vehicle-customer-request" element={<V_M_VehicleCustomerRequest />} />
 
         {/* {Nikalo} */}
         <Route exact path="/foodDashboard" element={<F_M_Dashoard/>} />
