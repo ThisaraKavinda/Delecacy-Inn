@@ -16,10 +16,10 @@ import "../js/app.js";
 
 // Controllers
 import { getSelectedVehicle, editVehicle } from "../controllers/vehicles";
-import { getAllEmployees } from "../controllers/employee";
+import { getAllDrivers } from "../controllers/employee";
 
 export default function V_M_VehicleEdit(props) {
-  // const id = props.match.params.id;
+  const { id } = useParams();
 
   const vehicleTypeOptions = [
     { value: "Van", label: "Van" },
@@ -32,56 +32,59 @@ export default function V_M_VehicleEdit(props) {
     { value: "Delivering", label: "Delivering" },
     { value: "In Repair", label: "In Repair" },
   ];
-  const { id } = useParams();
+
 
   const [vehicleData, setVehicleData] = useState([]);
-  const [selectedType, setSelectedType] = useState({});
+  const [vehicleType, setSelectedVehicleType] = useState({});
   const [selectedState, setSelectedState] = useState({});
+  const [selectedDriver, setSelectedDriver] = useState({});
+  const [driverList, setDriverList] = useState([]);
+
 
   useEffect(() => {
     getSelectedVehicle(id).then((result) => {
-      console.log(result);
       setVehicleData(result);
-    });
-  }, []);
-  useEffect(() => {
-    getSelectedVehicle(id).then((result) => {
-      setVehicleData(result);
-      // setSelectedBranch({ label: result.branch, value: result.branch });
-      setSelectedType({ label: result.type, value: result.type });
+      setSelectedVehicleType({ label: result.type, value: result.type });
       setSelectedState({ label: result.state, value: result.state });
-      // setSelectedDriver({ label: result.driver, value: result.driver });
+      setSelectedDriver({ label: result.driver, value: result.driver });
     });
   }, []);
 
-  const [vehicleType, setVehicleType] = useState(vehicleData.type);
-  const [vehicleIdentidication, setVehicleIdentification] = useState(
-    vehicleData.identification
-  );
-  const [vehicleNumber, setVehicleNumber] = useState(vehicleData.vehicleNumber);
-  const [vehicleDriver, setVehicleDriver] = useState(vehicleData.driver);
-  const [vehicleCapacity, setVehicleCapacity] = useState(
-    vehicleData.vehicleCapacity
-  );
-  const [vehicleState, setVehicleState] = useState(vehicleData.state);
+  useEffect(() => {
+    getAllDrivers().then((result) => {
+        var list = result.map((data) => {
+            return { value: data._id, label: data.name };
+        })
+        setDriverList(list);
+    });
 
-  const typeSetHandler = (data) => {
-    setVehicleType(data);
-  };
+}, [])
+
+//   useEffect(() => {
+//     getAllEmployees().then((result) => {
+//         console.log(result);
+//         var list = result.map((data) => {
+//             return {  label: data.name };
+//         })
+//         setVehicleDriver(list);
+//     });
+// }, [])
+
+
+
+  const [vehicleIdentidication, setVehicleIdentification] = useState( vehicleData.identification );
+  const [vehicleNumber, setVehicleNumber] = useState(vehicleData.vehicleNumber);
+  const [vehicleCapacity, setVehicleCapacity] = useState( vehicleData.vehicleCapacity);
+
+
   const IdentificationSetHandler = (data) => {
     setVehicleIdentification(data);
   };
   const numberSetHandler = (data) => {
     setVehicleNumber(data);
   };
-  const driverSetHandler = (data) => {
-    setVehicleDriver(data);
-  };
   const capacitySetHandler = (data) => {
     setVehicleCapacity(data);
-  };
-  const stateSetHandler = (data) => {
-    setVehicleState(data);
   };
 
   function editMyVehicle(id) {
@@ -93,14 +96,15 @@ export default function V_M_VehicleEdit(props) {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
+        
         editVehicle({
           _id: id,
-          type: vehicleType,
-          identificationail: vehicleIdentidication,
+          type: vehicleType.label,
+          identification: vehicleIdentidication,
           vehicleNumber: vehicleNumber,
-          driver: vehicleDriver,
+          driver: selectedDriver.label,
           vehicleCapacity: vehicleCapacity,
-          state: vehicleState,
+          state:selectedState.label
         }).then((result) => {
           if (result) {
             swal({
@@ -161,8 +165,8 @@ export default function V_M_VehicleEdit(props) {
                         hideSelectedOptions={false}
                         getOptionLabel={(option) => option.label}
                         getOptionValue={(option) => option.value}
-                        value={selectedType}
-                        onChange={(e) => setSelectedType(e)}
+                        value={vehicleType}
+                        onChange={(e) => setSelectedVehicleType(e)}
                       />
                     </div>
                     <div class="mb-3 col-md-6">
@@ -187,10 +191,13 @@ export default function V_M_VehicleEdit(props) {
                   <div class="row">
                     <div class="mb-3 col-md-6">
                       <label for="inputCity">Driver Name</label>
-                      <FormInput
-                        value={vehicleData.driver}
-                        title="number"
-                        onSave={driverSetHandler}
+                      <Select
+                        options={driverList}
+                        hideSelectedOptions={false}
+                        getOptionLabel={(option) => option.label}
+                        getOptionValue={(option) => option.value}
+                        value={selectedDriver}
+                        onChange={(e) => setSelectedDriver(e)}
                       />
                     </div>
 
