@@ -11,7 +11,10 @@ export const addEmployee = async (req, res) => {
         gender: req.body.gender,
         email: req.body.email,
         nic: req.body.nic,
-        contact: req.body.contact
+        contact: req.body.contact,
+        password: req.body.password,
+        Type:req.body.Type
+
     });
     const details = await employee.save();
     if (details) {
@@ -57,7 +60,9 @@ export const editEmployee = async (req, res) => {
                 gender: req.body.gender,
                 email: req.body.email,
                 nic: req.body.nic,
-                contact: req.body.contact
+                contact: req.body.contact,
+                password: req.body.password,
+                Type:req.body.Type
             },
             {
                 new:true
