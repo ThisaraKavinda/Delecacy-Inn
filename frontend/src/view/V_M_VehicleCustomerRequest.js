@@ -21,7 +21,7 @@ import $ from "jquery";
 // Controllers
 import { getAllVehicles, deleteVehicle } from "../controllers/vehicles";
 
-export default function V_M_ViewVehicles() {
+export default function V_M_CustomerAdd() {
   const [vehicleList, setVehicleSelect] = useState([]);
 
   useEffect(() => {
@@ -65,7 +65,7 @@ export default function V_M_ViewVehicles() {
         <main class="content">
           <div class="container-fluid">
             <div class="header">
-              <h1 class="header-title">View Vehicles</h1>
+              <h1 class="header-title">Customer Vehicle Request</h1>
             </div>
 
             <div class="col-12">
@@ -74,11 +74,11 @@ export default function V_M_ViewVehicles() {
                   <table id="example" class="table table-striped my">
                     <thead>
                       <tr>
-                        <th>Type</th>
-                        <th>Identification</th>
-                        <th>Vehicle Number</th>
-                        <th>Driver</th>
-                        <th>Vehicle Capacity</th>
+                        <th>NIC</th>
+                        <th>Pick Up</th>
+                        <th>Pick up Date</th>
+                        <th>Pick up time</th>
+                        <th>Requested Vehicle Type</th>
                         <th>State</th>
                         <th>Action</th>
                       </tr>
