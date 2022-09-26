@@ -61,7 +61,7 @@ export default function E_M_Registration() {
         } else if (employeeName === '' || employeeEmail === '' || employeeGender === '' || employeeDob === ''  ||  employeeAddress === '' || employeeNIC === '' || employeePhone === '' || employeePassword === '' || employeeType === '') {
             swal("fields are empty");
         } else {
-            addEmployee({ name: employeeName, email: employeeEmail,  gender: employeeGender, dob: employeeDob, address: employeeAddress, nic: employeeNIC, contact: employeePhone, password: employeePassword , Type: employeeType }).then((result) => {
+            addEmployee({ name: employeeName, email: employeeEmail,  gender: employeeGender, dob: employeeDob, address: employeeAddress, nic: employeeNIC, contact: employeePhone, password: employeePassword , Type: employeeType, leaveTaken : 0 }).then((result) => {
                 if (result.status) {
 
                     swal({

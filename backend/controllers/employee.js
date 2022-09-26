@@ -13,7 +13,8 @@ export const addEmployee = async (req, res) => {
         nic: req.body.nic,
         contact: req.body.contact,
         password: req.body.password,
-        Type:req.body.Type
+        Type:req.body.Type,
+        leaveTaken:req.body.leaveTaken
 
     });
     const details = await employee.save();
@@ -62,7 +63,8 @@ export const editEmployee = async (req, res) => {
                 nic: req.body.nic,
                 contact: req.body.contact,
                 password: req.body.password,
-                Type:req.body.Type
+                Type:req.body.Type,
+                leaveTaken:req.body.leaveTaken
             },
             {
                 new:true
