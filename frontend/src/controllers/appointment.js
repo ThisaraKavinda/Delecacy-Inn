@@ -78,5 +78,8 @@ export const updateAppointmentState = async (details) => {
     return data;
 }
 
-
+export const appointmentReport = async (details) => {
+    const { data } = await axios.post(baseURL + '/appointment/appointmentReport/', details);
+    return data;
+}
 

@@ -165,3 +165,18 @@ export const updateAppointmentState = async (req, res) => {
         console.log(error.messaga)
     }
 }
+
+
+export const appointmentReport = async (req, res) => {
+    const appointment = await AppointmentModel.find({appointmentDate: {$gte: req.body.startDate ,$lt: req.body.endDate}, state:"Done"});
+    if (appointment) {
+        res.send({
+            status: true,
+            details: appointment
+        });
+    } else {
+        res.send({
+            status: false,
+        });
+    }
+}
