@@ -40,4 +40,9 @@ export const getAllDrivers = async () => {
     return data;
 }
 
+export const logIn = async (details) => {
+    const { data } = await axios.post(baseURL + '/employee/logIn/', details);
+    return data;
+}
+
 
