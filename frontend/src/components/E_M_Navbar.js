@@ -54,6 +54,13 @@ export default function E_M_Navbar() {
 
                     </li>
 
+                    <li class="sidebar-item ">
+                        <Link class="sidebar-link"to='/manageSalary'>
+                            <i class="align-middle me-2 fas fa fa-credit-card"></i> <span class="align-middle">Manage Salary</span>
+                        </Link>
+
+                    </li>
+
                     <li class="sidebar-item">
                         <a data-bs-target="#profile" data-bs-toggle="collapse" class="sidebar-link collapsed">
                             <i class="align-middle me-2 fas fa-fw fa-user"></i> <span class="align-middle">My Profile</span>
