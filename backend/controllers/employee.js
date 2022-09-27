@@ -14,7 +14,8 @@ export const addEmployee = async (req, res) => {
         contact: req.body.contact,
         password: req.body.password,
         Type:req.body.Type,
-        leaveTaken:req.body.leaveTaken
+        leaveTaken:req.body.leaveTaken,
+        salary:req.body.salary
 
     });
     const details = await employee.save();
@@ -64,7 +65,8 @@ export const editEmployee = async (req, res) => {
                 contact: req.body.contact,
                 password: req.body.password,
                 Type:req.body.Type,
-                leaveTaken:req.body.leaveTaken
+                leaveTaken:req.body.leaveTaken,
+                salary:req.body.salary
             },
             {
                 new:true

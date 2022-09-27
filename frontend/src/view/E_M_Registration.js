@@ -23,6 +23,7 @@ export default function E_M_Registration() {
     const [employeePhone, setEmployeePhone] = useState('');
     const [employeePassword, setEmployeePassword] = useState('');
     const [employeeType, setEmployeeType] = useState('');
+    const [employeeSalary, setEmployeeSalary] = useState('');
 
     const validateEmail = (email) => {
         return email.match(
@@ -32,7 +33,7 @@ export default function E_M_Registration() {
 
     function insertEmployee() {
 
-        if (employeeName === '' && employeeEmail === '' && employeeGender === '' && employeeDob === '' && employeeAddress === '' && employeeNIC === '' && employeePhone === ''&& employeePassword === ''&& employeeType === '') {
+        if (employeeName === '' && employeeEmail === '' && employeeGender === '' && employeeDob === '' && employeeAddress === '' && employeeNIC === '' && employeePhone === ''&& employeePassword === ''&& employeeType === '' && employeeSalary === '') {
             swal("All field are empty..");
         } else if (employeeName === '') {
             swal("Name field is empty");
@@ -58,10 +59,12 @@ export default function E_M_Registration() {
             swal("Password field is empty");
         } else if (employeeType === '') {
             swal("EmployeeType field is empty");
-        } else if (employeeName === '' || employeeEmail === '' || employeeGender === '' || employeeDob === ''  ||  employeeAddress === '' || employeeNIC === '' || employeePhone === '' || employeePassword === '' || employeeType === '') {
+        } else if (employeeSalary === '') {
+            swal("EmployeeSalary field is empty");
+        } else if (employeeName === '' || employeeEmail === '' || employeeGender === '' || employeeDob === ''  ||  employeeAddress === '' || employeeNIC === '' || employeePhone === '' || employeePassword === '' || employeeType === '' || employeeSalary === '') {
             swal("fields are empty");
         } else {
-            addEmployee({ name: employeeName, email: employeeEmail,  gender: employeeGender, dob: employeeDob, address: employeeAddress, nic: employeeNIC, contact: employeePhone, password: employeePassword , Type: employeeType, leaveTaken : 0 }).then((result) => {
+            addEmployee({ name: employeeName, email: employeeEmail,  gender: employeeGender, dob: employeeDob, address: employeeAddress, nic: employeeNIC, contact: employeePhone, password: employeePassword , Type: employeeType, leaveTaken : 0 , salary: employeeSalary}).then((result) => {
                 if (result.status) {
 
                     swal({
@@ -81,6 +84,7 @@ export default function E_M_Registration() {
                     setEmployeePhone('');
                     setEmployeePassword('');
                     setEmployeeType('');
+                    setEmployeeSalary('');
 
                     // setTimeout(() => {
                     //     window.location.reload(true);
@@ -105,7 +109,7 @@ export default function E_M_Registration() {
     
     function resetForm(){
 
-        if (employeeName === '' && employeeEmail === '' && employeeGender === '' && employeeDob === '' && employeeAddress === '' && employeeNIC === '' && employeePhone === ''&& employeePassword === ''&& employeeType === '') {
+        if (employeeName === '' && employeeEmail === '' && employeeGender === '' && employeeDob === '' && employeeAddress === '' && employeeNIC === '' && employeePhone === ''&& employeePassword === ''&& employeeType === '' && employeeSalary === '') {
             swal("fields are already empty");
         }
                     setEmployeeName('');
@@ -117,6 +121,7 @@ export default function E_M_Registration() {
                     setEmployeePhone('');
                     setEmployeePassword('');
                     setEmployeeType('');
+                    setEmployeeSalary('');
 
     }
 
@@ -179,10 +184,18 @@ export default function E_M_Registration() {
                                     
                                     </div>
 
+                                    <div class="row">
+                                        <div class="mb-3 col-md-6">
+                                            <label for="inputAddress">Address</label>
+                                            <input type="text" class="form-control"  value={employeeAddress} onChange={(e) => setEmployeeAddress(e.target.value)} name="address" required />
 
-                                    <div class="mb-3 ">
-                                        <label for="inputAddress">Address</label>
-                                        <input type="text" class="form-control"  value={employeeAddress} onChange={(e) => setEmployeeAddress(e.target.value)} name="address" required />
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label for="inputAddress">Basic Salary</label>
+                                            <input type="text" class="form-control"  value={employeeSalary} onChange={(e) => setEmployeeSalary(e.target.value)} name="salary" required />
+
+                                        </div>
+                                    
 
                                     </div>
 
