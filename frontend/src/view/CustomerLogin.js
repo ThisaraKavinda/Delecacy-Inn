@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../components/C_M_Navbar';
 import swal from 'sweetalert';
 import Select from "react-select";
 import { reactBaseURL } from '../config';
@@ -11,21 +10,14 @@ import '../css/modern.css';
 import '../js/app.js';
 
 // Controllers
-import { logIn } from '../controllers/employee';
+import { logIn } from '../controllers/customer';
 
 
-export default function Login() {
+export default function CustomerLogin() {
 
-    const employeeType = [
-        { value: "cm", label: "Customer Manager" },
-        { value: "em", label: "Employee Manager" },
-        { value: "vm", label: "Vehicle Managger" },
-        { value: "fm", label: "Food Manager" },
-    ];
-
-    const [selectedType, setSelectedType] = useState({});
+   
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [nic, setNic] = useState('');
 
     const validateEmail = (email) => {
         return email.match(
@@ -33,46 +25,36 @@ export default function Login() {
         );
     };
 
+    const validateNIC = (nic) => {
+        return (nic.match(/[0-9]{9}[V|X|v|x]/) || (nic.match(/[0-9]{12}/)));
+    };
+
     function login() {
 
-        if (selectedType === '' && email === '' && password === '') {
+        if (email === '' && nic === '') {
             swal("All field is empty..");
         } else if (email === '') {
             swal("Email field is empty");
         } else if (!validateEmail(email)) {
             swal("Enter a valid email");
-        } else if (password === '') {
-            swal("Password field is empty");
-        } else if (selectedType === '') {
-            swal("Select the employee type");
+        } else if (nic === '') {
+            swal("NIC field is empty");
+        } else if (!validateNIC(nic)) {
+            swal("Enter a valid NIC");
         } else{
-            logIn({ Type: selectedType.value, email: email, password: password}).then((result) => {
+            logIn({ email: email, nic: nic}).then((result) => {
                 if (result.status) {
                     swal({
                         title: "Success!",
-                        text: "Login Successfully",
+                        text: "Customer Login Successfully",
                         icon: 'success',
                         timer: 2000,
                         button: false,
                     });
-                    if(result.details.Type==="em"){
-                        setTimeout(() => {
-                            window.location.replace(reactBaseURL + "/employeeDashboard");
-                        }, 2000)
-                    }else if(result.details.Type==="fm"){
-                        setTimeout(() => {
-                            window.location.replace(reactBaseURL + "/foodDashboard");
-                        }, 2000)
-                    }else if(result.details.Type==="vm"){
-                        setTimeout(() => {
-                            window.location.replace(reactBaseURL + "/vehicleDashboard");
-                        }, 2000)
-                    }else{
-                        setTimeout(() => {
-                            window.location.replace(reactBaseURL + "/");
-                        }, 2000)
-                    }
-                    
+
+                    setTimeout(() => {
+                        window.location.replace(reactBaseURL + "/CustomerBill");
+                    }, 2050)
                 }else{
                     swal({
                         title: "Error!",
@@ -103,16 +85,12 @@ export default function Login() {
                                         <div class="m-sm-4">
                                         
                                                 <div class="mb-3">
-                                                    <label >Employee Type</label>
-                                                    <Select class="form-control form-control-lg" options={employeeType} onChange={setSelectedType} />
-                                                </div>
-                                                <div class="mb-3">
                                                     <label>Email</label>
                                                     <input class="form-control " type="email" name="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label>Password</label>
-                                                    <input class="form-control " type="password" name="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                                                    <label>NIC</label>
+                                                    <input class="form-control " type="password" name="password" placeholder="Enter your NIC" value={nic} onChange={(e) => setNic(e.target.value)} />
                                                 </div>
 
                                                 <div class="text-center mt-3">
