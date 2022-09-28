@@ -9,6 +9,9 @@ import '../css/modern.css';
 //js
 import '../js/app.js';
 
+// Controllers
+import { logIn } from '../controllers/employee';
+
 
 export default function Login() {
 
