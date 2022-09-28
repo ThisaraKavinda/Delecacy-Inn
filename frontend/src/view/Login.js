@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/C_M_Navbar';
 import swal from 'sweetalert';
 import Select from "react-select";
+import { reactBaseURL } from '../config';
 
 //css
 import '../css/modern.css';
