@@ -17,6 +17,8 @@ import C_M_VehicleBookingAdd from './view/C_M_VehicleBookingAdd';
 import C_M_VehicleBookingView from './view/C_M_VehicleBookingView';
 import C_M_VehicleBookingEdit from './view/C_M_VehicleBookingEdit';
 import C_M_Report from './view/C_M_Report';
+import CustomerLogin from './view/CustomerLogin';
+import CustomerBill from './view/CustomerBill';
 import Test from './view/test';
 
 //Thanu
@@ -61,6 +63,8 @@ function App() {
         <Route exact path="/vehicleBookingView" element={<C_M_VehicleBookingView />}/>
         <Route exact path="/vehicleBookingEdit/:id" element={<C_M_VehicleBookingEdit />}/>
         <Route exact path="/customerReport" element={<C_M_Report />}/>
+        <Route exact path="/customerLogin" element={<CustomerLogin />}/>
+        <Route exact path="/CustomerBill" element={<CustomerBill />}/>
         <Route exact path="/test" element={<Test />} />
 
         {/*Thanu*/}
