@@ -27,10 +27,10 @@ export default function E_M_EmployeeEdit(props) {
 ];
 
   const TypeChange = [
-  { value: "Kitchen Staff", label: "Kitchen Staff" },
-  { value: "Transportation Staff", label: "Transportation Staff" },
-  { value: "Office Staff", label: "Office Staff" },
-  { value: "Contract-based Staff", label: "Contract-based Staff" },
+  { value: "fm", label: "Food Manager" },
+  { value: "em", label: "Employee Manager" },
+  { value: "vm", label: "Vehicle Manager" },
+  { value: "cm", label: "Customer Manager" },
 ];
 
 
@@ -84,7 +84,7 @@ export default function E_M_EmployeeEdit(props) {
           dob: employeeDob,
           address: employeeAddress,
           nic: employeeNic,
-          Type:employeeType.label,
+          Type:employeeType.value,
           password: employeePassword,
           contact: employeeContact,
         }).then((result) => {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import Navbar from "../components/V_M_Navbar";
 import swal from "sweetalert";
+import { reactBaseURL } from "../config";
 
 //css
 import "../css/modern.css";
@@ -26,16 +27,44 @@ export default function V_M_VehicleAppointmentView() {
 
   const [vehicleBookingList, setVehicleBookingList] = useState([]);
   const [vehicleList, setVehicleSelect] = useState([]);
+  
 
   useEffect(() => {
     getAllVehicleBooking().then((result) => {
         setVehicleBookingList(result);
+
         //initialize datatable
         $(document).ready(function () {
             $('#example').DataTable();
         });
     });
+
+    getAllVehicles().then((result) =>{
+        
+      setVehicleSelect(result);
+
+        //initialize datatable
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+
+
+
+    })
+
 }, [])
+
+function pending() {
+  window.location.replace(reactBaseURL + "/vihicleList");
+}
+
+function active() {
+  window.location.replace(reactBaseURL + "/vihicleList");
+}
+
+function done() {
+  window.location.replace(reactBaseURL + "/vihicleList");
+}
 
 
 
@@ -46,42 +75,19 @@ export default function V_M_VehicleAppointmentView() {
         <main class="content">
           <div class="container-fluid">
             <div class="header">
-              <h1 class="header-title">Customer Vehicle Request</h1>
+              <h1 class="header-title">Customer Vehicle Request
+              </h1>
+            <br></br>
+            <br></br>
+            <div class="btn-group  mb-3" role="group" aria-label="Large button group">
+                                
+                                <button onClick={() => pending()} type="button" class="btn btn-secondary">Pending</button>
+                                <button onClick={() => active()} type="button" class="btn btn-secondary">Active</button>
+                                <button onClick={() => done()} type="button" class="btn btn-secondary">Done</button>
+                            </div>
             </div>
-            
             <div class="col-12">
               <div class="card">
-              
-              <Link
-                to={"/vehicleDashboard/"}
-                class="top-bar-link"
-                >
-              <button
-                class="btn btn-pill btn-success btn-sm"
-                style={{ marginLeft: 10, width: 60 }}
-                >
-                 Pending Request
-                </button></Link><Link
-                to={"/vehicleDashboard/"}
-                class="top-bar-link"
-                >
-              <button
-                class="btn btn-pill btn-success btn-sm"
-                style={{ marginLeft: 10, width: 60 }}
-                >
-                 New
-                </button></Link><Link
-                to={"/vehicleDashboard/"}
-                class="top-bar-link"
-                >
-              <button
-                class="btn btn-pill btn-success btn-sm"
-                style={{ marginLeft: 10, width: 60 }}
-                >
-                 New
-                </button></Link>
-
-               
                 <div class="card-body">
                   <table id="example" class="table table-striped my">
                     
@@ -92,44 +98,27 @@ export default function V_M_VehicleAppointmentView() {
                         <th>Pick up Date</th>
                         <th>Pick up time</th>
                         <th>Requested Vehicle Type</th>
-                        <th>Select Vehilce</th>
-                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {vehicleBookingList.map((value, index) => {
+                   
+                      {vehicleBookingList.map((value, index)=> {
                         return (
-                          <tr key={index}>
+                          <tr key={index} >
                             <td>{value.nic}</td>
                             <td>{value.places}</td>
                             <td>{value.date}</td>
                             <td>{value.time}</td>
                             <td>{value.type}</td>
-                            <td>{value.state}</td>
-                            <td class="table-action">
-                              <button
-                                class="btn btn-pill btn-danger btn-sm"
-                                style={{ marginLeft: 45, width: 60 }}
-                                // onClick={() => deleteMyVehicle(value._id)}
-                              >
-                                Delete
-                              </button>
-                              <Link
-                                to={"/vehicleEdit/" + value._id}
-                                class="top-bar-link"
-                              >
-                                <button
-                                  class="btn btn-pill btn-success btn-sm"
-                                  style={{ marginLeft: 10, width: 60 }}
-                                >
-                                  Edit
-                                </button>
-                              </Link>
-                            </td>
+                            <td>{value.identification}</td>
+
                           </tr>
                         );
                       })}
+                 
                     </tbody>
+
+
                   </table>
                 </div>
               </div>
