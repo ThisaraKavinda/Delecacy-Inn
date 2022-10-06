@@ -38,6 +38,8 @@ import V_M_VehicleAdd from './view/V_M_VehicleAdd';
 import V_M_VehicleList from './view/V_M_VehicleList';
 import V_M_VehicleEdit from "./view/V_M_VehicleEdit";
 import V_M_VehicleCustomerRequest from "./view/V_M_VehicleCustomerRequest";
+import V_M_VehicleCustomerRequestActive from "./view/V_M_VehicleCustomerRequestActive";
+import V_M_VehicleCustomerRequestCompleted from "./view/V_M_VehicleCustomerRequestCompleted";
 
 //Niakalo
 import F_M_Dashoard from './view/Food/F_M_Dashboard';
@@ -83,6 +85,8 @@ function App() {
         <Route exact path="/vihicleList" element={<V_M_VehicleList />} />
         <Route exact path="/vehicleEdit/:id" element={<V_M_VehicleEdit />} />
         <Route exact path="/vehicle-customer-request" element={<V_M_VehicleCustomerRequest />} />
+        <Route exact path="/vehicle-customer-request-Active" element={<V_M_VehicleCustomerRequestActive />} />
+        <Route exact path="/vehicle-customer-request-Completed" element={<V_M_VehicleCustomerRequestCompleted />} />
 
         {/* {Nikalo} */}
         <Route exact path="/foodDashboard" element={<F_M_Dashoard/>} />
