@@ -99,10 +99,9 @@ export const editAppointment = async (req, res) => {
                 _id: req.body._id
             },
             {
-                _id: req.body._id,
                 nic: req.body.nic,
                 guest: req.body.guest,
-                night: req.body.nigth,
+                night: req.body.night,
                 room: req.body.room,
                 appointmentDate: req.body.appointmentDate,
                 state:  req.body.state,
@@ -164,5 +163,20 @@ export const updateAppointmentState = async (req, res) => {
         }
     } catch (error) {
         console.log(error.messaga)
+    }
+}
+
+
+export const appointmentReport = async (req, res) => {
+    const appointment = await AppointmentModel.find({appointmentDate: {$gte: req.body.startDate ,$lt: req.body.endDate}, state:"Done"});
+    if (appointment) {
+        res.send({
+            status: true,
+            details: appointment
+        });
+    } else {
+        res.send({
+            status: false,
+        });
     }
 }

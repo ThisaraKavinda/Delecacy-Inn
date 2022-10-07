@@ -11,7 +11,12 @@ export const addEmployee = async (req, res) => {
         gender: req.body.gender,
         email: req.body.email,
         nic: req.body.nic,
-        contact: req.body.contact
+        contact: req.body.contact,
+        password: req.body.password,
+        Type:req.body.Type,
+        leaveTaken:req.body.leaveTaken,
+        salary:req.body.salary
+
     });
     const details = await employee.save();
     if (details) {
@@ -57,7 +62,11 @@ export const editEmployee = async (req, res) => {
                 gender: req.body.gender,
                 email: req.body.email,
                 nic: req.body.nic,
-                contact: req.body.contact
+                contact: req.body.contact,
+                password: req.body.password,
+                Type:req.body.Type,
+                leaveTaken:req.body.leaveTaken,
+                salary:req.body.salary
             },
             {
                 new:true
@@ -85,4 +94,23 @@ export const editEmployee = async (req, res) => {
 export const getSelectedEmployee = async (req, res) => {
     const employee = await EmployeeModel.findOne({ _id: req.body.id });
     res.send(employee);
+}
+
+export const getDrivers = async(req,res) => {
+    const employee = await EmployeeModel.find({Type:"Transportation Staff"})
+    res.send(employee);
+}
+
+export const logIn = async (req, res) => {
+    const employee = await EmployeeModel.findOne({ Type: req.body.Type, email: req.body.email, password: req.body.password });
+    if (employee) {
+        res.send({
+            status: true,
+            details: employee  
+        });
+    } else {
+        res.send({
+            status: false,
+        });
+    }
 }

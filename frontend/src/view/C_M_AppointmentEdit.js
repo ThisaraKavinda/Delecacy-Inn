@@ -87,7 +87,6 @@ export default function C_M_AppointmentEdit(props) {
                 if (willDelete) {
 
                     editAppointment({_id: id, nic: nic, guest: guest, night: night, room: room, appointmentDate: appointmentDate, state: selectedType.label}).then((result) => {
-                       
                         if (result.status) {
                             swal({
                                 title: "Success!",
@@ -111,18 +110,6 @@ export default function C_M_AppointmentEdit(props) {
                         }
                     });
 
-                    swal({
-                        title: "Success!",
-                        text: "Appointment Update Successfully",
-                        icon: 'success',
-                        timer: 2000,
-                        button: false,
-                    });
-
-                    
-                    setTimeout(() => {
-                        window.location.replace(reactBaseURL + "/appointmentView");
-                    }, 2050)
                 }
             });
 
@@ -158,13 +145,6 @@ export default function C_M_AppointmentEdit(props) {
                                         <div class="mb-3 col-md-6">
                                             <label for="inputPassword4">Number of Guests</label>
                                             <FormInputNumber value={appointmentData.guest} title="number" onSave={guestSetHandler} />
-                                            {/* <input type="number" class="form-control text-center" min={1} max={50}  value={guest} onChange={(e) => setGuest(e.target.value)} /> */}
-                                            {/* <span class="input-group-btn">
-                                                                <button class="btn btn-default" onClick={() => minus()}  data-dir="dwn"><i class="align-middle fas fa-fw fa-minus"></i></button>
-                                                            </span>
-                                                            <span class="input-group-btn">
-                                                                <button class="btn btn-default" onClick={() => plus()} data-dir="up"><i class="align-middle fas fa-fw fa-plus"></i></button>
-                                                            </span> */}
                                         </div>
                                     </div>
 

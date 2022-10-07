@@ -83,3 +83,18 @@ export const getSelectedCustomer = async (req, res) => {
     const customer = await CustomerModel.findOne({ _id: req.body.id });
     res.send(customer);
 }
+
+
+export const logIn = async (req, res) => {
+    const customer = await CustomerModel.findOne({ email: req.body.email, nic: req.body.nic });
+    if (customer) {
+        res.send({
+            status: true,
+            details: customer  
+        });
+    } else {
+        res.send({
+            status: false,
+        });
+    }
+}

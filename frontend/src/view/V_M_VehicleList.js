@@ -6,7 +6,7 @@ import swal from "sweetalert";
 //css
 import "../css/modern.css";
 
-//js
+//jssDADSAD
 import "../js/app.js";
 
 //Bootstrap and jQuery libraries
@@ -21,7 +21,7 @@ import $ from "jquery";
 // Controllers
 import { getAllVehicles, deleteVehicle } from "../controllers/vehicles";
 
-export default function V_M_CustomerAdd() {
+export default function V_M_ViewVehicles() {
   const [vehicleList, setVehicleSelect] = useState([]);
 
   useEffect(() => {

@@ -96,6 +96,14 @@ export default function E_M_EmployeeSingleView() {
 												<td>{employeeData.nic}</td>
 											</tr>
 											<tr>
+												<th>Date of Birth</th>
+												<td>{employeeData.dob}</td>
+											</tr>
+											<tr>
+												<th>employee Total Salary</th>
+												<td>{employeeData.salary}</td>
+											</tr>
+											<tr>
 												<th>Contact Number</th>
 												<td>{employeeData.contact}</td>
 											</tr>

@@ -78,8 +78,8 @@ export default function E_M_CustomerAdd() {
                         <th>Email</th>
                         <th>Gender</th>
                         <th>Address</th>
-                        <th>NIC</th>
                         <th>Contact No</th>
+                        <th>Employee Type</th>
                         <th >Action</th>
                       </tr>
                     </thead>
@@ -91,8 +91,30 @@ export default function E_M_CustomerAdd() {
                             <td>{value.email}</td>
                             <td>{value.gender}</td>
                             <td>{value.address}</td>
-                            <td>{value.nic}</td>
                             <td>{value.contact}</td>
+                            {value.Type === "cm" ? <>
+                                <td >Customer Manager</td>
+                            </>
+                                :
+                                ''
+                            }{value.Type === "vm" ? <>
+                            <td >Vehicle Manager</td>
+                            </>
+                                :
+                                ''
+                            }
+                            {value.Type === "fm" ? <>
+                            <td >Food Manager</td>
+                            </>
+                                :
+                                ''
+                            }
+                            {value.Type === "em" ? <>
+                            <td >Employee Manager</td>
+                            </>
+                                :
+                                ''
+                            }
                             <td class="table-action">
                               <button
                                 class="btn btn-pill btn-danger btn-sm"
