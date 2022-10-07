@@ -10,6 +10,7 @@ import customerRouter from './routes/customer.js';
 import appointmentRouter from './routes/appointment.js';
 import employeeRouter from './routes/employee.js';
 import vehicleyRouter from './routes/vehicle.js';
+import foodRouter from './routes/food.js';
 
 
 // Constants
@@ -32,12 +33,12 @@ connection.once("open", () => {
     console.log("mongo_db connection success!")
 })
 
-
 // Routers use
 app.use('/customer', customerRouter);
 app.use('/appointment', appointmentRouter);
 app.use('/employee', employeeRouter);
 app.use('/vehicle', vehicleyRouter);
+app.use('/food', foodRouter);
 
 
 
