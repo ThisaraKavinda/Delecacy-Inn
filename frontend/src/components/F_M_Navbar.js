@@ -60,7 +60,7 @@ export default function C_M_Navbar() {
                             <i class="align-middle me-2 fas fa-fw fa-cubes"></i> <span class="align-middle">Manage items</span>
                         </a>
                         <ul id="package" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                        <li class="sidebar-item"><a class="sidebar-link" href="packagePage">Item list</a></li>
+                        <li class="sidebar-item"><Link to='/foodItemList' class="sidebar-link" >Food item list</Link></li>
                             <li class="sidebar-item"><Link to='/addNewItem' class="sidebar-link" >Add new item</Link></li>
                             <li class="sidebar-item"><a class="sidebar-link" href="packageTypePage">Edit Item</a></li>
                         </ul>

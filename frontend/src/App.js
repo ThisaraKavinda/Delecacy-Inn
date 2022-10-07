@@ -46,6 +46,7 @@ import F_M_Dashoard from './view/Food/F_M_Dashboard';
 import F_M_FoodSelect from './view/Food/F_M_SelectFood';
 import F_M_RoomSelect from './view/Food/F_M_SelectRoom';
 import F_M_AddNewItem from './view/Food/F_M_AddNewItem';
+import F_M_FoodItemList from './view/Food/F_M_FoodItemList';
 
 
 function App() {
@@ -90,9 +91,10 @@ function App() {
 
         {/* {Nikalo} */}
         <Route exact path="/foodDashboard" element={<F_M_Dashoard/>} />
-      <Route exact path="/foodSelect" element={<F_M_FoodSelect/>} />
-      <Route exact path="/roomSelect" element={<F_M_RoomSelect/>} />
-      <Route exact path="/addNewItem" element={<F_M_AddNewItem/>} />
+        <Route exact path="/foodSelect" element={<F_M_FoodSelect/>} />
+        <Route exact path="/roomSelect" element={<F_M_RoomSelect/>} />
+        <Route exact path="/addNewItem" element={<F_M_AddNewItem/>} />
+        <Route exact path="/foodItemList" element={<F_M_FoodItemList/>} />
 
       </Routes>
     </BrowserRouter>
