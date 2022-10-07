@@ -98,6 +98,8 @@ function done() {
                         <th>Pick up Date</th>
                         <th>Pick up time</th>
                         <th>Requested Vehicle Type</th>
+                        <th>Available Vehicle</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
