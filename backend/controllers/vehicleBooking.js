@@ -89,6 +89,37 @@ export const editVehicleBooking = async (req, res) => {
     }
 }
 
+export const editVehicleBookingState = async (req, res) => {
+    try {
+        console.log(req.body.id);
+        const vehicleBooking = await VehicleBookingModel.findOneAndUpdate(
+            {
+                _id: req.body.id
+            },
+            {
+                state: "driving"
+            },
+            {
+                new:true
+            }
+            );
+
+        if (vehicleBooking) {
+            res.send({
+                status: true,
+                details: vehicleBooking  
+            });
+        } else {
+            res.send({
+                status: false,
+            });
+        }
+
+    } catch (error) {
+        console.log(error.messaga)
+    }
+}
+
 
 
 export const getSelectedVehicleBooking = async (req, res) => {

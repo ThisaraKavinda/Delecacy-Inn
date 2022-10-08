@@ -89,3 +89,34 @@ export const getAllavalable = async (req, res, next) => {
     const vehicles = await VehicleModel.find({state:"Avalable"});
     res.send(vehicles);
 }
+
+export const editVehicleState = async (req, res) => {
+    try {
+        console.log(req.body.id);
+        const vehicle = await VehicleModel.findOneAndUpdate(
+            {
+                _id: req.body.id
+            },
+            {
+                state: "driving"
+            },
+            {
+                new:true
+            }
+            );
+
+        if (vehicle) {
+            res.send({
+                status: true,
+                details: vehicle  
+            });
+        } else {
+            res.send({
+                status: false,
+            });
+        }
+
+    } catch (error) {
+        console.log(error.messaga)
+    }
+}
