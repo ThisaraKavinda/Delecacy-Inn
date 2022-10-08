@@ -1,5 +1,5 @@
 
-import { VehicleAppointmentModel } from '../models/vehicleAppointment';
+import { VehicleAppointmentModel } from '../models/vehicleAppointment.js';
 
 
 export const addAppoinmentVehicle = async (req, res) => {
@@ -48,7 +48,7 @@ export const deleteVehicleAppointment = async (req, res) => {
 export const editVehicleAppointment = async (req, res) => {
     try {
         
-        const vehicle = await VehicleModel.findOneAndUpdate(
+        const vehicle = await VehicleAppointmentModel.findOneAndUpdate(
             {
                 _id: req.body._id
             },
@@ -90,6 +90,6 @@ export const editVehicleAppointment = async (req, res) => {
 
 
 export const getSelectedVehicleAppointment = async (req, res) => {
-    const vehicle = await VehicleModel.findOne({ _id: req.body.id });
+    const vehicle = await VehicleAppointmentModel.findOne({ _id: req.body.id });
     res.send(vehicle);
 }

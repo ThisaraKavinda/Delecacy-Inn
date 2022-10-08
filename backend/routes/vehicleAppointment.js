@@ -1,7 +1,7 @@
 import express, { Router } from 'express';
 
 // Controllers
-import { addAppoinmentVehicle, getAllVehicleAppointments, getAllVehicleAppointmentCount, deleteVehicleAppointment,editVehicleAppointment, getSelectedVehicleAppointment,getAllVehicleAppointmentCount} from '../controllers/vehicleAppointment';
+import { addAppoinmentVehicle, getAllVehicleAppointments, getAllVehicleAppointmentCount, deleteVehicleAppointment,editVehicleAppointment, getSelectedVehicleAppointment} from '../controllers/vehicleAppointment.js';
 
 const router = express.Router();
 

@@ -13,7 +13,7 @@ import vehicleyRouter from './routes/vehicle.js';
 import roomRouter from './routes/room.js';
 import vehicleBookingRouter from './routes/vehicleBooking.js';
 import foodRouter from './routes/food.js';
-import vehicleAppointmentRouter from './routes/vehicleAppointment';
+import vehicleAppointmentRouter from './routes/vehicleAppointment.js';
 
 
 // Constants

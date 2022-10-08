@@ -32,7 +32,7 @@ const vehicleAppointmentSchema = new Schema({
         type: String,
     },
     amount: {
-        type: String,
+        type: Number,
     },
     status: {
         type: String,
