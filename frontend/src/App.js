@@ -92,6 +92,7 @@ function App() {
         {/* {Nikalo} */}
         <Route exact path="/foodDashboard" element={<F_M_Dashoard/>} />
         <Route exact path="/foodSelect" element={<F_M_FoodSelect/>} />
+        <Route exact path="/foodSelect/:id" element={<F_M_FoodSelect/>} />
         <Route exact path="/roomSelect" element={<F_M_RoomSelect/>} />
         <Route exact path="/addNewItem" element={<F_M_AddNewItem/>} />
         <Route exact path="/foodItemList" element={<F_M_FoodItemList/>} />

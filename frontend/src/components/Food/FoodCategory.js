@@ -24,6 +24,7 @@ export default function FoodCategory(props) {
 
     
     const addOnClickHandler = (value) => {
+        // console.log(value._id)
         props.viewOnClickHandler(value.name, value.image, value.category, value.regularPrice, value.largePrice, value.familyPrice, value.specialPrice, value.availability, value._id);   
     }
 

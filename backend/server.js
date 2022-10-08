@@ -13,6 +13,7 @@ import vehicleyRouter from './routes/vehicle.js';
 import roomRouter from './routes/room.js';
 import vehicleBookingRouter from './routes/vehicleBooking.js';
 import foodRouter from './routes/food.js';
+import foodCartRouter from './routes/foodCart.js';
 
 
 // Constants
@@ -43,6 +44,7 @@ app.use('/vehicle', vehicleyRouter);
 app.use('/room', roomRouter);
 app.use('/vehicleBooking', vehicleBookingRouter);
 app.use('/food', foodRouter);
+app.use('/foodCart', foodCartRouter);
 
 
 
