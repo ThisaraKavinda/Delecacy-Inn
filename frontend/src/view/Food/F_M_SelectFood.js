@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams, useNavigate} from 'react-router-dom';
 import Navbar from "../../components/F_M_Navbar";
 import "../../css/modern.css";
 // import "../../js/app.js";
@@ -10,6 +11,7 @@ import { Sugar } from 'react-preloaders2';
 import swal from 'sweetalert';
 
 import {getAllFoods, getFoods} from '../../controllers/food.js';
+import {addAllCartItems} from '../../controllers/foodCart.js';
 import FoodCategory from '../../components/Food/FoodCategory.js';
 import FoodItemPopup from '../../components/Food/FoodItemPopup.js'
 
@@ -17,6 +19,22 @@ import bin from '../../img/icons/trash.png';
 
 
 export default function F_M_SelectFood() {
+
+    let navigate = useNavigate(); 
+
+    const {id} = useParams();
+    if (id == null) {
+        swal({
+            title: "Select a room!",
+            text: "Fist select a room to proceed",
+            icon: 'info',
+            dangerMode: true,
+            button: true,
+        }).then((ok) => {
+            let path  = "/roomSelect/";
+            navigate(path);
+        })
+    }
 
     const [categories, setCategories] = useState([])
     const [allFoodItems, setAllFoodItems] = useState([])
@@ -87,8 +105,8 @@ export default function F_M_SelectFood() {
         await setCategories(categoiesArr);
     }
 
-    const viewOnClickHandler = async (name, image, category, regularPrice, largePrice, familyPrice, specialPrice) => {
-        // console.log(name);
+    const viewOnClickHandler = async (name, image, category, regularPrice, largePrice, familyPrice, specialPrice,availability, id) => {
+        // console.log(id);
         await setPopupItem({
             name: name,
             image: image,
@@ -96,14 +114,17 @@ export default function F_M_SelectFood() {
             regularPrice: regularPrice,
             largePrice: largePrice,
             familyPrice: familyPrice,
-            specialPrice: specialPrice
+            specialPrice: specialPrice,
+            availability: availability,
+            id: id
         })
         await setIsPopupActive(true);
     }
 
     const addItemToCart = async (item, price) => {
+        console.log(item)
         await setNumCartItems(numCartItems + 1);
-        await setCartItems(cartItems => [...cartItems, {item:item, price:price}]);
+        await setCartItems(cartItems => [...cartItems, {item:item, price:price }]);
         await setCartTotal(parseInt(cartTotal) + parseInt(price))
         console.log(price);
     }
@@ -162,6 +183,22 @@ export default function F_M_SelectFood() {
         })
         setDisplayingItems(newItemList);
         setCategoriesState(newItemList);
+    }
+
+    const onProceed = () => {
+        if (cartItems.length <= 0) {
+            swal({
+                title: "Select a food!",
+                text: "Fist select food items to proceed",
+                icon: 'info',
+                dangerMode: true,
+                button: true,
+            })
+        } else {
+            addAllCartItems(cartItems, id).then((res) => {
+
+            });
+        }  
     }
 
     return (
@@ -253,7 +290,7 @@ export default function F_M_SelectFood() {
                                                 </div>
                                                 <div class="row d-flex justify-content-center align-items-center mt-4">
                                                     <div class="col-5 d-flex justify-content-center">
-                                                        <button class="btn btn-primary fw-bold">Proceed</button>
+                                                        <button class="btn btn-primary fw-bold" onClick={onProceed}>Proceed</button>
                                                     </div>
                                                 </div>
                                                 

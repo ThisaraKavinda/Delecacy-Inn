@@ -13,6 +13,11 @@ export const getRooms = async () => {
     return data;
 }
 
+export const getAllRooms = async () => {
+    const { data } = await axios.get(baseURL + '/room/getAllRooms/');
+    return data;
+}
+
 export const updateRoomState = async (details) => {
     const { data } = await axios.post(baseURL + '/room/updateRoomState/', details);
     return data;

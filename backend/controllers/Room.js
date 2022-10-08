@@ -28,6 +28,11 @@ export const getRooms = async (req, res) => {
     res.send(room);
 }
 
+export const getAllRooms = async (req, res) => {
+    const room = await RoomModel.find();
+    res.send(room);
+}
+
 export const updateRoomState = async (req, res) => {
     try {
         for (let i = 0; i < req.body.roomArray.length; i++) {

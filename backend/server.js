@@ -13,8 +13,8 @@ import vehicleyRouter from './routes/vehicle.js';
 import roomRouter from './routes/room.js';
 import vehicleBookingRouter from './routes/vehicleBooking.js';
 import foodRouter from './routes/food.js';
+import foodCartRouter from './routes/foodCart.js';
 import vehicleAppointmentRouter from './routes/vehicleAppointment.js';
-
 
 // Constants
 dotenv.config()
@@ -45,6 +45,7 @@ app.use('/room', roomRouter);
 app.use('/vehicleBooking', vehicleBookingRouter);
 app.use('/food', foodRouter);
 app.use('/vehicleAppointment', vehicleAppointmentRouter);
+app.use('/foodCart', foodCartRouter);
 
 
 
