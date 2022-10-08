@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/V_M_Navbar";
 import swal from "sweetalert";
 import { reactBaseURL } from "../config";
+import Select from 'react-select'
 
 //css
 import "../css/modern.css";
@@ -20,17 +21,22 @@ import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
 
 // Controllers
-import { getAllVehicles } from "../controllers/vehicles";
-import { getAllVehicleBooking } from '../controllers/vehicleBooking';
+import { getAllavalable ,getSelectedVehicle } from "../controllers/vehicles";
+import { getAllPending } from '../controllers/vehicleBooking';
+
+const colourStyles = {
+  control: (styles) => ({ ...styles, backgroundColor: 'transparent', width: '280px', border: 'none', })
+};
 
 export default function V_M_VehicleAppointmentView() {
 
   const [vehicleBookingList, setVehicleBookingList] = useState([]);
-  const [vehicleList, setVehicleSelect] = useState([]);
+  const [vehicleList, setVehicleList] = useState([]);
+  const [vehicle, setVehicle] = useState([]);
   
 
   useEffect(() => {
-    getAllVehicleBooking().then((result) => {
+    getAllPending().then((result) => {
         setVehicleBookingList(result);
 
         //initialize datatable
@@ -39,20 +45,23 @@ export default function V_M_VehicleAppointmentView() {
         });
     });
 
-    getAllVehicles().then((result) =>{
-        
-      setVehicleSelect(result);
-
-        //initialize datatable
-        $(document).ready(function () {
-            $('#example').DataTable();
-        });
-
-
-
-    })
-
 }, [])
+
+  useEffect(() => {
+    getAllavalable().then((result) => {
+        var list = result.map((data) => {
+            return { value: data._id, label: data.identification  };
+        })
+
+        setVehicleList(list);
+    });
+
+  }, [])
+
+  function addVehicleAppoinment(id) {
+    
+
+  }
 
 function pending() {
   window.location.replace(reactBaseURL + "/vehicle-customer-request");
@@ -107,14 +116,23 @@ function done() {
                       {vehicleBookingList.map((value, index)=> {
                         return (
                           <tr key={index} >
+                            
                             <td>{value.nic}</td>
                             <td>{value.places}</td>
                             <td>{value.date}</td>
                             <td>{value.time}</td>
                             <td>{value.type}</td>
-                            <td>{value.identification}</td>
 
-                          </tr>
+                            {value.state === "pending" ? (
+                                <td > <Select styles={colourStyles} options={vehicleList} onChange={setVehicle} /></td>
+                              ) : (
+                                  <td >{value.vehicle}</td>
+                              )}
+
+                            <td class="table-action" ><button class="btn btn-pill btn-success btn-sm" onClick={() => addVehicleAppoinment(value._id)}>Confirm</button>
+                            <button class="btn btn-pill btn-danger btn-sm" onClick={() => removeVehicleAppoinment(value._id)}>Decline</button></td>
+                          
+                           </tr>
                         );
                       })}
                  

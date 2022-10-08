@@ -1,7 +1,7 @@
 import express, { Router } from 'express';
 
 // Controllers
-import { addVehicle, getAllVehicles, getAllVehicleCount, deleteVehicle,editVehicle, getSelectedVehicle} from '../controllers/vehicle.js';
+import { addVehicle, getAllVehicles, getAllVehicleCount, deleteVehicle,editVehicle, getSelectedVehicle,getAllavalable} from '../controllers/vehicle.js';
 
 const router = express.Router();
 
@@ -11,5 +11,6 @@ router.post('/delete', deleteVehicle);
 router.post('/edit',editVehicle);
 router.post('/getSelectedVehicle',getSelectedVehicle);
 router.get('/getAllVehicleCount', getAllVehicleCount);
+router.get('/getAllavalable', getAllavalable);
 
 export default router;
