@@ -35,3 +35,8 @@ export const getAllVehicleCount = async () => {
     return data;
 }
 
+export const getAllavalable = async () => {
+    const { data } = await axios.get(baseURL + '/vehicle/getAllavalable/');
+    return data;
+}
+

@@ -68,7 +68,7 @@ export default function C_M_VehicleBookingAdd() {
         } else if (selectnicList === '' || type === '' || guest === '' || place === '' || picUpDate === '' || picUpTime === '') {
             swal("fields are empty");
         } else {
-            addVehicleBooking({ appointmentID: selectnicList.value, nic:selectnicList.label, type: type.label, guests: guest, places: place, date: picUpDate, time: picUpTime, state: 'active' }).then((result) => {
+            addVehicleBooking({ appointmentID: selectnicList.value, nic:selectnicList.label, type: type.label, guests: guest, places: place, date: picUpDate, time: picUpTime, state: 'pending' }).then((result) => {
                 if (result.status) {
                     swal({
                         title: "Success!",
