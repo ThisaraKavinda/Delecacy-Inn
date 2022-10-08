@@ -95,3 +95,10 @@ export const getSelectedVehicleBooking = async (req, res) => {
     const vehicleBooking = await VehicleBookingModel.findOne({ _id: req.body.id });
     res.send(vehicleBooking);
 }
+
+//Shehan
+
+export const getAllPending= async (req, res, next) => {
+    const vehicles = await VehicleBookingModel.find({state:"pending"});
+    res.send(vehicles);
+}

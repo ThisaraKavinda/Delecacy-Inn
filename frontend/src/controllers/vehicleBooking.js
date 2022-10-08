@@ -33,3 +33,8 @@ export const getAllVehicleBookingCount = async () => {
     return data;
 }
 
+export const getAllPending = async () => {
+    const { data } = await axios.get(baseURL + '/vehicleBooking/getAllpendingBookings/');
+    return data;
+}
+

@@ -84,3 +84,8 @@ export const getSelectedVehicle = async (req, res) => {
     const vehicle = await VehicleModel.findOne({ _id: req.body.id });
     res.send(vehicle);
 }
+
+export const getAllavalable = async (req, res, next) => {
+    const vehicles = await VehicleModel.find({state:"Avalable"});
+    res.send(vehicles);
+}
