@@ -97,6 +97,7 @@ function done() {
                         <th>Vehicle </th>
                         <th>Ammount </th>
                         <th>Action </th>
+
                       </tr>
                     </thead>
                     <tbody>
@@ -105,14 +106,10 @@ function done() {
                         return (
                           <tr key={index} >
                             <td>{value.nic}</td>
-                            <td>{value.places}</td>
-                            <td>{value.date}</td>
-                            <td>{value.time}</td>
-                            <td>{value.type}</td>
-                            <td>{value.identification}</td>
                             <td>{value.pickupPlace}</td>
                             <td>{value.pickupDate}</td>
                             <td>{value.pickupTime}</td>
+                            <td>{value.VehicleSelected}</td>
                             <td><input type="date"class="form-control" ></input></td>
                             <td><input type="date"class="form-control" ></input></td>
                             <td>{value.VehicleSelected}</td>
