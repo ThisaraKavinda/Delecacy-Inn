@@ -38,3 +38,9 @@ export const getAllPending = async () => {
     return data;
 }
 
+export const editVehicleAppointmentState = async (id) => {
+    const { data } = await axios.post(baseURL + '/vehicleBooking/editVehicleBookingState/', {id: id});
+    return data;
+}
+
+

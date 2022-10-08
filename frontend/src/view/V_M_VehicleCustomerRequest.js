@@ -21,14 +21,17 @@ import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
 
 // Controllers
-import { getAllavalable ,getSelectedVehicle } from "../controllers/vehicles";
-import { getAllPending } from '../controllers/vehicleBooking';
+import { getAllavalable ,editVehicleState  } from "../controllers/vehicles";
+import { getAllPending, editVehicleAppointmentState } from '../controllers/vehicleBooking';
+import { confirmVehicleBooking } from '../controllers/vehicleAppointment';
+
 
 export default function V_M_VehicleAppointmentView() {
 
   const [vehicleBookingList, setVehicleBookingList] = useState([]);
   const [vehicleList, setVehicleList] = useState([]);
-  const [vehicle, setVehicle] = useState([]);
+  const [vehicleId, setVehicleId] = useState("");
+  const [vehicleName, setVehicleName] = useState("");
   
 
   useEffect(() => {
@@ -54,8 +57,36 @@ export default function V_M_VehicleAppointmentView() {
 
   }, [])
 
-  function addVehicleAppoinment(id) {
-    
+  const addVehicleAppoinment = async (id, nic, place, date, time, vehicleBookingId,vId) => {
+    if (vehicleId == "" || vehicleName =="") {
+      swal("Please select a vehicle first");
+      return;
+    }
+    const newItem  = {
+      appointmentID: id,
+      vehicleID: vehicleId,
+      nic: nic,
+      pickupPlace: place,
+      pickupDate: date,
+      pickupTime: time,
+      endDate: null,
+      endTime: null,
+      VehicleSelected: vehicleName,
+      amount: null,
+      status: "driving"
+    }
+    console.log(newItem)
+    await confirmVehicleBooking(newItem).then((res) => {
+      editVehicleAppointmentState(vehicleBookingId).then((res) => {
+        editVehicleState(vehicleId).then((res) => {
+          swal("Details inserted")
+        })
+      })
+    })
+
+    .catch((err) => {
+      console.log(err)
+    })
 
   }
   function removeVehicleAppoinment(id) {
@@ -72,6 +103,12 @@ function active() {
 
 function done() {
   window.location.replace(reactBaseURL + "/vehicle-customer-request-Completed");
+}
+
+async function onChangeVehicle(e) {
+  console.log(e)
+  await setVehicleId(e.value);
+  await setVehicleName(e.label);
 }
 
 
@@ -123,12 +160,13 @@ function done() {
                             <td>{value.type}</td>
 
                             {value.state === "pending" ? (
-                                <td > <Select  options={vehicleList} onChange={setVehicle} /></td>
+                                <td > <Select  options={vehicleList} onChange={(e) => onChangeVehicle(e)} /></td>
                               ) : (
                                   <td >{value.vehicle}</td>
                               )}
 
-                            <td class="table-action" ><button class="btn btn-pill btn-success btn-sm" onClick={() => addVehicleAppoinment(value._id)}>Confirm</button>
+                            <td class="table-action" ><button class="btn btn-pill btn-success btn-sm"
+                            onClick={() => addVehicleAppoinment(value.appointmentID, value.nic, value.places, value.date, value.time, value._id)}>Confirm</button>
                             <button class="btn btn-pill btn-danger btn-sm" onClick={() => removeVehicleAppoinment(value._id)}>Decline</button></td>
                           
                            </tr>
