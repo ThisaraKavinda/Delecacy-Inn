@@ -83,3 +83,8 @@ export const appointmentReport = async (details) => {
     return data;
 }
 
+export const getActiveAppointmentByCustomer = async (details) => {
+    const { data } = await axios.post(baseURL + '/appointment/getActiveAppointmentByCustomer/', details);
+    return data;
+}
+

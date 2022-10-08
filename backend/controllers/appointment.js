@@ -180,3 +180,17 @@ export const appointmentReport = async (req, res) => {
         });
     }
 }
+
+export const getActiveAppointmentByCustomer = async (req, res) => {
+    const appointment = await AppointmentModel.findOne({nic:req.body.nic, state:"Active"});
+    if (appointment) {
+        res.send({
+            status: true,
+            details: appointment
+        });
+    } else {
+        res.send({
+            status: false,
+        });
+    }
+}
