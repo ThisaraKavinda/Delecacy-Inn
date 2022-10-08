@@ -24,10 +24,6 @@ import $ from "jquery";
 import { getAllavalable ,getSelectedVehicle } from "../controllers/vehicles";
 import { getAllPending } from '../controllers/vehicleBooking';
 
-const colourStyles = {
-  control: (styles) => ({ ...styles, backgroundColor: 'transparent', width: '280px', border: 'none', })
-};
-
 export default function V_M_VehicleAppointmentView() {
 
   const [vehicleBookingList, setVehicleBookingList] = useState([]);
@@ -62,7 +58,10 @@ export default function V_M_VehicleAppointmentView() {
     
 
   }
+  function removeVehicleAppoinment(id) {
+    
 
+  }
 function pending() {
   window.location.replace(reactBaseURL + "/vehicle-customer-request");
 }
@@ -124,7 +123,7 @@ function done() {
                             <td>{value.type}</td>
 
                             {value.state === "pending" ? (
-                                <td > <Select styles={colourStyles} options={vehicleList} onChange={setVehicle} /></td>
+                                <td > <Select  options={vehicleList} onChange={setVehicle} /></td>
                               ) : (
                                   <td >{value.vehicle}</td>
                               )}
