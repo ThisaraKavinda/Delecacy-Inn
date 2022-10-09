@@ -3,10 +3,14 @@ import axios from 'axios';
 // Config
 import { baseURL } from '../config';
 
-export const addAllCartItems = async (itemsArr, id) => {
+export const addAllCartItems = async (itemsArr, id, nic) => {
     // console.log(baseURL )
     var month = new Date().getUTCMonth() + 1; //months from 1-12
+    // if (month < 10) 
+    //     month = "0" + month;
     var day = new Date().getUTCDate();
+    // if (day < 10) 
+    //     day = "0" + day;
     var year = new Date().getUTCFullYear();
     let date = year + "-" + month + "-" + day;
     let time = new Date().toLocaleTimeString('en-US');
@@ -21,10 +25,21 @@ export const addAllCartItems = async (itemsArr, id) => {
             itemId: item.item.id,
             itemName: item.item.name,
             price: item.price, 
-            orderId: orderId
+            orderId: orderId,
+            nic: nic
         }
         // console.log(newItem)
         const { data } = await axios.post(baseURL + '/foodCart/add', newItem);
     }
     return true;
+}
+
+export const getOrdersForSelectedPeriod = async (startDate, endDate) => {
+    const { data } = await axios.get(baseURL + '/foodCart/getOrdersForSelectedPeriod/' + startDate + '/' + endDate);
+    return data;
+}
+
+export const getRecordsForAOrder = async (nic) => {
+    const { data } = await axios.get(baseURL + '/foodCart/getRecordsForAOrder/' + nic);
+    return data;
 }

@@ -66,17 +66,17 @@ export default function C_M_Navbar() {
                         </ul>
                     </li>
 
-                    <li class="sidebar-item">
-                        <a data-bs-target="#report" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                            <i class="align-middle me-2 fas fa-fw fa-cubes"></i> <span class="align-middle">Report</span>
-                        </a>
-                        <ul id="report" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                            <li class="sidebar-item"><a class="sidebar-link" href="packagePage">Manage Package</a></li>
-                            <li class="sidebar-item"><a class="sidebar-link" href="packageTypePage">Manage Package Type</a></li>
-                        </ul>
+                    <li class="sidebar-item ">
+                        <Link class="sidebar-link" to='/foodPaymentReport'>
+                            <i class="align-middle me-2 fas fa-fw fa fa-list"></i> <span class="align-middle">Report</span>
+                        </Link>
                     </li>
 
-
+                    <li class="sidebar-item ">
+                        <Link class="sidebar-link" to='/'>
+                            <i class="align-middle me-2 fas fa-fw fa fa-home"></i> <span class="align-middle">Log Out</span>
+                        </Link>
+                    </li>
 
                 </ul>
             </div>

@@ -84,6 +84,12 @@ export const getSelectedCustomer = async (req, res) => {
     res.send(customer);
 }
 
+export const getSelectedCustomerByNic = async (req, res) => {
+    const nic = req.params.nic;
+    const customer = await CustomerModel.findOne({ nic: nic });
+    res.send(customer);
+}
+
 
 export const logIn = async (req, res) => {
     const customer = await CustomerModel.findOne({ email: req.body.email, nic: req.body.nic });

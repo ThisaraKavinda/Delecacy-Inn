@@ -37,3 +37,8 @@ export const logIn = async (details) => {
     const { data } = await axios.post(baseURL + '/customer/logIn/', details);
     return data;
 }
+
+export const getSelectedCustomerByNic = async (nic) => {
+    const {data} = await axios.get(baseURL + '/customer/getSelectedCustomerByNic/' + nic);
+    return data;
+}
