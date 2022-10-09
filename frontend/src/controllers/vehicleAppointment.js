@@ -25,3 +25,9 @@ export const editVehicleBooking = async (details ) => {
     const { data } = await axios.post(baseURL + '/vehicleAppointment/edit/', details)
     return data;
 }
+
+export const getVehicleAppoinmentForSelectedPeriod = async (startDate, endDate ) => {
+
+    const { data } = await axios.get(baseURL + '/vehicleAppointment/getnew/' + startDate +"/" + endDate)
+    return data;
+}

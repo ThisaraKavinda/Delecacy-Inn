@@ -103,3 +103,44 @@ export const getAllCompleted = async (req, res, next) => {
     const vehicles = await VehicleAppointmentModel.find({status:"Completed"});
     res.send(vehicles);
 }
+
+export const getVehicleAppoinmentForSelectedPeriod = async (req, res) => {
+
+    let startDate = req.params.startDate;
+    let endDate = req.params.endDate;
+    // let startDate = new Date(+startDateArr[0], +startDateArr[1] - 1, +startDateArr[2])
+    // let startDate = new Date(startDateString).toISOString();
+    // let endDate = new Date(endDateString).toISOString();
+
+    let orderList = [];
+    let response = [];
+    // await FoodCart.distinct('orderId', {'date': { $lte: endDateString}})
+    await VehicleAppointmentModel.find({'pickupDate': { $gte: startDate, $lte: endDate}}).distinct('VehicleSelected')
+    .then((orders) => { 
+        console.log(orders)    
+        orderList = orders
+    }).catch(err => {
+        console.error(err);
+    })
+
+    for (let order of orderList) {    
+        await VehicleAppointmentModel.find({'VehicleSelected': order}).then((result) => {
+            // console.log(result);
+            if (result.length > 0) {
+                let item = {};
+                item.VehicleSelected = order;
+                item.count = 0;
+                item.totalPrice = 0;
+                for (let orderItem of result) {
+                    item.count +=1;
+                    item.totalPrice += Number(orderItem.amount);
+                }
+                // console.log(item);
+                response.push(item);
+            }
+            
+        })
+    }
+
+    res.send(response)
+}
