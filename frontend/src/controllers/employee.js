@@ -40,6 +40,37 @@ export const getAllVehicleEmployeesCount = async () => {
     return data;
 }
 
+export const getAllChefCount = async () => {
+    const { data } = await axios.get(baseURL + '/employee/getAllCheffsCount/');
+    return data;
+}
+
+export const getAllKetchenHCount = async () => {
+    const { data } = await axios.get(baseURL + '/employee/getAllKitchenHCount/');
+    return data;
+}
+
+export const getAllWaitersCount = async () => {
+    const { data } = await axios.get(baseURL + '/employee/getAllWaitersHCount/');
+    return data;
+}
+
+export const getAllReceptionistsCount = async () => {
+    const { data } = await axios.get(baseURL + '/employee/getAllReceptionistsHCount/');
+    return data;
+}
+
+export const getAllOfficeSCount = async () => {
+    const { data } = await axios.get(baseURL + '/employee/getAllOfficeSCount/');
+    return data;
+}
+
+export const getAllContractBaseCount = async () => {
+    const { data } = await axios.get(baseURL + '/employee/getAllContractBaseCount/');
+    return data;
+}
+
+
 export const getAllDrivers = async () => {
     const { data } = await axios.get(baseURL + '/employee/getDrivers/');
     return data;

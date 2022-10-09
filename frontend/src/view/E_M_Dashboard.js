@@ -3,8 +3,53 @@ import Navbar from '../components/E_M_Navbar';
 import '../css/modern.css';
 import '../js/app.js';
 
+//controllers
+import {getAllEmployeesCount,getAllChefCount,getAllKetchenHCount,getAllWaitersCount,getAllReceptionistsCount,getAllOfficeSCount,getAllVehicleEmployeesCount,getAllContractBaseCount} from '../controllers/employee'
+
 
 export default function E_M_Dashboard() {
+
+	let date_ob = new Date();
+
+    let date = ("0" + date_ob.getDate()).slice(-2);
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+    let year = date_ob.getFullYear();
+    
+    let sysDate = year + "-" + month + "-" + date;
+
+	const [allEmployeeCount , setAllEmployeeCount] = useState('');
+	const [allChefCount , setAllChefCount] = useState('');
+	const [allKitchHCount , setAllKitchenHCount] = useState('');
+	const [allWaitersCount , setAllWaitersCount] = useState('');
+	const [allReceptinistCount , setAllReceptinistCount] = useState('');
+	const [allOfficeSCount , setAllOfficeSCount] = useState('');
+	const [allDriversCount , setAllDriversCount] = useState('');
+	const [allContractBaseCount , setAllContractBaseCount] = useState('');
+
+	getAllEmployeesCount().then((result)=>{
+		setAllEmployeeCount(result);
+	});
+	getAllChefCount().then((result)=>{
+		setAllChefCount(result);
+	});
+	getAllKetchenHCount().then((result)=>{
+		setAllKitchenHCount(result);
+	});
+	getAllWaitersCount().then((result)=>{
+		setAllWaitersCount(result);
+	});
+	getAllReceptionistsCount().then((result)=>{
+		setAllReceptinistCount(result);
+	});
+	getAllOfficeSCount().then((result)=>{
+		setAllOfficeSCount(result);
+	});
+	getAllVehicleEmployeesCount().then((result)=>{
+		setAllDriversCount(result);
+	});
+	getAllContractBaseCount().then((result)=>{
+		setAllContractBaseCount(result);
+	});
 
 
     return (
@@ -22,29 +67,53 @@ export default function E_M_Dashboard() {
 
                         <div class="header">
                             <h1 class="header-title">
-                                Analytics Overview
+                                Employee Manager Dashboard
                             </h1>
 
                         </div>
+						<div class="row">
+							
+							<div class="col-md-6 col-lg-3 col-xl">
 
+								<div class="card">
+									<div class="card-body">
+										<div class="row">
+											<div class="col mt-0">
+												<center><h5 class="card-title"> Date</h5></center>
+											</div>
+
+											<div class="col-auto">
+												<div class="avatar">
+													<div class="avatar-title rounded-circle bg-primary-dark">
+														<i class="align-middle fas fa-fw fa-calendar-alt"></i>
+													</div>
+												</div>
+											</div>
+										</div>
+										<center><h1 class="display-5 mt-1 mb-3 " >{sysDate}</h1></center>
+									</div>
+								</div>
+							</div>
+						</div>
+						
                         <div class="row">
 						<div class="col-md-6 col-lg-3 col-xl">
 							<div class="card">
 								<div class="card-body">
 									<div class="row">
 										<div class="col mt-0">
-											<h5 class="card-title">Kitchen Staff</h5>
+											<h5 class="card-title">All Employee Count</h5>
 										</div>
 
 										<div class="col-auto">
 											<div class="avatar">
 												<div class="avatar-title rounded-circle bg-primary-dark">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign align-middle"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+												<i class="align-middle fas fa-fw fa fa-users"></i>
 												</div>
 											</div>
 										</div>
 									</div>
-									<h1 class="display-5 mt-1 mb-3">40</h1>
+									<h1 class="display-5 mt-1 mb-3">{allEmployeeCount}</h1>
 								</div>
 							</div>
 						</div>
@@ -53,18 +122,18 @@ export default function E_M_Dashboard() {
 								<div class="card-body">
 									<div class="row">
 										<div class="col mt-0">
-											<h5 class="card-title">Transportation Staff</h5>
+											<h5 class="card-title">Total Chef</h5>
 										</div>
 
 										<div class="col-auto">
 											<div class="avatar">
 												<div class="avatar-title rounded-circle bg-primary-dark">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart align-middle"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+												<i class="align-middle fas fa-fw fa fa-users"></i>
 												</div>
 											</div>
 										</div>
 									</div>
-									<h1 class="display-5 mt-1 mb-3">20</h1>
+									<h1 class="display-5 mt-1 mb-3">{allChefCount}</h1>
 								</div>
 							</div>
 						</div>
@@ -73,18 +142,18 @@ export default function E_M_Dashboard() {
 								<div class="card-body">
 									<div class="row">
 										<div class="col mt-0">
-											<h5 class="card-title">Office Staff</h5>
+											<h5 class="card-title">Total Kitchen Helpers</h5>
 										</div>
 
 										<div class="col-auto">
 											<div class="avatar">
 												<div class="avatar-title rounded-circle bg-primary-dark">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity align-middle"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+												<i class="align-middle fas fa-fw fa fa-users"></i>
 												</div>
 											</div>
 										</div>
 									</div>
-									<h1 class="display-5 mt-1 mb-3">29</h1>
+									<h1 class="display-5 mt-1 mb-3">{allKitchHCount}</h1>
 								</div>
 							</div>
 						</div>
@@ -93,32 +162,106 @@ export default function E_M_Dashboard() {
 								<div class="card-body">
 									<div class="row">
 										<div class="col mt-0">
-											<h5 class="card-title">Contract-based Staff</h5>
+											<h5 class="card-title">Total Waiters</h5>
 										</div>
 
 										<div class="col-auto">
 											<div class="avatar">
 												<div class="avatar-title rounded-circle bg-primary-dark">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign align-middle"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+												<i class="align-middle fas fa-fw fa fa-users"></i>
 												</div>
 											</div>
 										</div>
 									</div>
-									<h1 class="display-5 mt-1 mb-3">12</h1>
+									<h1 class="display-5 mt-1 mb-3">{allWaitersCount}</h1>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-lg-3 col-xl">
+							<div class="card">
+								<div class="card-body">
+									<div class="row">
+										<div class="col mt-0">
+											<h5 class="card-title">Total Receptionist </h5>
+										</div>
+
+										<div class="col-auto">
+											<div class="avatar">
+												<div class="avatar-title rounded-circle bg-primary-dark">
+												<i class="align-middle fas fa-fw fa fa-users"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+									<h1 class="display-5 mt-1 mb-3">{allReceptinistCount}</h1>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3 col-xl">
+							<div class="card">
+								<div class="card-body">
+									<div class="row">
+										<div class="col mt-0">
+											<h5 class="card-title">Total Office Staff</h5>
+										</div>
+
+										<div class="col-auto">
+											<div class="avatar">
+												<div class="avatar-title rounded-circle bg-primary-dark">
+												<i class="align-middle fas fa-fw fa fa-users"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+									<h1 class="display-5 mt-1 mb-3">{allOfficeSCount}</h1>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3 col-xl">
+							<div class="card">
+								<div class="card-body">
+									<div class="row">
+										<div class="col mt-0">
+											<h5 class="card-title">Total Drivers</h5>
+										</div>
+
+										<div class="col-auto">
+											<div class="avatar">
+												<div class="avatar-title rounded-circle bg-primary-dark">
+												<i class="align-middle fas fa-fw fa fa-users"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+									<h1 class="display-5 mt-1 mb-3">{allDriversCount}</h1>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3 col-xl">
+							<div class="card">
+								<div class="card-body">
+									<div class="row">
+										<div class="col mt-0">
+											<h5 class="card-title">Total Contract-based Staff</h5>
+										</div>
+
+										<div class="col-auto">
+											<div class="avatar">
+												<div class="avatar-title rounded-circle bg-primary-dark">
+												<i class="align-middle fas fa-fw fa fa-users"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+									<h1 class="display-5 mt-1 mb-3">{allContractBaseCount}</h1>
 								</div>
 							</div>
 						</div>
 					</div>
 
-
-
-
-
-
-              
-
-
-
+         
                     
 
 
