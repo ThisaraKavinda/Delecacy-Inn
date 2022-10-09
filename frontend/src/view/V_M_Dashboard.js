@@ -3,10 +3,41 @@ import Navbar from '../components/V_M_Navbar';
 import '../css/modern.css';
 import '../js/app.js';
 
+// Controllers
 
+import {getAllVehicleCount ,getAllVehicleAvailableCount,getAllVehicleRepairCount,getAllVehicleDrivingCount} from "../controllers/vehicles"
+import{getAllVehicleEmployeesCount} from '../controllers/employee'
 export default function V_M_Dashboard() {
 
+	let date_ob = new Date();
 
+    let date = ("0" + date_ob.getDate()).slice(-2);
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+    let year = date_ob.getFullYear();
+    
+    let sysDate = year + "-" + month + "-" + date;
+
+	const [allVehicleCount , setAllVehicleCount] = useState('');
+	const [allVehicleAvailableCount , setAllVehicleAvailableCount] = useState('');
+	const [allVehicleDrivingCount , setAllVehicleDrivingCount] = useState('');
+	const [allVehicleRepairCount , setAllVehicleRepairCount] = useState('');
+	const [allVehicledeptCount , setAllVehicleDptCount] = useState('');
+
+	getAllVehicleCount().then((result)=>{
+		setAllVehicleCount(result);
+	});
+	getAllVehicleAvailableCount().then((result)=>{
+		setAllVehicleAvailableCount(result);
+	});
+	getAllVehicleDrivingCount().then((result)=>{
+		setAllVehicleDrivingCount(result);
+	});
+	getAllVehicleRepairCount().then((result)=>{
+		setAllVehicleRepairCount(result);
+	});
+	getAllVehicleEmployeesCount().then((result)=>{
+		setAllVehicleDptCount(result);
+	});
     return (
 
         <div class="wrapper">
@@ -22,10 +53,36 @@ export default function V_M_Dashboard() {
 
                         <div class="header">
                             <h1 class="header-title">
-                                Analytics Overview
+                                Vehicle Manager Dashboard
                             </h1>
 
                         </div>
+
+						<div class="row">
+							
+							<div class="col-md-6 col-lg-3 col-xl">
+
+								<div class="card">
+									<div class="card-body">
+										<div class="row">
+											<div class="col mt-0">
+												<center><h5 class="card-title"> Date</h5></center>
+											</div>
+
+											<div class="col-auto">
+												<div class="avatar">
+													<div class="avatar-title rounded-circle bg-primary-dark">
+														<i class="align-middle fas fa-fw fa-calendar-alt"></i>
+													</div>
+												</div>
+											</div>
+										</div>
+										<center><h1 class="display-5 mt-1 mb-3 " >{sysDate}</h1></center>
+									</div>
+								</div>
+							</div>
+						</div>
+
 
                         <div class="row">
 						<div class="col-md-6 col-lg-3 col-xl">
@@ -33,18 +90,18 @@ export default function V_M_Dashboard() {
 								<div class="card-body">
 									<div class="row">
 										<div class="col mt-0">
-											<h5 class="card-title">Income</h5>
+											<h5 class="card-title">All Vehicles</h5>
 										</div>
 
 										<div class="col-auto">
 											<div class="avatar">
 												<div class="avatar-title rounded-circle bg-primary-dark">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign align-middle"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+												<i class="align-middle fas fa fa-car"></i>
 												</div>
 											</div>
 										</div>
 									</div>
-									<h1 class="display-5 mt-1 mb-3">$25.300</h1>
+									<h1 class="display-5 mt-1 mb-3">{allVehicleCount}</h1>
 								</div>
 							</div>
 						</div>
@@ -53,18 +110,18 @@ export default function V_M_Dashboard() {
 								<div class="card-body">
 									<div class="row">
 										<div class="col mt-0">
-											<h5 class="card-title">Orders</h5>
+											<h5 class="card-title">Available For Trips</h5>
 										</div>
 
 										<div class="col-auto">
 											<div class="avatar">
 												<div class="avatar-title rounded-circle bg-primary-dark">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart align-middle"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+												<i class="align-middle fas fa fa-taxi"></i>
 												</div>
 											</div>
 										</div>
 									</div>
-									<h1 class="display-5 mt-1 mb-3">12.514</h1>
+									<h1 class="display-5 mt-1 mb-3">{allVehicleAvailableCount}</h1>
 								</div>
 							</div>
 						</div>
@@ -73,18 +130,18 @@ export default function V_M_Dashboard() {
 								<div class="card-body">
 									<div class="row">
 										<div class="col mt-0">
-											<h5 class="card-title">Activity</h5>
+											<h5 class="card-title">Vehicles On Trip</h5>
 										</div>
 
 										<div class="col-auto">
 											<div class="avatar">
 												<div class="avatar-title rounded-circle bg-primary-dark">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity align-middle"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+												<i class="align-middle fas fa fa-taxi"></i>
 												</div>
 											</div>
 										</div>
 									</div>
-									<h1 class="display-5 mt-1 mb-3">29.232</h1>
+									<h1 class="display-5 mt-1 mb-3">{allVehicleDrivingCount}</h1>
 								</div>
 							</div>
 						</div>
@@ -93,22 +150,52 @@ export default function V_M_Dashboard() {
 								<div class="card-body">
 									<div class="row">
 										<div class="col mt-0">
-											<h5 class="card-title">Revenue</h5>
+											<h5 class="card-title">Vehicles On Repair</h5>
 										</div>
 
 										<div class="col-auto">
 											<div class="avatar">
 												<div class="avatar-title rounded-circle bg-primary-dark">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign align-middle"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+												<i class="align-middle fas fa fa-taxi"></i>
 												</div>
 											</div>
 										</div>
 									</div>
-									<h1 class="display-5 mt-1 mb-3">$83.300</h1>
+									<h1 class="display-5 mt-1 mb-3">{allVehicleRepairCount}</h1>
 								</div>
 							</div>
 						</div>
+						
 					</div>
+
+					<div class="row">
+							
+							<div class="col-md-6 col-lg-3 col-xl">
+
+								<div class="card">
+									<div class="card-body">
+										<div class="row">
+											<div class="col mt">
+												<center><h5 class="card-title"> Your Department Employee Count</h5></center>
+											</div>
+
+											<div class="col-auto">
+												<div class="avatar">
+													<div class="avatar-title rounded-circle bg-primary-dark">
+														<i class="align-middle fas fa-fw fa fa-users"></i>
+													</div>
+												</div>
+											</div>
+										</div>
+										<center><h1 class="display-5 mt-1 mb-3 " >{allVehicledeptCount}</h1></center>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+
                 </div>
              </main>
 

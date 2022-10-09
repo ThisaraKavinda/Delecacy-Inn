@@ -41,6 +41,40 @@ export const getAllEmployeesCount = async (req, res) => {
     res.send(String(employees));
 }
 
+export const getAllChefCount = async(req,res) =>{
+    const employees = await EmployeeModel.find({Type:"cf"}).count();
+    res.send(String(employees));
+}
+
+export const getAllKetchenHCount = async(req,res) =>{
+    const employees = await EmployeeModel.find({Type:"kh"}).count();
+    res.send(String(employees));
+}
+
+export const getAllWaitersCount = async(req,res) =>{
+    const employees = await EmployeeModel.find({Type:"wt"}).count();
+    res.send(String(employees));
+}
+
+export const getAllReceptionistsCount = async(req,res) =>{
+    const employees = await EmployeeModel.find({Type:"rt"}).count();
+    res.send(String(employees));
+}
+
+export const getAllOfficeSCount = async(req,res) =>{
+    const employees = await EmployeeModel.find({Type:"os"}).count();
+    res.send(String(employees));
+}
+
+export const getAllVehicleEmployeeCount = async(req,res) =>{
+    const employees = await EmployeeModel.find({Type:"dr"}).count();
+    res.send(String(employees));
+}
+
+export const getAllContractBaseCount = async(req,res) =>{
+    const employees = await EmployeeModel.find({Type:"cb"}).count();
+    res.send(String(employees));
+}
 
 export const deleteEmployee = async (req, res) => {
     const employee = await EmployeeModel.findOneAndDelete({ _id: req.body.id });
@@ -97,7 +131,7 @@ export const getSelectedEmployee = async (req, res) => {
 }
 
 export const getDrivers = async(req,res) => {
-    const employee = await EmployeeModel.find({Type:"Transportation Staff"})
+    const employee = await EmployeeModel.find({Type:"em"})
     res.send(employee);
 }
 

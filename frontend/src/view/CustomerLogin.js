@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import swal from 'sweetalert';
 import Select from "react-select";
+import { useNavigate } from 'react-router-dom';
 import { reactBaseURL } from '../config';
 
 //css
@@ -11,11 +12,13 @@ import '../js/app.js';
 
 // Controllers
 import { logIn } from '../controllers/customer';
+import { getActiveAppointmentByCustomer } from '../controllers/appointment';
 
 
 export default function CustomerLogin() {
 
-   
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState('');
     const [nic, setNic] = useState('');
 
@@ -41,21 +44,38 @@ export default function CustomerLogin() {
             swal("NIC field is empty");
         } else if (!validateNIC(nic)) {
             swal("Enter a valid NIC");
-        } else{
-            logIn({ email: email, nic: nic}).then((result) => {
+        } else {
+            logIn({ email: email, nic: nic }).then((result) => {
                 if (result.status) {
-                    swal({
-                        title: "Success!",
-                        text: "Customer Login Successfully",
-                        icon: 'success',
-                        timer: 2000,
-                        button: false,
-                    });
+                    getActiveAppointmentByCustomer({ nic: result.details.nic }).then((data) => {
+                        if (data.status) {
+                            swal({
+                                title: "Success!",
+                                text: "Customer Login Successfully",
+                                icon: 'success',
+                                timer: 2000,
+                                button: false,
+                            });
 
-                    setTimeout(() => {
-                        window.location.replace(reactBaseURL + "/CustomerBill");
-                    }, 2050)
-                }else{
+                            setTimeout(() => {
+                                navigate("/CustomerBill", {
+                                    state: {
+                                        id: data.details._id
+                                    }
+                                });
+                            }, 2000);
+
+                        } else {
+                            swal({
+                                title: "Error!",
+                                text: "Incorect Credential",
+                                icon: 'error',
+                                timer: 2000,
+                                button: false
+                            });
+                        }
+                    });
+                } else {
                     swal({
                         title: "Error!",
                         text: "Incorect Credential",
@@ -64,7 +84,7 @@ export default function CustomerLogin() {
                         button: false
                     });
                 }
-
+                
             });
         }
     }
@@ -83,20 +103,20 @@ export default function CustomerLogin() {
                                     </div>
                                     <div class="card-body">
                                         <div class="m-sm-4">
-                                        
-                                                <div class="mb-3">
-                                                    <label>Email</label>
-                                                    <input class="form-control " type="email" name="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label>NIC</label>
-                                                    <input class="form-control " type="password" name="password" placeholder="Enter your NIC" value={nic} onChange={(e) => setNic(e.target.value)} />
-                                                </div>
 
-                                                <div class="text-center mt-3">
-                                                    <button type="submit" class="btn  btn-primary" id="addCustomer" style={{ backgroundColor: '#081E3D', borderColor: '#081E3D', color: '#fff' }} onClick={() => login()} >Sign in</button>
-                                                </div>
-                                          
+                                            <div class="mb-3">
+                                                <label>Email</label>
+                                                <input class="form-control " type="email" name="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>NIC</label>
+                                                <input class="form-control " type="password" name="password" placeholder="Enter your NIC" value={nic} onChange={(e) => setNic(e.target.value)} />
+                                            </div>
+
+                                            <div class="text-center mt-3">
+                                                <button type="submit" class="btn  btn-primary" id="addCustomer" style={{ backgroundColor: '#081E3D', borderColor: '#081E3D', color: '#fff' }} onClick={() => login()} >Sign in</button>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>

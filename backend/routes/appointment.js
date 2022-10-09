@@ -3,7 +3,7 @@ import express, { Router } from 'express';
 // Controllers
 import { addAppointment, getAllAppointments, deleteAppointment, editAppointment, getSelectedAppointment,  getAllAppointmentsCount,
          getAllPending, getAllPendingCount, getAllActive, getAllActiveCount, getAllDone, getAllDoneCount, getAllCancel, getAllCancelCount,
-         updateAppointmentState, appointmentReport } from '../controllers/appointment.js';
+         updateAppointmentState, appointmentReport, getActiveAppointmentByCustomer } from '../controllers/appointment.js';
 
 const router = express.Router();
 
@@ -23,6 +23,7 @@ router.get('/getAllDoneCount',getAllDoneCount);
 router.get('/getAllCancel',getAllCancel);
 router.get('/getAllCancelCount',getAllCancelCount);
 router.post('/appointmentReport',appointmentReport);
+router.post('/getActiveAppointmentByCustomer',getActiveAppointmentByCustomer);
 
 
 export default router;

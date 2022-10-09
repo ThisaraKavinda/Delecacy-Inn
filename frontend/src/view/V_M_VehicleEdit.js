@@ -28,7 +28,7 @@ export default function V_M_VehicleEdit(props) {
   ];
 
   const vehicleStateOptions = [
-    { value: "Avalable", label: "Avalable" },
+    { value: "Avalable", label: "Available" },
     { value: "driving", label: "Driving" },
     { value: "In Repair", label: "In Repair" },
   ];

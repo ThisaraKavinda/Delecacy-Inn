@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {useNavigate} from 'react-router-dom';
 import Navbar from '../components/C_M_Navbar';
 import swal from 'sweetalert';
 import Select from 'react-select'
@@ -31,6 +32,8 @@ export default function C_M_Report() {
         )
     }).trigger("change")
 
+    const navigate = useNavigate();
+
     const [nicList, setNICList] = useState([]);
     const [selectnicList, setSelectNICList] = useState([]);
 
@@ -43,11 +46,25 @@ export default function C_M_Report() {
     useEffect(() => {
         getAllActive().then((result) => {
             var list = result.map((data) => {
-                return { value: data._id, label: data.nic };
+                return { value: data._id, label: "NIC : "+data.nic+" "+"Appointment id : "+data._id};
             })
             setNICList(list);
         });
     }, [])
+
+    function appointmentBillGet(){
+
+        if (selectnicList.length === 0) {
+            swal("NIC not selected");
+        } 
+        else {
+            navigate("/CustomerBill",{
+                state: {
+                    id: selectnicList.value
+                }
+            });
+        }
+    }
 
 
     function appointmentReportGet() {
@@ -137,7 +154,7 @@ export default function C_M_Report() {
                                             <Select class="form-control" options={nicList} onChange={setSelectNICList} />
                                         </div>
                                         <div class="col-md-2 " >
-                                            <button type="submit" class="btn  btn-primary " id="addCustomer" style={{ backgroundColor: '#081E3D', borderColor: '#081E3D', color: '#fff', marginLeft: 50 }} >Submit</button>
+                                            <button type="submit" class="btn  btn-primary " id="addCustomer" style={{ backgroundColor: '#081E3D', borderColor: '#081E3D', color: '#fff', marginLeft: 50 }} onClick={() => appointmentBillGet()}>Submit</button>
                                         </div>
                                     </div>
                                 </div>

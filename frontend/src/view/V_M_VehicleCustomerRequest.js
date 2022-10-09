@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
 import Navbar from "../components/V_M_Navbar";
 import swal from "sweetalert";
 import { reactBaseURL } from "../config";
@@ -79,7 +78,14 @@ export default function V_M_VehicleAppointmentView() {
     await confirmVehicleBooking(newItem).then((res) => {
       editVehicleAppointmentState(vehicleBookingId).then((res) => {
         editVehicleState(vehicleId).then((res) => {
-          swal("Details inserted")
+          swal({
+            title: "Success!",
+            text: "Trip Started Successfully",
+            icon: "success",
+            timer: 2000,
+            button: false,
+          });
+          window.location.replace(reactBaseURL + "/vehicle-customer-request");
         })
       })
     })
@@ -120,15 +126,15 @@ async function onChangeVehicle(e) {
         <main class="content">
           <div class="container-fluid">
             <div class="header">
-              <h1 class="header-title">Customer Vehicle Request
+              <h1 class="header-title">Customer Pending Vehicle Request
               </h1>
             <br></br>
             <br></br>
             <div class="btn-group  mb-3" role="group" aria-label="Large button group">
                                 
                                 <button onClick={() => pending()} type="button" class="btn btn-secondary">Pending</button>
-                                <button onClick={() => active()} type="button" class="btn btn-secondary">Active</button>
-                                <button onClick={() => done()} type="button" class="btn btn-secondary">Done</button>
+                                <button onClick={() => active()} type="button" class="btn btn-secondary">OnGoing</button>
+                                <button onClick={() => done()} type="button" class="btn btn-secondary">Completed</button>
                             </div>
             </div>
             <div class="col-12">

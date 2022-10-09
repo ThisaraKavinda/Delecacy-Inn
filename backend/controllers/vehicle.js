@@ -35,6 +35,20 @@ export const getAllVehicleCount = async (req, res) => {
     res.send(String(vehicles));
 }
 
+export const getAllAvailableVehicle = async(req,res) =>{
+    const vehicle = await VehicleModel.find({state:"Available"}).count();
+    res.send(String(vehicle));
+}
+
+export const getAllDrivingVehicle = async(req,res) =>{
+    const vehicle = await VehicleModel.find({state:"driving"}).count();
+    res.send(String(vehicle));
+}
+
+export const getAllRepairVehicle = async(req,res) =>{
+    const vehicle = await VehicleModel.find({state:"In Repair"}).count();
+    res.send(String(vehicle));
+}
 
 export const deleteVehicle = async (req, res) => {
     const vehicle = await VehicleModel.findOneAndDelete({ _id: req.body.id });
@@ -86,7 +100,7 @@ export const getSelectedVehicle = async (req, res) => {
 }
 
 export const getAllavalable = async (req, res, next) => {
-    const vehicles = await VehicleModel.find({state:"Avalable"});
+    const vehicles = await VehicleModel.find({state:"Available"});
     res.send(vehicles);
 }
 
@@ -99,6 +113,37 @@ export const editVehicleState = async (req, res) => {
             },
             {
                 state: "driving"
+            },
+            {
+                new:true
+            }
+            );
+
+        if (vehicle) {
+            res.send({
+                status: true,
+                details: vehicle  
+            });
+        } else {
+            res.send({
+                status: false,
+            });
+        }
+
+    } catch (error) {
+        console.log(error.messaga)
+    }
+}
+
+export const editVehicleState2 = async (req, res) => {
+    try {
+        console.log(req.body.id);
+        const vehicle = await VehicleModel.findOneAndUpdate(
+            {
+                _id: req.body.id
+            },
+            {
+                state: "Available"
             },
             {
                 new:true
