@@ -35,6 +35,22 @@ export const getAllVehicleCount = async () => {
     return data;
 }
 
+export const getAllVehicleAvailableCount = async () => {
+  const { data } = await axios.get(baseURL + '/vehicle/getAllAvailableCount/');
+  return data;
+}
+
+export const getAllVehicleDrivingCount = async () => {
+  const { data } = await axios.get(baseURL + '/vehicle/getAllDrivingCount/');
+  return data;
+}
+
+export const getAllVehicleRepairCount = async () => {
+  const { data } = await axios.get(baseURL + '/vehicle/getAllRepairCount/');
+  return data;
+}
+
+
 export const getAllavalable = async () => {
     const { data } = await axios.get(baseURL + '/vehicle/getAllavalable/');
     return data;
