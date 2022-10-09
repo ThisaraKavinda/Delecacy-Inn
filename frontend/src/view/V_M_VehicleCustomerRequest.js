@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
 import Navbar from "../components/V_M_Navbar";
 import swal from "sweetalert";
 import { reactBaseURL } from "../config";
@@ -127,7 +126,7 @@ async function onChangeVehicle(e) {
         <main class="content">
           <div class="container-fluid">
             <div class="header">
-              <h1 class="header-title">Customer Vehicle Request
+              <h1 class="header-title">Customer Pending Vehicle Request
               </h1>
             <br></br>
             <br></br>
@@ -135,7 +134,7 @@ async function onChangeVehicle(e) {
                                 
                                 <button onClick={() => pending()} type="button" class="btn btn-secondary">Pending</button>
                                 <button onClick={() => active()} type="button" class="btn btn-secondary">OnGoing</button>
-                                <button onClick={() => done()} type="button" class="btn btn-secondary">Done</button>
+                                <button onClick={() => done()} type="button" class="btn btn-secondary">Completed</button>
                             </div>
             </div>
             <div class="col-12">
