@@ -35,6 +35,20 @@ export const getAllVehicleCount = async (req, res) => {
     res.send(String(vehicles));
 }
 
+export const getAllAvailableVehicle = async(req,res) =>{
+    const vehicle = await VehicleModel.find({state:"Available"}).count();
+    res.send(String(vehicle));
+}
+
+export const getAllDrivingVehicle = async(req,res) =>{
+    const vehicle = await VehicleModel.find({state:"driving"}).count();
+    res.send(String(vehicle));
+}
+
+export const getAllRepairVehicle = async(req,res) =>{
+    const vehicle = await VehicleModel.find({state:"In Repair"}).count();
+    res.send(String(vehicle));
+}
 
 export const deleteVehicle = async (req, res) => {
     const vehicle = await VehicleModel.findOneAndDelete({ _id: req.body.id });

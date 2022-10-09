@@ -41,6 +41,10 @@ export const getAllEmployeesCount = async (req, res) => {
     res.send(String(employees));
 }
 
+export const getAllVehicleEmployee = async(req,res) =>{
+    const employees = await EmployeeModel.find({Type:"vm"}).count();
+    res.send(String(employees));
+}
 
 export const deleteEmployee = async (req, res) => {
     const employee = await EmployeeModel.findOneAndDelete({ _id: req.body.id });
