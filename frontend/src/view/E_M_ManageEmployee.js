@@ -115,6 +115,48 @@ export default function E_M_CustomerAdd() {
                                 :
                                 ''
                             }
+                            {value.Type === "cf" ? <>
+                            <td >Chef</td>
+                            </>
+                                :
+                                ''
+                            }
+                            {value.Type === "kh" ? <>
+                            <td >Kitchen Helper</td>
+                            </>
+                                :
+                                ''
+                            }
+                            {value.Type === "wt" ? <>
+                            <td >Waiter</td>
+                            </>
+                                :
+                                ''
+                            }
+                            {value.Type === "rt" ? <>
+                            <td >Receptionist</td>
+                            </>
+                                :
+                                ''
+                            }
+                            {value.Type === "os" ? <>
+                            <td >Office Staff</td>
+                            </>
+                                :
+                                ''
+                            }
+                            {value.Type === "dr" ? <>
+                            <td >Driver</td>
+                            </>
+                                :
+                                ''
+                            }
+                            {value.Type === "cb" ? <>
+                            <td >Contract Base</td>
+                            </>
+                                :
+                                ''
+                            }
                             <td class="table-action">
                               <button
                                 class="btn btn-pill btn-danger btn-sm"

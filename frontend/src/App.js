@@ -30,6 +30,7 @@ import E_M_ViewEmployee from './view/E_M_ViewEmployee';
 import E_M_EditEmployee from './view/E_M_EditEmployee';
 import E_M_ManageLeaves from './view/E_M_ManageLeaves';
 import E_M_ManageSalary from './view/E_M_ManageSalary';
+import E_M_Report from './view/E_M_Report';
 
 
 //Sheha
@@ -81,6 +82,7 @@ function App() {
         <Route exact path="/employeeView/:id" element={<E_M_ViewEmployee />} />
         <Route exact path="/manageLeaves" element={<E_M_ManageLeaves />} />
         <Route exact path="/manageSalary" element={<E_M_ManageSalary />} />
+        <Route exact path="/employeeReport" element={<E_M_Report />} />
 
         {/*Sheha*/}
         <Route exact path="/vehicleDashboard" element={<V_M_Dashboard />} />
