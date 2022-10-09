@@ -20,7 +20,7 @@ import "datatables.net-dt/css/jquery.dataTables.min.css";
 
 // Controllers
 import { addVehicle } from '../controllers/vehicles';
-import { getAllEmployees } from "../controllers/employee";
+import { getAllDrivers } from "../controllers/employee";
 
 export default function V_M_VehicleAdd() {
   const [vehicleType, setVehicleType] = useState("");
@@ -32,7 +32,7 @@ export default function V_M_VehicleAdd() {
   
 
   useEffect(() => {
-    getAllEmployees().then((result) => {
+    getAllDrivers().then((result) => {
         console.log(result);
         var list = result.map((data) => {
             return {  label: data.name };

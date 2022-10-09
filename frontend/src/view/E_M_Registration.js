@@ -212,6 +212,14 @@ export default function E_M_Registration() {
                                                 { value: 'em', label: 'Employee Manager' },
                                                 { value: 'vm', label: 'Vehicle Manager' },
                                                 { value: 'cm', label: 'Customer Manager' },
+                                                { value: 'cf', label: 'Chef' },
+                                                { value: 'kh', label: 'Kitchen Helper' },
+                                                { value: 'wt', label: 'Waiter' },
+                                                { value: 'rt', label: 'Receptionist' },
+                                                { value: 'os', label: 'Office Staff' },
+                                                { value: 'dr', label: 'Driver' },
+                                                { value: 'cb', label: 'Contract Base' },
+
                                             ]
                                             }
                                             onChange={(e) => {
