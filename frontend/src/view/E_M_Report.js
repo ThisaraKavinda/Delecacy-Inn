@@ -94,7 +94,7 @@ export default function C_M_Report() {
                                     <p style={{ fontWeight: 'bold', marginTop: -10 }}>Appointment Report</p>
                                     <div class="row  align-items-center" >
                                         <div class="mb-3 col-md-5">
-                                            <label for="inputEmail4">Start Date</label>
+                                            <label for="inputEmail4">Select Employeee Type</label>
                                             <Select options={
                                             [
                                                 { value: 'fm', label: 'Food Manager' },
