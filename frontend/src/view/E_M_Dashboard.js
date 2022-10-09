@@ -122,7 +122,7 @@ export default function E_M_Dashboard() {
 								<div class="card-body">
 									<div class="row">
 										<div class="col mt-0">
-											<h5 class="card-title">Total Chef</h5>
+											<h5 class="card-title">Total Chefs</h5>
 										</div>
 
 										<div class="col-auto">
@@ -184,7 +184,7 @@ export default function E_M_Dashboard() {
 								<div class="card-body">
 									<div class="row">
 										<div class="col mt-0">
-											<h5 class="card-title">Total Receptionist </h5>
+											<h5 class="card-title">Total Receptionists </h5>
 										</div>
 
 										<div class="col-auto">

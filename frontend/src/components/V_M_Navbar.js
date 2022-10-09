@@ -64,7 +64,7 @@ export default function V_M_Navbar() {
             </li>
 
             <li class="sidebar-item ">
-              <Link class="sidebar-link" to="/vehicle-report">
+              <Link class="sidebar-link" to="/vehicleReport">
                 <i class="align-middle me-2 fas fa-fw fa-home"></i>{" "}
                 <span class="align-middle">Reports</span>
               </Link>

@@ -58,7 +58,7 @@ export default function V_M_VehicleAppointmentView() {
 
 }, [])
 
-function UpdateVehicleAppointment(id) {
+function UpdateVehicleAppointment(id, vehicleId) {
 
   swal({
     title: "Are you sure?",
@@ -75,7 +75,10 @@ function UpdateVehicleAppointment(id) {
         endTime: endTime,
         amount: amount,
         status:"Completed"
-      }).then((result) => {
+      })
+      console.log(vehicleId)
+      editVehicleState2(vehicleId)
+      .then((result) => {
         if (result) {
           swal({
             title: "Success!",
@@ -109,7 +112,7 @@ function UpdateVehicleAppointment(id) {
 
       setTimeout(() => {
         window.location.replace(reactBaseURL + "/vehicle-customer-request-Active");
-      }, 2050);
+      }, 2050) ;
     }
   });
 }
@@ -160,7 +163,7 @@ function done() {
                         <th>Pick up time</th>
                         <th>End Date & Time</th>
                         <th>Vehicle </th>
-                        <th>Ammount </th>
+                        <th>Amount </th>
                         <th>Action </th>
 
                       </tr>
@@ -182,7 +185,7 @@ function done() {
                             <FormInputNumber value={vehicleApp.amount} onSave={appointmentAmountHandler}></FormInputNumber>
                             <br></br>
                             <td class="table-action" ><button class="btn btn-pill btn-success btn-sm"
-                           onClick = {(e) => UpdateVehicleAppointment(value._id, e)}>Confirm</button></td>
+                           onClick = {(e) => UpdateVehicleAppointment(value._id, value.vehicleID, e)}>Confirm</button></td>
                           </tr>
                         );
                       })}

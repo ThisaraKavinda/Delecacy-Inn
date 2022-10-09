@@ -1,7 +1,7 @@
 import express, { Router } from 'express';
 
 // Controllers
-import { addAppoinmentVehicle, getAllVehicleAppointments, getAllVehicleAppointmentCount,getAllDriving,getAllCompleted, deleteVehicleAppointment,editVehicleAppointment, getSelectedVehicleAppointment} from '../controllers/vehicleAppointment.js';
+import { addAppoinmentVehicle, getAllVehicleAppointments, getAllVehicleAppointmentCount,getVehicleAppoinmentForSelectedPeriod,getAllDriving,getAllCompleted, deleteVehicleAppointment,editVehicleAppointment, getSelectedVehicleAppointment} from '../controllers/vehicleAppointment.js';
 
 const router = express.Router();
 
@@ -13,4 +13,5 @@ router.post('/getSelectedVehicleAppointment',getSelectedVehicleAppointment);
 router.get('/getAllVehicleCount', getAllVehicleAppointmentCount);
 router.get('/getAllDriving', getAllDriving);
 router.get('/getAllCompleted', getAllCompleted);
+router.get('/getnew/:startDate/:endDate', getVehicleAppoinmentForSelectedPeriod);
 export default router;
