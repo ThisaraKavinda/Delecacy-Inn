@@ -81,4 +81,7 @@ export const logIn = async (details) => {
     return data;
 }
 
-
+export const getAllEmployeesType = async (type) => {
+    const { data } = await axios.get(baseURL + '/employee/getAllEmployeesType/' + type );
+    return data;
+}
