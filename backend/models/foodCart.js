@@ -24,6 +24,9 @@ const FoodCartSchema = new Schema({
     },
     orderId: {
         type: String,
+    },
+    nic : {
+        type: String,
     }
 
 });

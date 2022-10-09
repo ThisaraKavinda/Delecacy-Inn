@@ -12,6 +12,7 @@ import swal from 'sweetalert';
 
 import {getAllFoods, getFoods} from '../../controllers/food.js';
 import {addAllCartItems} from '../../controllers/foodCart.js';
+import {getSelectedAppointment} from '../../controllers/appointment';
 import FoodCategory from '../../components/Food/FoodCategory.js';
 import FoodItemPopup from '../../components/Food/FoodItemPopup.js'
 
@@ -36,6 +37,8 @@ export default function F_M_SelectFood() {
         })
     }
 
+    const [nic, setNic] = useState("")
+
     const [categories, setCategories] = useState([])
     const [allFoodItems, setAllFoodItems] = useState([])
     const [foodItems, setFoodItems] = useState([])
@@ -55,6 +58,10 @@ export default function F_M_SelectFood() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        getSelectedAppointment(id).then((res) => {
+            // console.log(res);
+            setNic(res.nic);
+        })
         getFoods("Foods").then((result) => {
             console.log(result);
             setFoodItems(result);
@@ -195,7 +202,7 @@ export default function F_M_SelectFood() {
                 button: true,
             })
         } else {
-            addAllCartItems(cartItems, id).then((res) => {
+            addAllCartItems(cartItems, id, nic).then((res) => {
 
             });
         }  
