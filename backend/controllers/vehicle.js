@@ -120,3 +120,34 @@ export const editVehicleState = async (req, res) => {
         console.log(error.messaga)
     }
 }
+
+export const editVehicleState2 = async (req, res) => {
+    try {
+        console.log(req.body.id);
+        const vehicle = await VehicleModel.findOneAndUpdate(
+            {
+                _id: req.body.id
+            },
+            {
+                state: "Available"
+            },
+            {
+                new:true
+            }
+            );
+
+        if (vehicle) {
+            res.send({
+                status: true,
+                details: vehicle  
+            });
+        } else {
+            res.send({
+                status: false,
+            });
+        }
+
+    } catch (error) {
+        console.log(error.messaga)
+    }
+}

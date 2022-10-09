@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
 import Navbar from "../components/V_M_Navbar";
-import swal from "sweetalert";
 import { reactBaseURL } from "../config";
 
 //css
@@ -20,37 +18,23 @@ import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
 
 // Controllers
-import { getAllVehicles } from "../controllers/vehicles";
-import { getAllVehicleBooking } from '../controllers/vehicleBooking';
+import { getAllCompleted, } from '../controllers//vehicleAppointment';
 
-export default function V_M_VehicleAppointmentView() {
+export default function V_M_VehicleAppointmentCompleted() {
 
-  const [vehicleBookingList, setVehicleBookingList] = useState([]);
-  const [vehicleList, setVehicleSelect] = useState([]);
+  const [vehicleAppointmentList, setVehicleAppointmentList] = useState([]);
+
   
-
   useEffect(() => {
-    getAllVehicleBooking().then((result) => {
-        setVehicleBookingList(result);
+    getAllCompleted().then((result) => {
 
+        setVehicleAppointmentList(result);
+        
         //initialize datatable
         $(document).ready(function () {
             $('#example').DataTable();
         });
     });
-
-    getAllVehicles().then((result) =>{
-        
-      setVehicleSelect(result);
-
-        //initialize datatable
-        $(document).ready(function () {
-            $('#example').DataTable();
-        });
-
-
-
-    })
 
 }, [])
 
@@ -75,7 +59,7 @@ function done() {
         <main class="content">
           <div class="container-fluid">
             <div class="header">
-              <h1 class="header-title">Customer Vehicle Request
+              <h1 class="header-title">Customer Completed Vehicle Trips
               </h1>
             <br></br>
             <br></br>
@@ -83,7 +67,7 @@ function done() {
                                 
                                 <button onClick={() => pending()} type="button" class="btn btn-secondary">Pending</button>
                                 <button onClick={() => active()} type="button" class="btn btn-secondary">OnGoing</button>
-                                <button onClick={() => done()} type="button" class="btn btn-secondary">Done</button>
+                                <button onClick={() => done()} type="button" class="btn btn-secondary">Completed</button>
                             </div>
             </div>
             <div class="col-12">
@@ -94,31 +78,34 @@ function done() {
                     <thead>
                       <tr>
                         <th>NIC</th>
-                        <th>Pick Up</th>
+                        <th>Pick Up Place</th>
                         <th>Pick up Date</th>
                         <th>Pick up time</th>
-                        <th>Requested Vehicle Type</th>
+                        <th>End Date</th>
+                        <th>End Time</th>
+                        <th>Vehicle Info</th>
+                        <th>Final Amount</th>
                       </tr>
                     </thead>
                     <tbody>
                    
-                      {vehicleBookingList.map((value, index)=> {
+                      {vehicleAppointmentList.map((value, index)=> {
                         return (
                           <tr key={index} >
                             <td>{value.nic}</td>
-                            <td>{value.places}</td>
-                            <td>{value.date}</td>
-                            <td>{value.time}</td>
-                            <td>{value.type}</td>
-                            <td>{value.identification}</td>
+                            <td>{value.pickupPlace}</td>
+                            <td>{value.pickupDate}</td>
+                            <td>{value.pickupTime}</td>
+                            <td>{value.endDate}</td>
+                            <td>{value.endTime}</td>
+                            <td>{value.VehicleSelected}</td>
+                            <td>{value.amount}</td>
 
                           </tr>
                         );
                       })}
                  
                     </tbody>
-
-
                   </table>
                 </div>
               </div>

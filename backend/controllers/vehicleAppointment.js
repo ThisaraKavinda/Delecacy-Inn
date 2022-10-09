@@ -95,6 +95,11 @@ export const getSelectedVehicleAppointment = async (req, res) => {
 }
 
 export const getAllDriving = async (req, res, next) => {
-    const vehicles = await VehicleAppointmentModel.find({state:"driving"});
+    const vehicles = await VehicleAppointmentModel.find({status:"driving"});
+    res.send(vehicles);
+}
+
+export const getAllCompleted = async (req, res, next) => {
+    const vehicles = await VehicleAppointmentModel.find({status:"Completed"});
     res.send(vehicles);
 }
