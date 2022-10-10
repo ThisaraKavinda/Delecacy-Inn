@@ -82,7 +82,7 @@ export default function V_M_VehicleAppointmentView() {
             title: "Success!",
             text: "Trip Started Successfully",
             icon: "success",
-            timer: 2000,
+            timer: 6000,
             button: false,
           });
           window.location.replace(reactBaseURL + "/vehicle-customer-request");
@@ -145,9 +145,9 @@ async function onChangeVehicle(e) {
                     <thead>
                       <tr>
                         <th>NIC</th>
-                        <th>Pick Up</th>
-                        <th>Pick up Date</th>
-                        <th>Pick up time</th>
+                        <th>Pickup</th>
+                        <th>Pickup Date</th>
+                        <th>Pickup time</th>
                         <th>Requested Vehicle Type</th>
                         <th>Available Vehicle</th>
                         <th>Action</th>

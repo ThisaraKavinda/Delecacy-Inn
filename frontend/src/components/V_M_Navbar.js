@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 export default function V_M_Navbar() {
     return (
       <nav id="sidebar" class="sidebar">
-        <Link to="/" class="sidebar-brand">
+        <Link to="/vehicleDashboard" class="sidebar-brand">
           {" "}
           <img
             style={{ maxWidth: 50 }}
@@ -20,7 +20,7 @@ export default function V_M_Navbar() {
           <div class="sidebar-user">
             <div>
               {" "}
-              <Link to="/">
+              <Link to="/vehicleDashboard">
                 {" "}
                 <img
                   src={require("../img/avatars/avatar-2.jpg")}
@@ -68,6 +68,12 @@ export default function V_M_Navbar() {
                 <i class="align-middle me-2 fas fa-fw fa-home"></i>{" "}
                 <span class="align-middle">Reports</span>
               </Link>
+            </li>
+
+            <li class="sidebar-item ">
+                <Link class="sidebar-link" to='/'>
+                    <i class="align-middle me-2 fas fa-fw fa-home"></i> <span class="align-middle">Log Out</span>
+                </Link>
             </li>
           </ul>
         </div>

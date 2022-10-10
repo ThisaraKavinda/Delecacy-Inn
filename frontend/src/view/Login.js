@@ -69,7 +69,7 @@ export default function Login() {
                         }, 2000)
                     }else{
                         setTimeout(() => {
-                            window.location.replace(reactBaseURL + "/");
+                            window.location.replace(reactBaseURL + "/customerDashboard");
                         }, 2000)
                     }
                     

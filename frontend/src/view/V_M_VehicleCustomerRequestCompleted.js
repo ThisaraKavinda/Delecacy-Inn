@@ -78,9 +78,9 @@ function done() {
                     <thead>
                       <tr>
                         <th>NIC</th>
-                        <th>Pick Up Place</th>
-                        <th>Pick up Date</th>
-                        <th>Pick up time</th>
+                        <th>Pickup Place</th>
+                        <th>Pickup Date</th>
+                        <th>Pickup time</th>
                         <th>End Date</th>
                         <th>End Time</th>
                         <th>Vehicle Info</th>

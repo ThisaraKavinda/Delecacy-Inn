@@ -151,11 +151,11 @@ export default function C_M_AppointmentEdit(props) {
 
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
-                                            <label for="inputCity">Number of Night</label>
+                                            <label for="inputCity">Number of Nights</label>
                                             <FormInputNumber value={appointmentData.night} title="number" onSave={nightSetHandler} />
                                         </div>
                                         <div class="mb-3 col-md-6">
-                                            <label for="inputCity">Number of Room</label>
+                                            <label for="inputCity">Number of Rooms</label>
                                             <FormInputNumber value={appointmentData.room} title="number" onSave={roomSetHandler} />
                                         </div>
 

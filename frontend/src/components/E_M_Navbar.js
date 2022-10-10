@@ -8,11 +8,11 @@ export default function E_M_Navbar() {
     return (
         <nav id="sidebar" class="sidebar">
 
-            <Link to='/' class="sidebar-brand" > <img style={{ maxWidth: 50 }} src={require('../img/logo/logo.png')} /> DELICACY INN </Link>
+            <Link to='/employeeDashboard' class="sidebar-brand" > <img style={{ maxWidth: 50 }} src={require('../img/logo/logo.png')} /> DELICACY INN </Link>
 
             <div class="sidebar-content">
                 <div class="sidebar-user">
-                    <div> <Link to='/'> <img src={require('../img/avatars/avatar.jpg')} class="img-fluid rounded-circle mb-2" /></Link></div>
+                    <div> <Link to='/employeeDashboard'> <img src={require('../img/avatars/avatar.jpg')} class="img-fluid rounded-circle mb-2" /></Link></div>
                     <div class="fw-bold">Thanushi Perera</div>
                     <small>Human Resource Manager</small>
                     <br></br>
@@ -70,7 +70,7 @@ export default function E_M_Navbar() {
 
 
                     <li class="sidebar-item ">
-                        <Link class="sidebar-link"to='/employeeDashboard'>
+                        <Link class="sidebar-link"to='/'>
                             <i class="align-middle me-2 fas fa-fw fa-home"></i> <span class="align-middle">Logout</span>
                         </Link>
 

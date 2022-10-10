@@ -193,7 +193,7 @@ export default function F_M_AddNewItem() {
                                                     [
                                                         { value: 'Foods', label: 'Foods' },
                                                         { value: 'Beverages', label: 'Beverages' },
-                                                        { value: 'Deserts', label: 'Deserts' },
+                                                        { value: 'Desserts', label: 'Desserts' },
                                                     ]
                                                 }
                                                 onChange={typeChangeHandler}
