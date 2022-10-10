@@ -122,7 +122,7 @@ export default function F_M_Dashboard() {
                             <p class="mb-2">Login Time: 06:56pm </p>
                         </div>
                         <div class="row">
-                            <a href="#">
+                            <a href="/">
                             <p class="mb-2">Logout</p>
                             </a>
                         </div>
@@ -285,7 +285,7 @@ export default function F_M_Dashboard() {
                                 <img src={desertImage} class="img-fluid" style={{ height: "50px" }}></img>
                             </div>
                             <div class="col-6 d-flex justify-content-start px-0">
-                                <p class="mb-0 fw-semibold">Deserts</p>
+                                <p class="mb-0 fw-semibold">Desserts</p>
                             </div>
                             <div class="col-auto px-4">
                             <img src={boxImage} class="img-fluid" style={{ height: "30px" }}></img>

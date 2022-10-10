@@ -12,7 +12,7 @@ export default function C_M_Navbar() {
 
             <div class="sidebar-content">
                 <div class="sidebar-user">
-                    <div> <Link to='/'> <img src={require('../img/avatars/avatar.jpg')} class="img-fluid rounded-circle mb-2" /></Link></div>
+                    <div> <Link to='/customerDashboard'> <img src={require('../img/avatars/avatar.jpg')} class="img-fluid rounded-circle mb-2" /></Link></div>
                     <div class="fw-bold">Hirusha Ravishan</div>
                     <small>Customer Manager</small>
                     <br></br>
@@ -27,7 +27,7 @@ export default function C_M_Navbar() {
 
                 <ul class="sidebar-nav">
                     <li class="sidebar-item ">
-                        <Link class="sidebar-link" to='/'>
+                        <Link class="sidebar-link" to='/customerDashboard'>
                             <i class="align-middle me-2 fas fa-fw fa-home"></i> <span class="align-middle">Dashboards</span>
                         </Link>
 

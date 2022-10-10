@@ -140,7 +140,10 @@ export default function FoodItemDetailsPopup(props) {
                         timer: 2000,
                         button: false,
                     });
-                } else {
+                        setTimeout(() => {
+                        window.location.reload(true);
+                    },  2000)
+                } else  {
                     swal({
                         title: "Error!",
                         text: "Something went wrong went wrong. Try again",

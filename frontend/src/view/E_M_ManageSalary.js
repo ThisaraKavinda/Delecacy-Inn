@@ -120,12 +120,12 @@ export default function E_M_EmployeeSalaryIncrement() {
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                  <table id="example" class="table table-striped my">
+                  <table  class="table table-striped my">
                     <thead>
                       <tr>
                         <th>Name</th>
                         <th>NIC</th>
-                        <th>Employe Type</th>
+                        <th>Employee Type</th>
                         <th>Current Salary</th>
                         <th>Increment</th>
                         <th >Action</th>

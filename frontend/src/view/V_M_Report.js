@@ -111,7 +111,7 @@ export default function C_M_Report() {
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body" >
-                                    <p style={{ fontWeight: 'bold', marginTop: -10 }}>Appointment Report</p>
+                                    <p style={{ fontWeight: 'bold', marginTop: -10 }}>Vehicle Report</p>
                                     <div class="row  align-items-center" >
                                         <div class="mb-3 col-md-5">
                                             <label for="inputEmail4">Start Date</label>
@@ -122,7 +122,7 @@ export default function C_M_Report() {
                                             <input type="date" class="form-control" name="appointment" data-date-format="DD MMMM YYYY" value={endDate} onChange={(e) => setEndDate(e.target.value)} required />
                                         </div>
                                         <div class="col-md-2 " >
-                                            <button type="submit" class="btn  btn-primary " id="addCustomer" style={{ backgroundColor: '#081E3D', borderColor: '#081E3D', color: '#fff', marginLeft: 50 }} onClick={() => appointmentReportGet()} >Submit</button>
+                                            <button type="submit" class="btn  btn-primary " id="addCustomer" style={{ backgroundColor: '#081E3D', borderColor: '#081E3D', color: '#fff', marginLeft: 50 }} onClick={() => appointmentReportGet()} >Search</button>
                                         </div>
                                     </div>
                                 </div>
@@ -150,7 +150,7 @@ export default function C_M_Report() {
                                                 <tr>
                                                     <th>Vehicle</th>
                                                     <th>Trip Count</th>
-                                                    <th>total Revenue</th>
+                                                    <th>Total Revenue</th>
                                                 </tr>
                                             </thead>
 
