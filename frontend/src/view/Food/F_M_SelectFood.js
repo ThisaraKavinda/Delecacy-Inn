@@ -203,7 +203,7 @@ export default function F_M_SelectFood() {
             })
         } else {
             addAllCartItems(cartItems, id, nic).then((res) => {
-
+                navigate("/orderPlaced/" + res)
             });
         }  
     }

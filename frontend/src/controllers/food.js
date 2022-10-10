@@ -19,6 +19,11 @@ export const addFoodItem = async (details) => {
     return data;
 }
 
+export const getNumOfFoods = async () => {
+    const { data } = await axios.get(baseURL + '/food/getNumOfFoods');
+    return data.num;
+}
+
 export const getAllFoods = async () => {
     const { data } = await axios.get(baseURL + '/food/getAllFoods');
     return data;

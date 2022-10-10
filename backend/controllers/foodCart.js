@@ -1,4 +1,5 @@
 import {FoodCart} from '../models/foodCart.js';
+import {Food} from '../models/food.js';
 
 export const addCartItems = async (req, res) => {
 
@@ -123,12 +124,78 @@ export const getOrdersForSelectedPeriod = async (req, res) => {
 }
 
 export const getRecordsForAOrder = async (req, res) => {
-
     const nic = req.params.nic;
-
     FoodCart.find({orderId: nic}).then((result)=>{
         res.send(result)
     }).catch((err)=>{
         console.log(err);
     })
+}
+
+export const getRecordsForAOrderWithImage = async (req, res) => {
+    let response = [];
+    const nic = req.params.nic;
+    await FoodCart.find({orderId: nic}).then(async (result)=>{
+        // res.send(result)
+        for (let item of result) {
+            let obj = {};
+            obj.itemName = item.itemName;
+            obj.itemId = item.itemId;
+            obj.price = item.price;
+            obj.nic= item.nic;
+            obj.date = item.date;
+            obj.time = item.time;
+            await Food.findById(item.itemId).then((result) => {
+                // console.log(result);
+                obj.image = result.image;
+            })
+            response.push(obj)
+        }
+        res.send(response);
+    }).catch((err)=>{
+        console.log(err);
+    })
+}
+
+export const getOrdersCountForAMonth = async (req, res) => {
+    const month = req.params.month;
+    FoodCart.find({date: { $regex: "([0-9])*-" + month + "-([0-9])*" }}).distinct('orderId')
+    .then((result)=>{
+        res.send(result)
+    }).catch((err)=>{
+        console.log(err);
+    })
+}
+
+export const getRevenueForAMonth = async (req, res) => {
+    const month = req.params.month;
+    await FoodCart.find({date: { $regex: "([0-9])*-" + month + "-([0-9])*" }})
+    .then((result)=>{
+        // res.send(result)
+        let revnue = 0;
+        for (let order of result) {
+            revnue += Number(order.price)
+        }
+        let response = {revenue: revnue}
+        res.send(response);
+    }).catch((err)=>{
+        console.log(err);
+    })
+}
+
+export const getRevenueList = async (req, res) => {   
+    let response = [];
+    for (let month=1; month<=12; month++) {
+        await FoodCart.find({date: { $regex: "([0-9])*-" + month + "-([0-9])*" }})
+        .then((result)=>{
+            let revnue = 0;
+            for (let order of result) {
+                revnue += Number(order.price)
+            }
+            response.push(revnue);          
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
+    res.send(response);
 }

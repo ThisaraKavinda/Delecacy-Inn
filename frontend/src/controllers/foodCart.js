@@ -31,7 +31,7 @@ export const addAllCartItems = async (itemsArr, id, nic) => {
         // console.log(newItem)
         const { data } = await axios.post(baseURL + '/foodCart/add', newItem);
     }
-    return true;
+    return orderId;
 }
 
 export const getOrdersForSelectedPeriod = async (startDate, endDate) => {
@@ -41,5 +41,25 @@ export const getOrdersForSelectedPeriod = async (startDate, endDate) => {
 
 export const getRecordsForAOrder = async (nic) => {
     const { data } = await axios.get(baseURL + '/foodCart/getRecordsForAOrder/' + nic);
+    return data;
+}
+
+export const getRecordsForAOrderWithImage = async (nic) => {
+    const { data } = await axios.get(baseURL + '/foodCart/getRecordsForAOrderWithImage/' + nic);
+    return data;
+}
+
+export const getOrdersCountForAMonth = async (month) => {
+    const { data } = await axios.get(baseURL + '/foodCart//getOrdersCountForAMonth/' + month);
+    return data;
+}
+
+export const getRevenueForAMonth = async (month) => {
+    const { data } = await axios.get(baseURL + '/foodCart/getRevenueForAMonth/' + month);
+    return data;
+}
+
+export const getRevenueList = async () => {
+    const { data } = await axios.get(baseURL + '/foodCart/getRevenueList');
     return data;
 }

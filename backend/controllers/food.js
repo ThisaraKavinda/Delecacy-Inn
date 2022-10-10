@@ -36,6 +36,15 @@ export const getAllFoods = async (req, res) => {
     })
 }
 
+export const getNumOfFoods = async (req, res) => {
+    Food.find().then((food)=>{
+        let response = {num: food.length}
+        res.send(response)
+    }).catch((err)=>{
+        console.log(err);
+    })
+}
+
 export const getFoods = async (req, res) => {
     const type = req.params.type;
     Food.find({type: type}).then((food)=>{

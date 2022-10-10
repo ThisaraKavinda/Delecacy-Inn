@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
 
-import { addFood, getAllFoods, getFoods, deleteFood, editFood } from '../controllers/food.js';
+import { addFood, getAllFoods, getFoods, deleteFood, editFood, getNumOfFoods } from '../controllers/food.js';
 import { getCategories } from '../controllers/foodCategory.js';
 import {catchAsync} from '../utils/catchAsync.js';
 
@@ -15,6 +15,7 @@ router.get('/getCategories/:type', catchAsync(getCategories));
 router.get('/getAllFoods', catchAsync(getAllFoods));
 router.get('/getFoods/:type', catchAsync(getFoods));
 router.get('/deleteFood/:id', catchAsync(deleteFood));
+router.get('/getNumOfFoods', catchAsync(getNumOfFoods));
 router.post('/editFood/:id',  catchAsync(editFood));
 
 export default router;

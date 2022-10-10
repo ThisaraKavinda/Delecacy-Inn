@@ -50,6 +50,7 @@ import F_M_RoomSelect from './view/Food/F_M_SelectRoom';
 import F_M_AddNewItem from './view/Food/F_M_AddNewItem';
 import F_M_FoodItemList from './view/Food/F_M_FoodItemList';
 import F_M_Report from './view/Food/F_M_Report';
+import F_M_OrderPlaced from './view/Food/F_M_OrderPlaced';
 
 
 function App() {
@@ -102,6 +103,7 @@ function App() {
         <Route exact path="/addNewItem" element={<F_M_AddNewItem/>} />
         <Route exact path="/foodItemList" element={<F_M_FoodItemList/>} />
         <Route exact path="/foodPaymentReport" element={<F_M_Report/>} />
+        <Route exact path="/orderPlaced/:id" element={<F_M_OrderPlaced/>} />
 
       </Routes>
     </BrowserRouter>
