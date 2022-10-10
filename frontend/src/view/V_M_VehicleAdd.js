@@ -191,7 +191,7 @@ export default function V_M_VehicleAdd() {
                     <div class="mb-3 col-md-6">
                       <label for="inputCapacity">Vehicle Capacity</label>
                       <input
-                        type="text"
+                        type="number"
                         class="form-control"
                         value={vehicleCapacity}
                         onChange={(e) => setVehicleCapacity(e.target.value)}
