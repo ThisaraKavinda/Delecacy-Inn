@@ -23,7 +23,7 @@ export default function V_M_Navbar() {
               <Link to="/">
                 {" "}
                 <img
-                  src={require("../img/avatars/avatar.jpg")}
+                  src={require("../img/avatars/avatar-2.jpg")}
                   class="img-fluid rounded-circle mb-2"
                 />
               </Link>
