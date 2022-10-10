@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/F_M_Navbar";
 import "../../css/modern.css";
 // import "../../js/app.js";
+import './F_M_Dashboard.css';
 
 import { Line , PolarArea, Bar} from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 import {CategoryScale} from 'chart.js'; 
 import pattern from 'patternomaly';
-
+import { Sugar } from 'react-preloaders2';
+import swal from 'sweetalert';
 
 import orderFood from "../../img/icons/fmOrderFood.png";
 import ordersImage from "../../img/icons/fmOrders.png";
@@ -19,11 +22,82 @@ import desertImage from '../../img/icons/fmCake.png';
 import boxImage from '../../img/icons/fmBox.png';
 import fastFoodImage from '../../img/icons/fmFastfood.png';
 
+import {getNumOfFoods} from '../../controllers/food';
+import {getOrdersCountForAMonth, getRevenueForAMonth, getRevenueList} from '../../controllers/foodCart'
+
 export default function F_M_Dashboard() {
+
+    const navigate = useNavigate();
 
     Chart.register(CategoryScale);
 
+    const [monthName, setMonthName] = useState("");
+    const [month, setMonth] = useState(0);
+
+    const [foodCount, setFoodCount] = useState(0);
+    const [orderCount, setOrderCount] = useState(0);
+    const [revenue, setRevenue] = useState(0);
+    const [revenueList, setRevenueList] = useState([]);
+
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const nameOfMonth = new Date().toLocaleString('default', {
+            month: 'long',
+        });
+        setMonthName(nameOfMonth)
+        let month = new Date().getMonth() + 1;
+        setMonth(month)
+        getNumOfFoods().then((res) => {
+            setFoodCount(res);
+        })
+        getOrdersCountForAMonth(month).then((res) => {
+            if (res.length < 10) {
+                setOrderCount("0" + res.length)
+            } else 
+                setOrderCount(res.length)
+        })
+        getRevenueForAMonth(month).then((res) => {
+            let revenueInK = Number(res.revenue) / 1000;
+            revenueInK = Math.round(revenueInK * 10) / 10;
+            setRevenue(revenueInK);
+        })
+        getRevenueList().then((res) => {
+            setRevenueList(res);
+        })
+        .catch((err) => {
+            swal({
+                title: "Error!",
+                text: "Something went wrong with the network. Try reloading page",
+                icon: 'error',
+                dangerMode: true,
+                button: true,
+            })
+            .then((reload) => {
+                window.location.reload();
+            });
+        })
+        .then ((result) => {
+            result.json()
+        })
+        .then(json => {
+            setLoading(false);
+        })
+        .catch(err => {
+            setLoading(false);
+        });
+    }, [])
+
+    const onMakeOrder = () => {
+        navigate("/roomSelect");
+    }
+
+    const onSeeAll = () => {
+        navigate("/foodItemList");
+    }
+
     return (
+        <React.Fragment>
         <div class="wrapper">
         <Navbar />
         <div class="main">
@@ -39,7 +113,7 @@ export default function F_M_Dashboard() {
                     <div class="row">
                         <div class="col-md-7 px-5">
                         <div class="row fs-2">
-                            <h3 class="mb-2">Hello Nimal!</h3>
+                            <h3 class="mb-2">Hello Thisara!</h3>
                         </div>
                         <div class="row fs-6">
                             <h5 class="mb-0">Food & Beverage Manager</h5>
@@ -56,7 +130,8 @@ export default function F_M_Dashboard() {
                         <div class="col-md-5">
                         <div class="row m-3 h-75">
                             <a>
-                            <div class="container-12 mx-6 d-flex justify-content-center align-items-center h-100 rounded" style={{ backgroundColor: "#2E4765" }}>
+                            <div class="container-12 mx-6 d-flex justify-content-center align-items-center h-100 rounded" 
+                            style={{ backgroundColor: "#2E4765" }} onClick={onMakeOrder} id="makeOrder">
                                 <div class="col-3">
                                 <img src={orderFood} class="img-fluid mx-3"></img>
                                 </div>
@@ -79,8 +154,8 @@ export default function F_M_Dashboard() {
                         <div class="row">
                         <div class="col-6 mt-0 px-4 text-white">
                             <h5 class="card-title text-white fs-5">Total Orders</h5>
-                            <h1 class="display-5 mt-1 mb-1 text-white fw-bold" style={{ fontSize: "40px" }}>379</h1>
-                            <h5 class="text-white fs-5">August</h5>
+                            <h1 class="display-5 mt-1 mb-1 text-white fw-bold" style={{ fontSize: "40px" }}>{orderCount}</h1>
+                            <h5 class="text-white fs-5">{monthName}</h5>
                         </div>
 
                         <div class="col-5 mx-2">
@@ -100,9 +175,9 @@ export default function F_M_Dashboard() {
                         <div class="col-6 mt-0 px-4 text-white">
                             <h5 class="card-title text-white fs-5">Total Revenue</h5>
                             <h1 class="display-5 mt-1 mb-1 text-white fw-bold" style={{ fontSize: "40px" }}>
-                            475K
+                            {revenue}K
                             </h1>
-                            <h5 class="text-white fs-5">August</h5>
+                            <h5 class="text-white fs-5">{monthName}</h5>
                         </div>
 
                         <div class="col-5 mx-2">
@@ -122,9 +197,9 @@ export default function F_M_Dashboard() {
                         <div class="col-6 mt-0 px-4 text-white">
                             <h5 class="card-title text-white fs-5">Total Items</h5>
                             <h1 class="display-5 mt-1 mb-1 text-white fw-bold" style={{ fontSize: "40px" }}>
-                            32
+                            {foodCount}
                             </h1>
-                            <h5 class="text-white fs-5">August</h5>
+                            <h5 class="text-white fs-5">{monthName}</h5>
                         </div>
 
                         <div class="col-5 mx-2">
@@ -144,12 +219,10 @@ export default function F_M_Dashboard() {
                             <Bar
                             datasetIdKey='id'
                             data={{
-                                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 'Jul', 'Aug', "Sept", "Nov", "Dec"],
+                                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 'Jul', 'Aug', "Sept", "Oct", "Nov", "Dec"],
                                 datasets: [{
                                     label: 'Annual Order Summary',
-                                    data: [
-                                      300, 250, 100, 210, 180, 270, 195, 50, 230, 0, 0
-                                    ],
+                                    data: revenueList,
                                     backgroundColor: [
                                         'rgb(255, 99, 132)',
                                         'rgb(75, 192, 192)',
@@ -178,7 +251,8 @@ export default function F_M_Dashboard() {
                                 <p class="mb-0 fw-semibold">Food & Beverages</p>
                             </div>
                             <div class="col-auto">
-                                <button type="button" class="btn text-white fw-semibold" style={{ backgroundColor: "#2E4765" }}>See All</button>
+                                <button type="button" class="btn text-white fw-semibold" 
+                                style={{ backgroundColor: "#2E4765" }} onClick={onSeeAll}>See All</button>
                             </div>
                         </div>
 
@@ -242,5 +316,7 @@ export default function F_M_Dashboard() {
             </main>
         </div>
         </div>
+        <Sugar customLoading={loading} background="blur"/>
+        </React.Fragment>
     );
 }
