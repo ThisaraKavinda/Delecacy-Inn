@@ -60,6 +60,12 @@ export default function E_M_Navbar() {
                         </Link>
 
                     </li>
+                    <li class="sidebar-item ">
+                        <Link class="sidebar-link"to='/employeeReport'>
+                            <i class="align-middle me-2 fas fa fa-credit-card"></i> <span class="align-middle">Report</span>
+                        </Link>
+
+                    </li>
 
 
 

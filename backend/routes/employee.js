@@ -1,7 +1,7 @@
 import express, { Router } from 'express';
 
 // Controllers
-import { addEmployee, getAllEmployees,getAllVehicleEmployeeCount,getAllKetchenHCount,getAllContractBaseCount,getAllOfficeSCount,getAllReceptionistsCount,getAllWaitersCount,getAllChefCount, deleteEmployee, editEmployee, getSelectedEmployee,  getAllEmployeesCount, getDrivers, logIn} from '../controllers/employee.js';
+import { addEmployee, getAllEmployees,getAllVehicleEmployeeCount,getAllKetchenHCount,getAllEmployeesType,getAllContractBaseCount,getAllOfficeSCount,getAllReceptionistsCount,getAllWaitersCount,getAllChefCount, deleteEmployee, editEmployee, getSelectedEmployee,  getAllEmployeesCount, getDrivers, logIn} from '../controllers/employee.js';
 
 const router = express.Router();
 
@@ -20,5 +20,6 @@ router.get('/getAllWaitersHCount', getAllWaitersCount);
 router.get('/getAllReceptionistsHCount', getAllReceptionistsCount);
 router.get('/getAllOfficeSCount', getAllOfficeSCount);
 router.get('/getAllContractBaseCount', getAllContractBaseCount);
+router.get('/getAllEmployeesType/:type', getAllEmployeesType);
 
 export default router;

@@ -62,6 +62,7 @@ export const editVehicleState = async (id) => {
 }
 
 export const editVehicleState2 = async (id) => {
+  console.log(id + "ssdsd");
   const { data } = await axios.post(baseURL + '/vehicle/editVehcleState2/', {id: id});
   return data;
 }

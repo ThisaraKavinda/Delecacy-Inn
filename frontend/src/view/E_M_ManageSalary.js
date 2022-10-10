@@ -137,7 +137,71 @@ export default function E_M_EmployeeSalaryIncrement() {
                           <tr key={index}>
                             <td>{value.name}</td>
                             <td>{value.nic}</td>
-                            <td>{value.Type}</td>
+                            {value.Type === "cm" ? <>
+                                <td >Customer Manager</td>
+                            </>
+                                :
+                                ''
+                            }{value.Type === "vm" ? <>
+                            <td >Vehicle Manager</td>
+                            </>
+                                :
+                                ''
+                            }
+                            {value.Type === "fm" ? <>
+                            <td >Food Manager</td>
+                            </>
+                                :
+                                ''
+                            }
+                            {value.Type === "em" ? <>
+                            <td >Employee Manager</td>
+                            </>
+                                :
+                                ''
+                            }
+                            {value.Type === "cf" ? <>
+                            <td >Chef</td>
+                            </>
+                                :
+                                ''
+                            }
+                            {value.Type === "kh" ? <>
+                            <td >Kitchen Helper</td>
+                            </>
+                                :
+                                ''
+                            }
+                            {value.Type === "wt" ? <>
+                            <td >Waiter</td>
+                            </>
+                                :
+                                ''
+                            }
+                            {value.Type === "rt" ? <>
+                            <td >Receptionist</td>
+                            </>
+                                :
+                                ''
+                            }
+                            {value.Type === "os" ? <>
+                            <td >Office Staff</td>
+                            </>
+                                :
+                                ''
+                            }
+                            {value.Type === "dr" ? <>
+                            <td >Driver</td>
+                            </>
+                                :
+                                ''
+                            }
+                            {value.Type === "cb" ? <>
+                            <td >Contract Base</td>
+                            </>
+                                :
+                                ''
+                            }
                             <td>{value.salary}</td>
                             <EditEmployeeForm value={employee.salary} onSave={salarySetHandler}/>
                             <td class="table-action">

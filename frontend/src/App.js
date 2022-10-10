@@ -30,6 +30,7 @@ import E_M_ViewEmployee from './view/E_M_ViewEmployee';
 import E_M_EditEmployee from './view/E_M_EditEmployee';
 import E_M_ManageLeaves from './view/E_M_ManageLeaves';
 import E_M_ManageSalary from './view/E_M_ManageSalary';
+import E_M_Report from './view/E_M_Report';
 
 
 //Sheha
@@ -40,6 +41,7 @@ import V_M_VehicleEdit from "./view/V_M_VehicleEdit";
 import V_M_VehicleCustomerRequest from "./view/V_M_VehicleCustomerRequest";
 import V_M_VehicleCustomerRequestActive from "./view/V_M_VehicleCustomerRequestActive";
 import V_M_VehicleCustomerRequestCompleted from "./view/V_M_VehicleCustomerRequestCompleted";
+import V_M_VehicleReport from "./view/V_M_Report";
 
 //Niakalo
 import F_M_Dashoard from './view/Food/F_M_Dashboard';
@@ -81,6 +83,7 @@ function App() {
         <Route exact path="/employeeView/:id" element={<E_M_ViewEmployee />} />
         <Route exact path="/manageLeaves" element={<E_M_ManageLeaves />} />
         <Route exact path="/manageSalary" element={<E_M_ManageSalary />} />
+        <Route exact path="/employeeReport" element={<E_M_Report />} />
 
         {/*Sheha*/}
         <Route exact path="/vehicleDashboard" element={<V_M_Dashboard />} />
@@ -90,6 +93,7 @@ function App() {
         <Route exact path="/vehicle-customer-request" element={<V_M_VehicleCustomerRequest />} />
         <Route exact path="/vehicle-customer-request-Active" element={<V_M_VehicleCustomerRequestActive />} />
         <Route exact path="/vehicle-customer-request-Completed" element={<V_M_VehicleCustomerRequestCompleted />} />
+        <Route exact path="/vehicleReport" element={<V_M_VehicleReport />} />
 
         {/* {Nikalo} */}
         <Route exact path="/foodDashboard" element={<F_M_Dashoard/>} />
