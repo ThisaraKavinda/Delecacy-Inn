@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/C_M_Navbar';
 import swal from 'sweetalert';
+import Select from 'react-select'
 
 import $ from 'jquery';
 
@@ -12,6 +13,7 @@ import '../js/app.js';
 
 // Controllers
 import { addAppointment } from '../controllers/appointment';
+import { getAllCustomers } from '../controllers/customer';
 
 
 export default function C_M_AppointmentAdd() {
@@ -19,8 +21,23 @@ export default function C_M_AppointmentAdd() {
     const [guest, setGuest] = useState(1);
     const [night, setNight] = useState(1);
     const [room, setRoom] = useState(1);
-    const [nic, setNic] = useState('');
+    // const [nic, setNic] = useState('');
     const [appointmentDate, setAppointmentDate] = useState('');
+  
+
+    const [nicList, setNICList] = useState([]);
+    const [selectnicList, setSelectNICList] = useState([]);
+    const nic = selectnicList.value;
+
+    useEffect(() => {
+        getAllCustomers().then((result) => {
+            console.log(result);
+            var list = result.map((data) => {
+                return { value: data.nic, label: data.nic };
+            })
+            setNICList(list);
+        });
+    }, [])
 
   
     const validateNIC = (nic) => {
@@ -58,15 +75,11 @@ export default function C_M_AppointmentAdd() {
                         button: false,
                     });
 
-                    setGuest(1);
-                    setNight(1);
-                    setRoom(1);
-                    setNic('');
-                    setAppointmentDate('');
+                  
 
-                    // setTimeout(() => {
-                    //     window.location.reload(true);
-                    // }, 2050)
+                    setTimeout(() => {
+                        window.location.reload(true);
+                    }, 2050)
 
                 } else {
                     swal({
@@ -87,12 +100,9 @@ export default function C_M_AppointmentAdd() {
 
     function resetForm(){
 
-       
-        setGuest(1);
-        setNight(1);
-        setRoom(1);
-        setNic('');
-        setAppointmentDate('');
+        setTimeout(() => {
+            window.location.reload(true);
+        }, 2050)
     }
 
     return (
@@ -118,7 +128,8 @@ export default function C_M_AppointmentAdd() {
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="inputEmail4">NIC</label>
-                                            <input type="text" class="form-control" value={nic} onChange={(e) => setNic(e.target.value)} name="name" required />
+                                            {/* <input type="text" class="form-control" value={nic} onChange={(e) => setNic(e.target.value)} name="name" required /> */}
+                                            <Select class="form-control" options={nicList} onChange={setSelectNICList} />
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label for="inputPassword4">Number of Guests</label>

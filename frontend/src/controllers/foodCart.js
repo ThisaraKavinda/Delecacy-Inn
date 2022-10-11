@@ -63,3 +63,8 @@ export const getRevenueList = async () => {
     const { data } = await axios.get(baseURL + '/foodCart/getRevenueList');
     return data;
 }
+
+export const getFoodBill = async (details) => {
+    const { data } = await axios.post(baseURL + '/foodCart/getFoodBill/', details);
+    return data;
+}

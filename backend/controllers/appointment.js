@@ -99,7 +99,6 @@ export const editAppointment = async (req, res) => {
                 _id: req.body._id
             },
             {
-                nic: req.body.nic,
                 guest: req.body.guest,
                 night: req.body.night,
                 room: req.body.room,

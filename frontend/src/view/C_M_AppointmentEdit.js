@@ -67,9 +67,7 @@ export default function C_M_AppointmentEdit(props) {
     const roomSetHandler = (data) => {
         setRoom(data);
     }
-    const nicSetHandler = (data) => {
-        setNic(data);
-    }
+   
     const appointmentSetHandler = (data) => {
         setAppointmentDate(data);
     }
@@ -86,7 +84,7 @@ export default function C_M_AppointmentEdit(props) {
             .then((willDelete) => {
                 if (willDelete) {
 
-                    editAppointment({_id: id, nic: nic, guest: guest, night: night, room: room, appointmentDate: appointmentDate, state: selectedType.label}).then((result) => {
+                    editAppointment({_id: id, guest: guest, night: night, room: room, appointmentDate: appointmentDate, state: selectedType.label}).then((result) => {
                         if (result.status) {
                             swal({
                                 title: "Success!",
@@ -140,7 +138,8 @@ export default function C_M_AppointmentEdit(props) {
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="inputEmail4">NIC</label>
-                                            <FormInput value={appointmentData.nic} title="number" onSave={nicSetHandler} />
+                                            <input type="text" class="form-control" name="place" placeholder={appointmentData.nic}  disabled />
+                                            {/* <FormInput value={appointmentData.nic} title="number" onSave={nicSetHandler} /> */}
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label for="inputPassword4">Number of Guests</label>

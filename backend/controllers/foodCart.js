@@ -199,3 +199,8 @@ export const getRevenueList = async (req, res) => {
     }
     res.send(response);
 }
+
+export const getFoodBill = async (req, res) => {
+    const food = await FoodCart.find({reservationId: req.body.id});
+    res.send(food);
+}
