@@ -96,3 +96,8 @@ export const updateRoomStateDone = async (req, res) => {
         console.log(error.messaga)
     }
 }
+
+export const getRoomBill = async (req, res) => {
+    const room = await RoomModel.find({ appointment: req.body.id });
+    res.send(room);
+}

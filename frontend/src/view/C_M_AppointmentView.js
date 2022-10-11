@@ -170,7 +170,7 @@ export default function C_M_AppointmentView() {
                         });
                     });
                 } else {
-                    swal(" kelaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                    swal("Error");
                 }
 
 

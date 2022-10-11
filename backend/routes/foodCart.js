@@ -1,7 +1,7 @@
 import express, { Router } from 'express';
 
 import { addCartItems, getOrdersForSelectedPeriod, getRecordsForAOrder, getOrdersCountForAMonth, 
-    getRevenueForAMonth, getRevenueList, getRecordsForAOrderWithImage } from '../controllers/foodCart.js';
+    getRevenueForAMonth, getRevenueList, getRecordsForAOrderWithImage, getFoodBill } from '../controllers/foodCart.js';
 import {catchAsync} from '../utils/catchAsync.js';
 
 const router = express.Router();
@@ -13,5 +13,6 @@ router.get('/getRecordsForAOrderWithImage/:nic' , catchAsync(getRecordsForAOrder
 router.get('/getOrdersCountForAMonth/:month', catchAsync(getOrdersCountForAMonth));
 router.get('/getRevenueForAMonth/:month', catchAsync(getRevenueForAMonth));
 router.get('/getRevenueList', catchAsync(getRevenueList));
+router.post('/getFoodBill', getFoodBill);
 
 export default router;

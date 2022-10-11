@@ -107,8 +107,8 @@ export default function F_M_Dashboard() {
                 <h1 class="header-title">Dashboard</h1>
                 </div>
 
-                <div class="col-md-12">
-                <div class="card">
+                <div class="col-md-12" >
+                <div class="card" style={{marginRight: "40px"}}>
                     <div class="card-body mt-3" style={{ margin: "0px" }}>
                     <div class="row">
                         <div class="col-md-7 px-5">

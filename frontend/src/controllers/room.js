@@ -27,3 +27,8 @@ export const updateRoomStateDone = async (details) => {
     const { data } = await axios.post(baseURL + '/room/updateRoomStateDone/', details);
     return data;
 }
+
+export const getRoomBill = async (details) => {
+    const { data } = await axios.post(baseURL + '/room/getRoomBill/', details);
+    return data;
+}

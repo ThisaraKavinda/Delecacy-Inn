@@ -144,3 +144,8 @@ export const getVehicleAppoinmentForSelectedPeriod = async (req, res) => {
 
     res.send(response)
 }
+
+export const getVehicleAppointmentBill = async (req, res) => {
+    const vehicles = await VehicleAppointmentModel.find({appointmentID: req.body.id});
+    res.send(vehicles);
+}

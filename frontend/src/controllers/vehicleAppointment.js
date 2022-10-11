@@ -21,13 +21,16 @@ export const getAllCompleted = async () => {
 
 
 export const editVehicleBooking = async (details ) => {
-
     const { data } = await axios.post(baseURL + '/vehicleAppointment/edit/', details)
     return data;
 }
 
 export const getVehicleAppoinmentForSelectedPeriod = async (startDate, endDate ) => {
-
     const { data } = await axios.get(baseURL + '/vehicleAppointment/getnew/' + startDate +"/" + endDate)
+    return data;
+}
+
+export const getVehicleAppointmentBill = async (details ) => {
+    const { data } = await axios.post(baseURL + '/vehicleAppointment/getVehicleAppointmentBill/', details)
     return data;
 }

@@ -12,14 +12,53 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/dist/jquery.min.js';
 
 
+// Controllers
+import { getVehicleAppointmentBill } from '../controllers/vehicleAppointment';
+import { getSelectedAppointment } from '../controllers/appointment';
+import { getRoomBill } from '../controllers/room';
+import { getFoodBill } from '../controllers/foodCart';
 
 
 export default function CustomerBill() {
 
     const location = useLocation();
+	const id = location.state.id;
+
+	let roomTotal = 0;
+	let vehicleTotal = 0;
+	let foodTotal = 0;
+
+
+	const [vehicleBillList, setVehicleBillList] = useState([]);
+	const [roomBillList, setRoomBillList] = useState([]);
+	const [foodBillList, setFoodBillList] = useState([]);
+	const [appointment, setAppointment] = useState([]);
+
+    useEffect(() => {
+        getVehicleAppointmentBill({id:id}).then((result) => {
+            setVehicleBillList(result);
+        });
+    }, [])
+	useEffect(() => {
+        getRoomBill({id:id}).then((result) => {
+            setRoomBillList(result);
+        });
+    }, [])
+	useEffect(() => {
+        getFoodBill({id:id}).then((result) => {
+            setFoodBillList(result);
+        });
+    }, [])
+	useEffect(() => {
+        getSelectedAppointment(id).then((result) => {
+            setAppointment(result);
+			console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+			console.log(result);
+			console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+        });
+    }, [])
 
     return (
-        // <div><h1>Bill id : {location.state.id}</h1></div>
 
         <div class="wrapper">
             <div class="main">
@@ -37,35 +76,39 @@ export default function CustomerBill() {
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>Spark Theme Customization</td>
-												<td>2</td>
-												<td class="text-end">$150.00</td>
+										{vehicleBillList.map((value, index) => {
+                                                return <tr key={index}>
+												<td>{"Traval to"+" "+value.pickupPlace}</td>
+												<td>{value.pickupDate}</td>
+												<td class="text-end">{value.amount+".00"}</td>
+												<td class="d-xxl-none">{vehicleTotal=vehicleTotal+Number(value.amount)}</td>
 											</tr>
-											<tr>
-												<td>Monthly Subscription </td>
-												<td>3</td>
-												<td class="text-end">$25.00</td>
+											 })}
+											 {roomBillList.map((value, index) => {
+                                                return <tr key={index}>
+												<td>{"Traval to"+" "+value.name}</td>
+												<td>{appointment.appointmentDate}</td>
+												<td class="text-end">{value.price+".00"}</td>
+												<td class="d-xxl-none">{roomTotal=roomTotal+Number(value.price)}</td>
 											</tr>
-											<tr>
-												<td>Additional Service</td>
-												<td>1</td>
-												<td class="text-end">$100.00</td>
+											 })}
+											 {foodBillList.map((value, index) => {
+                                                return <tr key={index}>
+												<td>{value.itemName}</td>
+												<td>{value.date}</td>
+												<td class="text-end">{value.price}</td>
+												<td class="d-xxl-none">{foodTotal=foodTotal+Number(value.price)}</td>
 											</tr>
-
+											 })}
+											
 											<tr>
                                             <th>Total </th>
 												<th>&nbsp;</th>
-												<th class="text-end">$268.85</th>
+												<th class="text-end">{vehicleTotal+roomTotal+foodTotal+".00"}</th>
 											</tr>
 										</tbody>
 									</table>
 
-									{/* <div class="text-center">
-										<a href="#" class="btn btn-primary">
-											Print this receipt
-										</a>
-									</div> */}
 								</div>
 							</div>
                         </div>
