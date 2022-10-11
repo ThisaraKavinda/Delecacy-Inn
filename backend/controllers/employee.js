@@ -131,7 +131,7 @@ export const getSelectedEmployee = async (req, res) => {
 }
 
 export const getDrivers = async(req,res) => {
-    const employee = await EmployeeModel.find({Type:"em"})
+    const employee = await EmployeeModel.find({Type:"dr"})
     res.send(employee);
 }
 

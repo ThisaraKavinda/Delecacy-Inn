@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/C_M_Navbar';
 import swal from 'sweetalert';
 import Select from 'react-select'
+import SelectTime from '../components/FormInputTime'
 
 import $ from 'jquery';
 
@@ -46,6 +47,7 @@ export default function C_M_VehicleBookingAdd() {
         });
     }, [])
 
+   
 
 
 
@@ -145,7 +147,7 @@ export default function C_M_VehicleBookingAdd() {
                                             <input type="number" class="form-control text-center" min={1} max={50} value={guest} onChange={(e) => setGuest(e.target.value)} />
                                         </div>
                                         <div class="mb-3 col-md-6">
-                                            <label for="inputCity">Pick up place</label>
+                                            <label for="inputCity">Pickup place</label>
                                             <input type="text" class="form-control" name="place" value={place} onChange={(e) => setPlace(e.target.value)} required />
                                         </div>
 
@@ -153,12 +155,13 @@ export default function C_M_VehicleBookingAdd() {
 
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
-                                            <label for="inputCity">Pick up Date</label>
+                                            <label for="inputCity">Pickup Date</label>
                                             <input type="date" class="form-control" name="date" value={picUpDate} onChange={(e) => setPicUpDate(e.target.value)} required />
                                         </div>
                                         <div class="mb-3  col-md-6">
-                                            <label class="form-label">Pick up Time (00:00)</label>
-                                            <input type="text" class="form-control" name="place" value={picUpTime} onChange={(e) => setPicUpTime(e.target.value)} placeholder="00:00" required />
+                                            <label class="form-label">Pickup Time</label>
+                                            <SelectTime value={picUpTime} onSave={setPicUpTime}></SelectTime>
+                                            {/* <input type="text" class="form-control" name="place" value={picUpTime} onChange={(e) => setPicUpTime(e.target.value)} placeholder="00:00" required /> */}
                                         </div>
                                     </div>
 

@@ -91,10 +91,10 @@ export default function C_M_Report() {
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body" >
-                                    <p style={{ fontWeight: 'bold', marginTop: -10 }}>Appointment Report</p>
+                                    <p style={{ fontWeight: 'bold', marginTop: -10 }}>Employee Report</p>
                                     <div class="row  align-items-center" >
                                         <div class="mb-3 col-md-5">
-                                            <label for="inputEmail4">Select Employeee Type</label>
+                                            <label for="inputEmail4">Select Employee Type</label>
                                             <Select options={
                                             [
                                                 { value: 'fm', label: 'Food Manager' },
@@ -118,7 +118,7 @@ export default function C_M_Report() {
 
                                         </div>
                                         <div class="col-md-2 " >
-                                            <button type="submit" class="btn  btn-primary " id="addCustomer" style={{ backgroundColor: '#081E3D', borderColor: '#081E3D', color: '#fff', marginLeft: 50 }} onClick={() => appointmentReportGet()} >Submit</button>
+                                            <button type="submit" class="btn  btn-primary " id="addCustomer" style={{ backgroundColor: '#081E3D', borderColor: '#081E3D', color: '#fff', marginLeft: 50 }} onClick={() => appointmentReportGet()} >Search</button>
                                         </div>
                                     </div>
                                 </div>

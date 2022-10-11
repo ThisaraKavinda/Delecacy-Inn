@@ -97,7 +97,7 @@ export default function C_M_CustomerView() {
                                                 <th>Email</th>
                                                 <th>Address</th>
                                                 <th>NIC</th>
-                                                <th>Constact No</th>
+                                                <th>Contact No</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>

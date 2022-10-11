@@ -57,9 +57,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-      <Route exact path="/login" element={<Login/>} />
+      <Route exact path="/" element={<Login/>} />
         {/*Hiru*/}
-        <Route exact path="/" element={<C_M_Dashboard />} />
+        <Route exact path="/customerDashboard" element={<C_M_Dashboard />} />
         <Route exact path="/customerAdd" element={<C_M_CustomerAdd />} />
         <Route exact path="/customerView" element={<C_M_CustomerView />} />
         <Route exact path="/customerEdit/:id" element={<C_M_CustomerEdit />} />

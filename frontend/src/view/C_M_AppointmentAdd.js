@@ -146,11 +146,11 @@ export default function C_M_AppointmentAdd() {
 
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
-                                            <label for="inputCity">Number of Night</label>
+                                            <label for="inputCity">Number of Nights</label>
                                             <input type="number" class="form-control text-center" min={1} max={50}  value={night} onChange={(e) => setNight(e.target.value)} />
                                         </div>
                                         <div class="mb-3 col-md-6">
-                                            <label for="inputCity">Number of Room</label>
+                                            <label for="inputCity">Number of Rooms</label>
                                             <input type="number" class="form-control text-center" min={1} max={50}  value={room} onChange={(e) => setRoom(e.target.value)} />
                                         </div>
 

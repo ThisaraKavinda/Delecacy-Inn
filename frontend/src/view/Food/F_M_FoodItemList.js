@@ -38,7 +38,7 @@ export default function F_M_FoodItemList() {
         getFoods("Beverages").then((result) => {
             setBeverageItems(result);
         })
-        getFoods("Deserts").then((result) => {
+        getFoods("Desserts").then((result) => {
             setDesertItems(result);
         })
         getAllFoods().then((result) => {
@@ -181,7 +181,7 @@ export default function F_M_FoodItemList() {
 
                                             <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
                                             onClick={onClickDesertsHandler} />
-                                            <label class="btn btn-outline-primary px-4" for="btnradio3">Deserts</label>
+                                            <label class="btn btn-outline-primary px-4" for="btnradio3">Desserts</label>
                                         </div>
                                     </div>
                                 </div>

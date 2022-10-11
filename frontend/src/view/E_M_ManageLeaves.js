@@ -44,8 +44,10 @@ export default function E_M_CustomerAdd() {
       const employee = data;
       console.log(employee);
 
-      employee.leaveTaken += 1;
-      
+     
+
+      if(employee.leaveTaken<=20){
+        employee.leaveTaken += 1;
       swal({
         title: "Are you sure?",
         text: "Do you want to change Employee details!",
@@ -95,7 +97,15 @@ export default function E_M_CustomerAdd() {
           }, 2050);
         }
       });
-      
+    }else{
+      swal({
+        title: "Error!",
+        text: "Leave Limit is Exceeded",
+        icon: "error",
+        timer: 2000,
+        button: false,
+      });
+    }
 
     })
     

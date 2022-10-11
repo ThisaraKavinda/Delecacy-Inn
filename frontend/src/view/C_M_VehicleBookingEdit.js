@@ -4,6 +4,7 @@ import swal from 'sweetalert';
 import { useParams, useNavigate } from 'react-router-dom';
 import Select from 'react-select'
 import { reactBaseURL } from '../config';
+import SelectTime from '../components/FormInputTime'
 
 //components
 import FormInput from '../components/FormInput';
@@ -183,7 +184,7 @@ export default function C_M_VehicleBookingEdit() {
                                         </div>
                                         <div class="mb-3  col-md-6">
                                             <label class="form-label">Pick up Time (00:00) </label>
-                                            <FormInput value={bookingData.time} title="number" onSave={timeSetHandler} />
+                                            <SelectTime value={bookingData.time} title="number" onSave={timeSetHandler} />
                                         </div>
                                     </div>
 

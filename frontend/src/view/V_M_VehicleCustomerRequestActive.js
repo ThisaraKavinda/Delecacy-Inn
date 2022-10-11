@@ -158,9 +158,9 @@ function done() {
                     <thead>
                       <tr>
                         <th>NIC</th>
-                        <th>Pick Up</th>
-                        <th>Pick up Date</th>
-                        <th>Pick up time</th>
+                        <th>Pickup</th>
+                        <th>Pickup Date</th>
+                        <th>Pickup time</th>
                         <th>End Date & Time</th>
                         <th>Vehicle </th>
                         <th>Amount </th>
