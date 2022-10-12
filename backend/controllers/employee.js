@@ -154,3 +154,16 @@ export const getAllEmployeesType = async (req, res) => {
     const employees = await EmployeeModel.find({Type: type});
     res.send(employees);
 }
+
+export const nameSearch = async (req, res) => {
+    const name = req.body.name;
+   
+    const employees = await EmployeeModel.findOne({name: name}).then((result) =>{
+        console.log("**********************************");
+        console.log(result);
+        console.log("**********************************");
+        res.send(result)
+    });
+   
+    // res.send(employees);
+}

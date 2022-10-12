@@ -26,12 +26,20 @@ export default function C_M_Report() {
 
     const [employeeType, setEmployeeType] = useState('');
     const [employeeTypeLabel, setEmployeeTypeLabel] = useState("");
+    // const [eName, setEname] = useState("");
+    // const [elist, setElist] = useState([]);
 
     const [reportList, setReportList] = useState([]);
     const [head, setHead] = useState(false);
 
     useEffect(() => {
     }, [])
+
+    // function getEDate(){
+    //     nameSearch({name:eName}).then((result) => {
+    //         setElist(result);
+    //     });
+    // }
 
     function appointmentReportGet() {
         if (employeeType === '') {
@@ -93,7 +101,7 @@ export default function C_M_Report() {
                                 <div class="card-body" >
                                     <p style={{ fontWeight: 'bold', marginTop: -10 }}>Employee Report</p>
                                     <div class="row  align-items-center" >
-                                        <div class="mb-3 col-md-5">
+                                        <div class="mb-3 col-md-4">
                                             <label for="inputEmail4">Select Employee Type</label>
                                             <Select options={
                                             [
@@ -118,9 +126,19 @@ export default function C_M_Report() {
 
                                         </div>
                                         <div class="col-md-2 " >
-                                            <button type="submit" class="btn  btn-primary " id="addCustomer" style={{ backgroundColor: '#081E3D', borderColor: '#081E3D', color: '#fff', marginLeft: 50 }} onClick={() => appointmentReportGet()} >Search</button>
+                                            <button type="submit" class="btn  btn-primary " id="addCustomer" style={{ backgroundColor: '#081E3D', borderColor: '#081E3D', color: '#fff', }} onClick={() => appointmentReportGet()} >Search</button>
                                         </div>
+
+                                        {/* <div class="mb-3 col-md-4">
+                                            <label for="inputEmail4">End Date</label>
+                                            <input type="text" class="form-control" name="appointment" value={eName} onChange={(e) => setEname(e.target.value)}  required />
+                                        </div>
+                                        <div class="col-md-2 " >
+                                            <button type="submit" class="btn  btn-primary " id="addCustomer" style={{ backgroundColor: '#081E3D', borderColor: '#081E3D', color: '#fff',}} onClick={() => getEDate()} >Submit</button>
+                                        </div> */}
+                                   
                                     </div>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -163,6 +181,15 @@ export default function C_M_Report() {
                                                         <td>{value.salary}.00</td>
                                                     </tr>
                                                 })}
+                                                 {/* {elist.map((value, index) => {
+                                                    return <tr key={index}>
+                                                        <td>{value.name}</td>
+                                                        <td>{value.nic}</td>
+                                                        <td>{value.email}</td>
+                                                        <td>{value.leaveTaken}</td>
+                                                        <td>{value.salary}.00</td>
+                                                    </tr>
+                                                })} */}
                                             </tbody>
 
                                         </table>
