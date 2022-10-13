@@ -2,5 +2,5 @@ projectKey=SPM_Delicacy_inn_proj
 serverUrl=http://localhost:9000
 serverVersion=7.5.0.20543
 dashboardUrl=http://localhost:9000/dashboard?id=SPM_Delicacy_inn_proj
-ceTaskId=AYOzSSn7XBEzZRreig5X
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYOzSSn7XBEzZRreig5X
+ceTaskId=AYPNuc6txzWBxKZ4pl-X
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYPNuc6txzWBxKZ4pl-X
