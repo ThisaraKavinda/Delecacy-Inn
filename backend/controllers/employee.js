@@ -151,6 +151,7 @@ export const logIn = async (req, res) => {
 
 export const getAllEmployeesType = async (req, res) => {
     const type = req.params.type;
+    
     const employee = await EmployeeModel.find({Type: type});
     res.send(employee);
 }
@@ -159,9 +160,6 @@ export const nameSearch = async (req, res) => {
     const name = req.body.name;
    
     const employees = await EmployeeModel.findOne({name: name}).then((result) =>{
-        console.log("**********************************");
-        console.log(result);
-        console.log("**********************************");
         res.send(result)
     });
    
