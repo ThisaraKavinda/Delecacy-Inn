@@ -1,6 +1,6 @@
 # Project Name - Motel Management System for Delecacy-Inn
 
-### Group Leader - IT20639112 - E.T.N.Perera (it20639112Thanu)
+### Group Leader - IT20639112 - E.T.N.Perera (Thanushi-Perera)
 ### Member 2 - IT20645052 - G.L.S.E.Liyanage (ShehanEraliyanage )
 ### Member 3 - IT20659158 - M.A.H.R.Nanayakkara (hirusha2577)
 ### Member 5 - IT20649562 - A.A.T. Kavinda (ThisaraKavinda)
