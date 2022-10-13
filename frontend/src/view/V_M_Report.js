@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import {useNavigate} from 'react-router-dom';
 import Navbar from '../components/V_M_Navbar';
 import swal from 'sweetalert';
 import Select from 'react-select'
@@ -33,7 +32,7 @@ export default function C_M_Report() {
         )
     }).trigger("change")
 
-    const navigate = useNavigate();
+
 
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
