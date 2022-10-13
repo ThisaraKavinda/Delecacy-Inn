@@ -46,7 +46,7 @@ export default function V_M_VehicleAppointmentView() {
   useEffect(() => {
     getAllDriving().then((result) => {
 
-      const vehicleApp = result;
+
       setVehicleAppointmentList(result);
       
 
